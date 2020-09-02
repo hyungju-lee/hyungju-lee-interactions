@@ -4,11 +4,11 @@
 
 * [스크롤 인터렉션 첫번째 - 거의 완벽!](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-1/index-javascript.html)  
   
-  * 테스트 브라우저 : 윈도우 Chrome, FF, IE 11 / 맥 Chrome, Safari  
+  * 테스트 브라우저 : Window Chrome, FF, IE 11 / Mac Chrome, Safari  
   * 테스트 기기 : 매직마우스, 트랙패드, 윈도마우스휠, 아이폰X
   * 결과 : 대부분 잘됨. Mac 트랙패드가 약간 민감.  
-    트랙패드 스크롤을 엄청 쎄게하면 살짝 두번째 섹션을 벗어남.  
-    하지만 그렇게 스크롤을 하진 않을 테니 큰 이슈는 아닐듯
+    Mac 트랙패드에서 스크롤을 연달아 엄청 쎄게하면 살짝 두번째 섹션을 벗어남.  
+    하지만 사용자가 그렇게 이상하게 스크롤을 하진 않을 테니 큰 이슈는 아닐듯
 
 ### jQuery
 

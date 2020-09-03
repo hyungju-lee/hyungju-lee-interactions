@@ -51,67 +51,69 @@
 </div>
 
 <script>
-    var scrollStatus = false;
-    var scrollStart = pageYOffset;
-    var currentScrollTop = pageYOffset;
-    var secondOffsetTop = document.querySelector('.second').offsetTop;
-    var scrollMoveTo = pageYOffset;
-    var rafId;
-    var resizeId;
+    (function () {
+        var scrollStatus = false;
+        var scrollStart = pageYOffset;
+        var currentScrollTop = pageYOffset;
+        var secondOffsetTop = document.querySelector('.second').offsetTop;
+        var scrollMoveTo = pageYOffset;
+        var rafId;
+        var resizeId;
 
-    var scrollToSecondSectionValue = function () {
-        currentScrollTop = pageYOffset;
-        switch (true) {
-            case scrollStatus:
-                scrollStart = currentScrollTop;
-                break;
-            case (0 < currentScrollTop && currentScrollTop < secondOffsetTop):
-                if (currentScrollTop - scrollStart > 0) {
-                    scrollToSecondSection();
-                } else {
-                    scrollMoveTo = currentScrollTop;
-                }
-                scrollStart = currentScrollTop;
-                break;
-            default:
-                break;
-        }
-    }
-
-    var scrollToSecondSection = function () {
-        scrollStatus = true;
-        document.querySelector('html').classList.add('prevent-scroll');
-        var acc = Math.abs(secondOffsetTop - scrollMoveTo) / 20;
-        scrollMoveTo += acc;
-        window.scrollTo(0, scrollMoveTo);
-        rafId = requestAnimationFrame(scrollToSecondSection);
-        if (secondOffsetTop - scrollMoveTo < 1) {
-            scrollStatus = false;
-            document.querySelector('html').classList.remove('prevent-scroll');
-            cancelAnimationFrame(rafId);
-        }
-    }
-
-    var updateValue = function () {
-        clearTimeout(resizeId);
-        resizeId = setTimeout(function () {
-            scrollStart = pageYOffset;
+        var scrollToSecondSectionValue = function () {
             currentScrollTop = pageYOffset;
-            secondOffsetTop = document.querySelector('.second').offsetTop;
-            scrollMoveTo = pageYOffset;
-        }, 200)
-    }
+            switch (true) {
+                case scrollStatus:
+                    scrollStart = currentScrollTop;
+                    break;
+                case (0 < currentScrollTop && currentScrollTop < secondOffsetTop):
+                    if (currentScrollTop - scrollStart > 0) {
+                        scrollToSecondSection();
+                    } else {
+                        scrollMoveTo = currentScrollTop;
+                    }
+                    scrollStart = currentScrollTop;
+                    break;
+                default:
+                    break;
+            }
+        }
 
-    window.addEventListener('load', function () {
-        document.body.classList.remove('before-load');
-        updateValue();
-        window.addEventListener('scroll', function () {
-            scrollToSecondSectionValue();
-        })
-        window.addEventListener('resize', function () {
+        var scrollToSecondSection = function () {
+            scrollStatus = true;
+            document.querySelector('html').classList.add('prevent-scroll');
+            var acc = Math.abs(secondOffsetTop - scrollMoveTo) / 10;
+            scrollMoveTo += acc;
+            window.scrollTo(0, scrollMoveTo);
+            rafId = requestAnimationFrame(scrollToSecondSection);
+            if (secondOffsetTop - scrollMoveTo < 1) {
+                scrollStatus = false;
+                document.querySelector('html').classList.remove('prevent-scroll');
+                cancelAnimationFrame(rafId);
+            }
+        }
+
+        var updateValue = function () {
+            clearTimeout(resizeId);
+            resizeId = setTimeout(function () {
+                scrollStart = pageYOffset;
+                currentScrollTop = pageYOffset;
+                secondOffsetTop = document.querySelector('.second').offsetTop;
+                scrollMoveTo = pageYOffset;
+            }, 200)
+        }
+
+        window.addEventListener('load', function () {
+            document.body.classList.remove('before-load');
             updateValue();
+            window.addEventListener('scroll', function () {
+                scrollToSecondSectionValue();
+            })
+            window.addEventListener('resize', function () {
+                updateValue();
+            })
         })
-    })
+    })()
 </script>
 </body>
 </html>

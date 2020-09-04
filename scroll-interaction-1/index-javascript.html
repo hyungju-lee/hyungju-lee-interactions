@@ -86,7 +86,7 @@
             scrollMoveTo += acc;
             window.scrollTo(0, scrollMoveTo);
             rafId = requestAnimationFrame(scrollToSecondSection);
-            if (secondOffsetTop - scrollMoveTo < 1) {
+            if (secondOffsetTop - scrollMoveTo < 0.5) {
                 scrollStatus = false;
                 document.querySelector('html').classList.remove('prevent-scroll');
                 cancelAnimationFrame(rafId);

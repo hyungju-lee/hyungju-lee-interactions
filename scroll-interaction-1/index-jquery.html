@@ -41,33 +41,33 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    var scrollStatus = false;
-    var scrollStart = $(window).scrollTop();
-    var currentScrollTop;
+    (function () {
+        var scrollStatus = false;
+        var scrollStart = $(window).scrollTop();
+        var currentScrollTop;
+        var firstSectionStart = false;
 
-    var firstSectionStart = false;
-
-
-    var scrollToSecondSection = function () {
-        currentScrollTop = $(window).scrollTop();
-        if (0 < currentScrollTop && currentScrollTop < $('.second').offset().top) {
-            firstSectionStart = true;
-            if (currentScrollTop - scrollStart > 0) {
-                scrollStatus = true;
-                $('html, body').stop().animate({
-                    scrollTop: $('.second').offset().top,
-                }, 500, function () {
-                    scrollStatus = false;
-                })
+        var scrollToSecondSection = function () {
+            currentScrollTop = $(window).scrollTop();
+            if (0 < currentScrollTop && currentScrollTop < $('.second').offset().top) {
+                firstSectionStart = true;
+                if (currentScrollTop - scrollStart > 0) {
+                    scrollStatus = true;
+                    $('html, body').stop().animate({
+                        scrollTop: $('.second').offset().top,
+                    }, 500, function () {
+                        scrollStatus = false;
+                    })
+                }
             }
+            scrollStart = currentScrollTop;
         }
-        scrollStart = currentScrollTop;
-    }
 
-    $(window).on('scroll', function (e) {
-        if (scrollStatus) return;
-        scrollToSecondSection();
-    })
+        $(window).on('scroll', function (e) {
+            if (scrollStatus) return;
+            scrollToSecondSection();
+        })
+    })()
 </script>
 </body>
 </html>

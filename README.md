@@ -50,8 +50,11 @@
 
 ### Scroll interaction 2
     
-* 스크롤 canvas 인터렉션 (만들 예정~!)
+* [스크롤 canvas 인터렉션 (만드는 중)](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-2/index-javascript.html)
 
+  * **구현 예정**
   1. 스크롤 위치에 따른 현재 애니메이션 섹션 인식
   2. 현재 애니메이션 섹션의 canvas 태그 display: block 처리
   3. 아닌 canvas 태그는 display: none 처리
+  4. requestAnimationFrame 처리
+  5. ...

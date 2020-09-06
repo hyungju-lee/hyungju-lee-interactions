@@ -24,6 +24,8 @@
                     './image/bg01.jpg',
                 ],
                 images: [],
+                videoPath: [],
+                videoImages: [],
             },
             canvasRatio: {
                 hRatio: null,
@@ -46,16 +48,20 @@
         },
         {
             type: 'sticky',
-            heightNum: 2,
+            heightNum: 4,
             scrollHeight: 0,
             objs: {
                 scene: document.querySelector('#scroll-interaction-1'),
                 canvas: document.querySelector('#second-canvas'),
                 context: document.querySelector('#second-canvas').getContext('2d'),
-                imagesPath: [
-
-                ],
+                imagesPath: [],
                 images: [],
+                videoPath: './image/video-1/',
+                videoImages: [],
+            },
+            values: {
+                videoImageCount: 631,
+                videoSequence: [0, 630, { start: 0, end: 1 }],
             }
         }
     ]
@@ -66,9 +72,19 @@
             for (var j = 0; j < sceneInfo[i].objs.imagesPath.length; j++) {
                 imgElem = new Image();
                 imgElem.src = sceneInfo[i].objs.imagesPath[j];
-                imgElem.width = sceneInfo[i].objs.canvas.width;
-                imgElem.height = sceneInfo[i].objs.canvas.height;
                 sceneInfo[i].objs.images.push(imgElem);
+            }
+        }
+    }
+
+    var initVideo = function () {
+        var videoElem;
+        for (var i = 0; i < sceneInfo.length; i++) {
+            for (var j = 1; j < sceneInfo[i].values.videoImageCount + 1; j++) {
+                var videoElem = new Image();
+                var num = j < 10? '0000' + j : j < 100? '000' + j : j < 1000? '00' + j :'0' + j;
+                videoElem.src = sceneInfo[i].objs.videoPath + 'scene' + num +'.jpg';
+                sceneInfo[i].objs.videoImages.push(videoElem);
             }
         }
     }
@@ -154,7 +170,22 @@
     var calcValues = function (values) {
         var rv;
         if (values[2].start === 0 && values[2].end === 1) {
-            rv = scrollRatio * (values[1] - values[0]) + values[0];
+            var scrollStart = sceneInfo[currentScene].scrollHeight * values[2].start;
+            var scrollEnd = sceneInfo[currentScene].scrollHeight * values[2].end;
+            if (relativeYOffset >= scrollStart && relativeYOffset <= scrollEnd) {
+                rv = scrollRatio * (values[1] - values[0]) + values[0];
+            } else {
+                switch (true) {
+                    case (relativeYOffset < scrollStart) :
+                        rv = values[0];
+                        break;
+                    case (scrollEnd < relativeYOffset) :
+                        rv = values[1];
+                        break;
+                    default :
+                        break;
+                }
+            }
         } else {
             var scrollStart = sceneInfo[currentScene].scrollHeight * values[2].start;
             var scrollEnd = sceneInfo[currentScene].scrollHeight * values[2].end;
@@ -192,6 +223,8 @@
                 sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ sceneInfo[0].canvasRatio.scaleRatio +')';
                 break;
             case 1:
+                var vNum = Math.round(calcValues(sceneInfo[1].values.videoSequence));
+                sceneInfo[1].objs.context.drawImage(sceneInfo[1].objs.videoImages[vNum], 0, 0);
 
 
 
@@ -205,6 +238,7 @@
 
     var initFunc = function () {
         initImage();
+        initVideo();
         initSectionHeight();
         currentSection();
         initCanvasValues();

@@ -4,13 +4,23 @@
     border: 0;
     box-sizing: border-box
 }
+#show-scene-0 #scroll-interaction-0 .sticky-elem,
+#show-scene-1 #scroll-interaction-1 .sticky-elem {
+    display: block;
+}
+.scroll-interaction-inner {
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+}
 .sticky-elem {
     overflow: hidden;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 .canvas {
     position: absolute;

@@ -1,24 +1,25 @@
 (function () {
 
-    var yOffset = 0;
-    var currentScene = 0;
-    var relativeYOffset = 0;
-    var scrollRatio = 0;
-    var acc = 0.1;
-    var delayedYOffset = 0;
-    var prevScrollHeight = 0;
-    var enterNewScene = false;
-    var rafId;
-    var rafState;
-    var canvasHeightRatio;
-    var canvasWidthRatio;
-    var canvasScaleRatio;
+    var yOffset = 0,
+        currentScene = 0,
+        relativeYOffset = 0,
+        scrollRatio = 0,
+        acc = 0.1,
+        delayedYOffset = 0,
+        prevScrollHeight = 0,
+        enterNewScene = false,
+        rafId,
+        rafState,
+        canvasHeightRatio,
+        canvasWidthRatio,
+        canvasScaleRatio;
 
     var sceneInfo = [
         {
-            type: 'sticky',
-            heightNum: 4,
+            type: 'stickyToNormal',
+            heightNum: 5,
             scrollHeight: 0,
+            paddingTop: 0,
             objs: {
                 scene: document.querySelector('#scroll-interaction-0'),
                 canvas: document.querySelector('#first-canvas'),
@@ -35,28 +36,28 @@
                 imageSequence: {
                     first: {
                         // canvas tag and image width 1920 , height 1080 기준
-                        SX: [0, 0, { start: 0, end: 0.33 }],
-                        SY: [0, 0, { start: 0, end: 0.33 }],
-                        SW: [0, 0, { start: 0, end: 0.33 }],
-                        SH: [0, 0, { start: 0, end: 0.33 }],
-                        DX: [0, 0, { start: 0, end: 0.33 }],
-                        DY: [0, 0, { start: 0, end: 0.33 }],
-                        DW: [0, 0, { start: 0, end: 0.33 }],
-                        DH: [0, 0, { start: 0, end: 0.33 }],
+                        SX: [0, 0, { start: 0, end: 0.264 }],
+                        SY: [0, 0, { start: 0, end: 0.264 }],
+                        SW: [0, 0, { start: 0, end: 0.264 }],
+                        SH: [0, 0, { start: 0, end: 0.264 }],
+                        DX: [0, 0, { start: 0, end: 0.264 }],
+                        DY: [0, 0, { start: 0, end: 0.264 }],
+                        DW: [0, 0, { start: 0, end: 0.264 }],
+                        DH: [0, 0, { start: 0, end: 0.264 }],
                     },
                     second: {
                         // canvas tag and image width 1920 , height 1080 기준
-                        SX: [0, 0, { start: 0.33, end: 0.66 }],
-                        SY: [0, 0, { start: 0.33, end: 0.66 }],
-                        SW: [0, 0, { start: 0.33, end: 0.66 }],
-                        SH: [0, 0, { start: 0.33, end: 0.66 }],
-                        DX: [0, 0, { start: 0.33, end: 0.66 }],
-                        DY: [0, 0, { start: 0.33, end: 0.66 }],
-                        DW: [0, 0, { start: 0.33, end: 0.66 }],
-                        DH: [0, 0, { start: 0.33, end: 0.66 }],
+                        SX: [0, 0, { start: 0.264, end: 0.528 }],
+                        SY: [0, 0, { start: 0.264, end: 0.528 }],
+                        SW: [0, 0, { start: 0.264, end: 0.528 }],
+                        SH: [0, 0, { start: 0.264, end: 0.528 }],
+                        DX: [0, 0, { start: 0.264, end: 0.528 }],
+                        DY: [0, 0, { start: 0.264, end: 0.528 }],
+                        DW: [0, 0, { start: 0.264, end: 0.528 }],
+                        DH: [0, 0, { start: 0.264, end: 0.528 }],
                     },
                 },
-                canvasScale: [0, 0, { start: 0.66, end: 1 }],
+                canvasScale: [0, 0, { start: 0.528, end: 0.8 }],
             },
         },
         {
@@ -75,6 +76,8 @@
             values: {
                 videoImageCount: 631,
                 videoSequence: [0, 630, { start: 0, end: 1 }],
+                canvasOpacityIn: [0, 1, { start: 0, end: 0.1 }],
+                canvasOpacityOut: [1, 0, { start: 0.9, end: 1 }],
             }
         }
     ]
@@ -106,6 +109,10 @@
         for (var i = 0; i < sceneInfo.length; i++) {
             sceneInfo[i].scrollHeight = innerHeight * sceneInfo[i].heightNum;
             sceneInfo[i].objs.scene.style.height = sceneInfo[i].scrollHeight + 'px';
+            if (sceneInfo[i].type === 'stickyToNormal') {
+                sceneInfo[i].paddingTop = innerHeight * sceneInfo[i].heightNum - innerHeight;
+                sceneInfo[i].objs.scene.style.paddingTop = sceneInfo[i].paddingTop + 'px';
+            }
         }
     }
 
@@ -230,40 +237,79 @@
         return rv;
     }
 
+    var refreshDrawCanvas = function () {
+        switch (currentScene) {
+            case 1:
+                sceneInfo[0].objs.context.drawImage(
+                    sceneInfo[0].objs.images[0],
+                    sceneInfo[0].values.imageSequence.first.SX[1],
+                    sceneInfo[0].values.imageSequence.first.SY[1],
+                    sceneInfo[0].values.imageSequence.first.SW[1],
+                    sceneInfo[0].values.imageSequence.first.SH[1],
+                    sceneInfo[0].values.imageSequence.first.DX[1],
+                    sceneInfo[0].values.imageSequence.first.DY[1],
+                    sceneInfo[0].values.imageSequence.first.DW[1],
+                    sceneInfo[0].values.imageSequence.first.DH[1]);
+                sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.images[1],
+                    sceneInfo[0].values.imageSequence.second.SX[1],
+                    sceneInfo[0].values.imageSequence.second.SY[1],
+                    sceneInfo[0].values.imageSequence.second.SW[1],
+                    sceneInfo[0].values.imageSequence.second.SH[1],
+                    sceneInfo[0].values.imageSequence.second.DX[1],
+                    sceneInfo[0].values.imageSequence.second.DY[1],
+                    sceneInfo[0].values.imageSequence.second.DW[1],
+                    sceneInfo[0].values.imageSequence.second.DH[1]);
+                sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ sceneInfo[0].values.canvasScale[1] +')';
+                sceneInfo[0].objs.scene.querySelector('.scroll-interaction-inner').classList.remove('sticky-elem');
+                break;
+            default:
+                break;
+        }
+    }
+
     var drawCanvas = function () {
         switch (currentScene) {
             case 0:
                 sceneInfo[0].objs.context.clearRect(0, 0, 1920, 1080);
-                var sx = calcValues(sceneInfo[0].values.imageSequence.first.SX);
-                var sy = calcValues(sceneInfo[0].values.imageSequence.first.SY);
-                var sw = calcValues(sceneInfo[0].values.imageSequence.first.SW);
-                var sh = calcValues(sceneInfo[0].values.imageSequence.first.SH);
-                var dx = calcValues(sceneInfo[0].values.imageSequence.first.DX);
-                var dy = calcValues(sceneInfo[0].values.imageSequence.first.DY);
-                var dw = calcValues(sceneInfo[0].values.imageSequence.first.DW);
-                var dh = calcValues(sceneInfo[0].values.imageSequence.first.DH);
-                var sx2 = calcValues(sceneInfo[0].values.imageSequence.second.SX);
-                var sy2 = calcValues(sceneInfo[0].values.imageSequence.second.SY);
-                var sw2 = calcValues(sceneInfo[0].values.imageSequence.second.SW);
-                var sh2 = calcValues(sceneInfo[0].values.imageSequence.second.SH);
-                var dx2 = calcValues(sceneInfo[0].values.imageSequence.second.DX);
-                var dy2 = calcValues(sceneInfo[0].values.imageSequence.second.DY);
-                var dw2 = calcValues(sceneInfo[0].values.imageSequence.second.DW);
-                var dh2 = calcValues(sceneInfo[0].values.imageSequence.second.DH);
-                var canvasScaleNum = calcValues(sceneInfo[0].values.canvasScale);
+                var sx = calcValues(sceneInfo[0].values.imageSequence.first.SX),
+                    sy = calcValues(sceneInfo[0].values.imageSequence.first.SY),
+                    sw = calcValues(sceneInfo[0].values.imageSequence.first.SW),
+                    sh = calcValues(sceneInfo[0].values.imageSequence.first.SH),
+                    dx = calcValues(sceneInfo[0].values.imageSequence.first.DX),
+                    dy = calcValues(sceneInfo[0].values.imageSequence.first.DY),
+                    dw = calcValues(sceneInfo[0].values.imageSequence.first.DW),
+                    dh = calcValues(sceneInfo[0].values.imageSequence.first.DH),
+                    sx2 = calcValues(sceneInfo[0].values.imageSequence.second.SX),
+                    sy2 = calcValues(sceneInfo[0].values.imageSequence.second.SY),
+                    sw2 = calcValues(sceneInfo[0].values.imageSequence.second.SW),
+                    sh2 = calcValues(sceneInfo[0].values.imageSequence.second.SH),
+                    dx2 = calcValues(sceneInfo[0].values.imageSequence.second.DX),
+                    dy2 = calcValues(sceneInfo[0].values.imageSequence.second.DY),
+                    dw2 = calcValues(sceneInfo[0].values.imageSequence.second.DW),
+                    dh2 = calcValues(sceneInfo[0].values.imageSequence.second.DH),
+                    canvasScaleNum = calcValues(sceneInfo[0].values.canvasScale);
                 sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.images[0], sx, sy, sw, sh, dx, dy, dw, dh);
                 sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.images[1], sx2, sy2, sw2, sh2, dx2, dy2, dw2, dh2);
                 sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ canvasScaleNum +')';
+                if (yOffset >= sceneInfo[0].paddingTop) {
+                    sceneInfo[0].objs.scene.querySelector('.scroll-interaction-inner').classList.remove('sticky-elem');
+                } else {
+                    sceneInfo[0].objs.scene.querySelector('.scroll-interaction-inner').classList.add('sticky-elem');
+                }
                 break;
             case 1:
-                // var vNum = Math.round(calcValues(sceneInfo[1].values.videoSequence));
-                // sceneInfo[1].objs.context.drawImage(sceneInfo[1].objs.videoImages[vNum], 0, 0);
-
-
-
+                var vNum = Math.round(calcValues(sceneInfo[1].values.videoSequence)),
+                    opacityCenter = (sceneInfo[1].values.canvasOpacityIn[1] + sceneInfo[1].values.canvasOpacityOut[0]) / 2;
+                sceneInfo[1].objs.context.drawImage(sceneInfo[1].objs.videoImages[vNum], 0, 0, 1920, 1080);
+                sceneInfo[1].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ canvasScaleRatio +')';
+                if (scrollRatio <= opacityCenter) {
+                    var opacityIn = calcValues(sceneInfo[1].values.canvasOpacityIn);
+                    sceneInfo[1].objs.canvas.style.opacity = opacityIn;
+                } else {
+                    var opacityOut = calcValues(sceneInfo[1].values.canvasOpacityOut);
+                    sceneInfo[1].objs.canvas.style.opacity = opacityOut;
+                }
                 break;
-
-
             default :
                 break;
         }
@@ -287,6 +333,7 @@
     initFunc();
     window.addEventListener('load', function () {
         drawCanvas();
+        refreshDrawCanvas();
         window.addEventListener('resize', function () {
             resizeFunc();
         })

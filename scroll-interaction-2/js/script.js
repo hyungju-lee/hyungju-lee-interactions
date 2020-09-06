@@ -4,13 +4,17 @@
     var currentScene = 0;
     var relativeYOffset = 0;
     var scrollRatio = 0;
+    var acc = 0.1;
+    var delayedYOffset = 0;
     var prevScrollHeight = 0;
     var enterNewScene = false;
+    var rafId;
+    var rafState;
 
     var sceneInfo = [
         {
             type: 'sticky',
-            heightNum: 6,
+            heightNum: 4,
             scrollHeight: 0,
             objs: {
                 scene: document.querySelector('#scroll-interaction-0'),
@@ -20,6 +24,11 @@
                     './image/bg01.jpg',
                 ],
                 images: [],
+            },
+            canvasRatio: {
+                hRatio: null,
+                wRatio: null,
+                scaleRatio: null,
             },
             values: {
                 imageSequence: {
@@ -33,7 +42,6 @@
                     DW: [0, 0, { start: 0, end: 0.33 }],
                     DH: [0, 0, { start: 0, end: 0.33 }],
                 },
-
             },
         },
         {
@@ -45,7 +53,7 @@
                 canvas: document.querySelector('#second-canvas'),
                 context: document.querySelector('#second-canvas').getContext('2d'),
                 imagesPath: [
-                    './image/bg01.jpg',
+
                 ],
                 images: [],
             }
@@ -73,28 +81,28 @@
     }
 
     var initCanvasValues = function () {
-        var hRatio = innerHeight / sceneInfo[0].objs.canvas.height;
-        var wRatio = innerWidth / sceneInfo[0].objs.canvas.width;
-        var scaleRatio = hRatio > wRatio ? hRatio : wRatio;
         var leftPx = innerWidth < 500 ? innerWidth * 0.1 : innerWidth * 0.15;
+        sceneInfo[0].canvasRatio.hRatio = innerHeight / sceneInfo[0].objs.canvas.height;
+        sceneInfo[0].canvasRatio.wRatio = innerWidth / sceneInfo[0].objs.canvas.width;
+        sceneInfo[0].canvasRatio.scaleRatio = sceneInfo[0].canvasRatio.hRatio > sceneInfo[0].canvasRatio.wRatio ? sceneInfo[0].canvasRatio.hRatio : sceneInfo[0].canvasRatio.wRatio;
         sceneInfo[0].values.imageSequence.DW[0] = innerWidth * 0.2 < 400? 400 : innerWidth * 0.2;
         sceneInfo[0].values.imageSequence.DH[0] = innerHeight * 0.15 < 150? 150 : innerHeight * 0.15;
-        sceneInfo[0].values.imageSequence.DW[1] = innerWidth / scaleRatio;
-        sceneInfo[0].values.imageSequence.DH[1] = innerHeight / scaleRatio;
-        sceneInfo[0].values.imageSequence.SX[0] = (1920 / 2 - innerWidth / 2) / scaleRatio;
-        sceneInfo[0].values.imageSequence.SX[1] = (sceneInfo[0].objs.canvas.width * scaleRatio - innerWidth) / 2 / scaleRatio;
+        sceneInfo[0].values.imageSequence.DW[1] = innerWidth / sceneInfo[0].canvasRatio.scaleRatio;
+        sceneInfo[0].values.imageSequence.DH[1] = innerHeight / sceneInfo[0].canvasRatio.scaleRatio;
+        sceneInfo[0].values.imageSequence.SX[0] = (sceneInfo[0].objs.canvas.width * sceneInfo[0].canvasRatio.scaleRatio) / 2;
+        sceneInfo[0].values.imageSequence.SX[1] = (sceneInfo[0].objs.canvas.width * sceneInfo[0].canvasRatio.scaleRatio - innerWidth) / 2 / sceneInfo[0].canvasRatio.scaleRatio;
         sceneInfo[0].values.imageSequence.SW[0] = sceneInfo[0].values.imageSequence.DW[0];
         sceneInfo[0].values.imageSequence.SH[0] = sceneInfo[0].values.imageSequence.DH[0];
         sceneInfo[0].values.imageSequence.SW[1] = sceneInfo[0].values.imageSequence.DW[1];
         sceneInfo[0].values.imageSequence.SH[1] = sceneInfo[0].values.imageSequence.DH[1];
-        sceneInfo[0].values.imageSequence.DX[0] = ((sceneInfo[0].objs.canvas.width * scaleRatio - innerWidth) / 2) / scaleRatio + leftPx / scaleRatio;
-        sceneInfo[0].values.imageSequence.DY[0] = sceneInfo[0].objs.canvas.height - sceneInfo[0].values.imageSequence.DH[0] - ((sceneInfo[0].objs.canvas.height * scaleRatio - innerHeight) / 2) / scaleRatio;
-        sceneInfo[0].values.imageSequence.DX[1] = ((sceneInfo[0].objs.canvas.width * scaleRatio - innerWidth) / 2) / scaleRatio;
-        sceneInfo[0].values.imageSequence.DY[1] = ((sceneInfo[0].objs.canvas.height * scaleRatio - innerHeight) / 2) / scaleRatio;
+        sceneInfo[0].values.imageSequence.DX[0] = ((sceneInfo[0].objs.canvas.width * sceneInfo[0].canvasRatio.scaleRatio - innerWidth) / 2) / sceneInfo[0].canvasRatio.scaleRatio + leftPx / sceneInfo[0].canvasRatio.scaleRatio;
+        sceneInfo[0].values.imageSequence.DY[0] = sceneInfo[0].objs.canvas.height - sceneInfo[0].values.imageSequence.DH[0] - ((sceneInfo[0].objs.canvas.height * sceneInfo[0].canvasRatio.scaleRatio - innerHeight) / 2) / sceneInfo[0].canvasRatio.scaleRatio;
+        sceneInfo[0].values.imageSequence.DX[1] = ((sceneInfo[0].objs.canvas.width * sceneInfo[0].canvasRatio.scaleRatio - innerWidth) / 2) / sceneInfo[0].canvasRatio.scaleRatio;
+        sceneInfo[0].values.imageSequence.DY[1] = ((sceneInfo[0].objs.canvas.height * sceneInfo[0].canvasRatio.scaleRatio - innerHeight) / 2) / sceneInfo[0].canvasRatio.scaleRatio;
     }
 
     var currentSection = function () {
-        yOffset = pageYOffset;
+        delayedYOffset = yOffset = pageYOffset;
         var totalScrollHeight = 0;
         for (var i = 0; i < sceneInfo.length; i++) {
             totalScrollHeight += sceneInfo[i].scrollHeight;
@@ -108,29 +116,38 @@
         scrollRatio = relativeYOffset / (sceneInfo[currentScene].scrollHeight);
     }
 
-    var scrollCurrentSection = function () {
+    var smoothScroll = function () {
         yOffset = pageYOffset;
+        delayedYOffset = delayedYOffset + (yOffset - delayedYOffset) * acc;
+        relativeYOffset = delayedYOffset - prevScrollHeight;
+        scrollRatio = relativeYOffset / (sceneInfo[currentScene].scrollHeight);
+        scrollCurrentSection();
+        rafId = requestAnimationFrame(smoothScroll);
+        if (Math.abs(yOffset - delayedYOffset) < 1) {
+            cancelAnimationFrame(rafId);
+            rafState = false;
+        }
+    }
+
+    var scrollCurrentSection = function () {
         enterNewScene = false;
         prevScrollHeight = 0;
         for (var i = 0; i < currentScene; i++) {
             prevScrollHeight += sceneInfo[i].scrollHeight;
         }
-        if (yOffset > prevScrollHeight + sceneInfo[currentScene].scrollHeight) {
+        if (delayedYOffset > prevScrollHeight + sceneInfo[currentScene].scrollHeight) {
             enterNewScene = true;
             if (currentScene < sceneInfo.length - 1) {
                 currentScene++;
             }
         }
-        if (yOffset < prevScrollHeight) {
+        if (delayedYOffset < prevScrollHeight) {
             enterNewScene = true;
             if (currentScene === 0) return;
             currentScene--;
         }
         document.body.setAttribute("id", "show-scene-" + currentScene);
-        relativeYOffset = yOffset - prevScrollHeight;
-        scrollRatio = relativeYOffset / (sceneInfo[currentScene].scrollHeight);
         if (enterNewScene) return;
-
         drawCanvas();
     }
 
@@ -162,9 +179,6 @@
     var drawCanvas = function () {
         switch (currentScene) {
             case 0:
-                var hRatio = innerHeight / sceneInfo[0].objs.canvas.height;
-                var wRatio = innerWidth / sceneInfo[0].objs.canvas.width;
-                var scaleRatio = hRatio > wRatio ? hRatio : wRatio;
                 sceneInfo[0].objs.context.clearRect(0, 0, 1920, 1080);
                 var sx = calcValues(sceneInfo[0].values.imageSequence.SX);
                 var sy = calcValues(sceneInfo[0].values.imageSequence.SY);
@@ -175,7 +189,7 @@
                 var dw = calcValues(sceneInfo[0].values.imageSequence.DW);
                 var dh = calcValues(sceneInfo[0].values.imageSequence.DH);
                 sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.images[0], sx, sy, sw, sh, dx, dy, dw, dh);
-                sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ scaleRatio +')';
+                sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ sceneInfo[0].canvasRatio.scaleRatio +')';
                 break;
             case 1:
 
@@ -191,15 +205,15 @@
 
     var initFunc = function () {
         initImage();
-        initCanvasValues();
         initSectionHeight();
         currentSection();
+        initCanvasValues();
     }
 
     var resizeFunc = function () {
-        initCanvasValues();
         initSectionHeight();
         currentSection();
+        initCanvasValues();
         drawCanvas();
     }
 
@@ -211,6 +225,10 @@
         })
         window.addEventListener('scroll', function () {
             scrollCurrentSection();
+            if (!rafState) {
+                rafId = requestAnimationFrame(smoothScroll);
+                rafState = true;
+            }
         })
     })
 })()

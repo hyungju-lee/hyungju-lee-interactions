@@ -112,6 +112,7 @@
             if (sceneInfo[i].type === 'stickyToNormal') {
                 sceneInfo[i].paddingTop = innerHeight * sceneInfo[i].heightNum - innerHeight;
                 sceneInfo[i].objs.scene.style.paddingTop = sceneInfo[i].paddingTop + 'px';
+                sceneInfo[i].objs.scene.querySelector('.scroll-interaction-inner').style.height = innerHeight + 'px';
             }
         }
     }

@@ -342,6 +342,7 @@
 
     initFunc();
     window.addEventListener('load', function () {
+        document.body.classList.remove('before-load');
         drawCanvas();
         refreshDrawCanvas();
         window.addEventListener('resize', function () {
@@ -353,6 +354,9 @@
                 rafId = requestAnimationFrame(smoothScroll);
                 rafState = true;
             }
+        })
+        document.querySelector('.loading').addEventListener('transitionend', function (e) {
+            document.body.removeChild(e.currentTarget);
         })
     })
 })()

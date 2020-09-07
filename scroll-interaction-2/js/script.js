@@ -132,7 +132,7 @@
         sceneInfo[0].values.imageSequence.first.SH[0] = sceneInfo[0].values.imageSequence.first.DH[0] = 140;
         sceneInfo[0].values.imageSequence.first.SH[1] = sceneInfo[0].values.imageSequence.first.DH[1] = innerHeight / canvasScaleRatio;
         sceneInfo[0].values.imageSequence.first.SX[0] = 960;
-        sceneInfo[0].values.imageSequence.first.SX[1] = sceneInfo[0].values.imageSequence.first.DX[1] = (sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio;
+        sceneInfo[0].values.imageSequence.first.SX[1] = sceneInfo[0].values.imageSequence.first.DX[1] = ((sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2) / canvasScaleRatio;
         sceneInfo[0].values.imageSequence.first.DX[0] = ((sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2) / canvasScaleRatio + leftPx;
         sceneInfo[0].values.imageSequence.first.DY[0] = sceneInfo[0].objs.canvas.height - sceneInfo[0].values.imageSequence.first.DH[0] - (sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio;
         sceneInfo[0].values.imageSequence.first.SY[0] = sceneInfo[0].values.imageSequence.first.SY[1] = sceneInfo[0].values.imageSequence.first.DY[1] = (sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio;
@@ -145,7 +145,7 @@
                 ((sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 + innerHeight) / canvasScaleRatio;
         sceneInfo[0].values.imageSequence.second.SY[1] = sceneInfo[0].values.imageSequence.second.DY[1] =
                 ((sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2) / canvasScaleRatio;
-        sceneInfo[0].values.imageSequence.second.SH[0] = sceneInfo[0].values.imageSequence.second.DH[0] = 0;
+        sceneInfo[0].values.imageSequence.second.SH[0] = sceneInfo[0].values.imageSequence.second.DH[0] = 1;
         sceneInfo[0].values.imageSequence.second.SH[1] = sceneInfo[0].values.imageSequence.second.DH[1] = innerHeight / canvasScaleRatio;
         sceneInfo[0].values.imageSequence.second.SW[0] = sceneInfo[0].values.imageSequence.second.DW[0] =((sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 + innerWidth) / canvasScaleRatio;
         sceneInfo[0].values.imageSequence.second.SW[1] = sceneInfo[0].values.imageSequence.second.DW[1] = 1920;

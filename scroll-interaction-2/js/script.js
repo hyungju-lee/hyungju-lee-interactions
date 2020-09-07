@@ -22,8 +22,9 @@
             paddingTop: 0,
             objs: {
                 scene: document.querySelector('#scroll-interaction-0'),
-                canvas: document.querySelector('#first-canvas'),
-                context: document.querySelector('#first-canvas').getContext('2d'),
+                canvas: document.querySelector('#scroll-interaction-0 #first-canvas'),
+                context: document.querySelector('#scroll-interaction-0 #first-canvas').getContext('2d'),
+                text: document.querySelector('#scroll-interaction-0 .sticky-text__first'),
                 imagesPath: [
                     './image/bg01.jpg',
                     './image/bg02.jpg',
@@ -58,6 +59,8 @@
                     },
                 },
                 canvasScale: [0, 0, { start: 0.528, end: 0.8 }],
+                firstTextOpacity: [1, 0, { start: 0, end: 0.2 }],
+                firstTextTranslate: [0, -100, { start: 0, end: 0.2 }],
             },
         },
         {
@@ -123,16 +126,16 @@
         canvasWidthRatio = innerWidth / sceneInfo[0].objs.canvas.width;
         canvasScaleRatio = canvasHeightRatio > canvasWidthRatio ? canvasHeightRatio : canvasWidthRatio;
         // 첫번째 씬 첫번째 이미지 설정
-        var leftPx = innerWidth < 500 ? innerWidth * 0.1 : innerWidth * 0.15;
-        sceneInfo[0].values.imageSequence.first.SW[0] = sceneInfo[0].values.imageSequence.first.DW[0] = innerWidth * 0.2 < 400? 400 : innerWidth * 0.2;
+        var leftPx = innerWidth >= 1200 ? (innerWidth / 2 - 600) / canvasScaleRatio : innerWidth <= 500 ? innerWidth * 0.1 / canvasScaleRatio : innerWidth * 0.15 / canvasScaleRatio;
+        sceneInfo[0].values.imageSequence.first.SW[0] = sceneInfo[0].values.imageSequence.first.DW[0] = innerWidth > 400 ? 400 : innerWidth * 0.8;
         sceneInfo[0].values.imageSequence.first.SW[1] = sceneInfo[0].values.imageSequence.first.DW[1] = innerWidth / canvasScaleRatio;
-        sceneInfo[0].values.imageSequence.first.SH[0] = sceneInfo[0].values.imageSequence.first.DH[0] = innerHeight * 0.15 < 150? 150 : innerHeight * 0.15;
+        sceneInfo[0].values.imageSequence.first.SH[0] = sceneInfo[0].values.imageSequence.first.DH[0] = 140;
         sceneInfo[0].values.imageSequence.first.SH[1] = sceneInfo[0].values.imageSequence.first.DH[1] = innerHeight / canvasScaleRatio;
+        sceneInfo[0].values.imageSequence.first.SX[0] = 960;
         sceneInfo[0].values.imageSequence.first.SX[1] = sceneInfo[0].values.imageSequence.first.DX[1] = (sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio;
-        sceneInfo[0].values.imageSequence.first.SX[0] = (sceneInfo[0].objs.canvas.width * canvasScaleRatio) / 2;
-        sceneInfo[0].values.imageSequence.first.DX[0] = ((sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2) / canvasScaleRatio + leftPx / canvasScaleRatio;
+        sceneInfo[0].values.imageSequence.first.DX[0] = ((sceneInfo[0].objs.canvas.width * canvasScaleRatio - innerWidth) / 2) / canvasScaleRatio + leftPx;
         sceneInfo[0].values.imageSequence.first.DY[0] = sceneInfo[0].objs.canvas.height - sceneInfo[0].values.imageSequence.first.DH[0] - (sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio;
-        sceneInfo[0].values.imageSequence.first.DY[1] = ((sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2) / canvasScaleRatio;
+        sceneInfo[0].values.imageSequence.first.DY[1] = (sceneInfo[0].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio;
         // 첫번째 씬 두번째 이미지 설정
         sceneInfo[0].values.canvasScale[0] = canvasScaleRatio;
         sceneInfo[0].values.canvasScale[1] = innerHeight / innerWidth > 1 ? canvasScaleRatio * 0.2 : canvasScaleRatio * 0.4;
@@ -262,6 +265,8 @@
                     sceneInfo[0].values.imageSequence.second.DH[1]);
                 sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ sceneInfo[0].values.canvasScale[1] +')';
                 sceneInfo[0].objs.scene.querySelector('.scroll-interaction-inner').classList.remove('sticky-elem');
+                sceneInfo[0].objs.text.style.opacity = sceneInfo[0].values.firstTextOpacity[1];
+                sceneInfo[0].objs.text.style.transform = 'translate3d(0,'+ sceneInfo[0].values.firstTextTranslate[1] +'%,0)';
                 break;
             default:
                 break;
@@ -288,10 +293,14 @@
                     dy2 = calcValues(sceneInfo[0].values.imageSequence.second.DY),
                     dw2 = calcValues(sceneInfo[0].values.imageSequence.second.DW),
                     dh2 = calcValues(sceneInfo[0].values.imageSequence.second.DH),
-                    canvasScaleNum = calcValues(sceneInfo[0].values.canvasScale);
+                    canvasScaleNum = calcValues(sceneInfo[0].values.canvasScale),
+                    firstTextOpacity = calcValues(sceneInfo[0].values.firstTextOpacity),
+                    firstTextTranslate = calcValues(sceneInfo[0].values.firstTextTranslate);
                 sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.images[0], sx, sy, sw, sh, dx, dy, dw, dh);
                 sceneInfo[0].objs.context.drawImage(sceneInfo[0].objs.images[1], sx2, sy2, sw2, sh2, dx2, dy2, dw2, dh2);
                 sceneInfo[0].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ canvasScaleNum +')';
+                sceneInfo[0].objs.text.style.opacity = firstTextOpacity;
+                sceneInfo[0].objs.text.style.transform = 'translate3d(0,'+ firstTextTranslate +'%,0)';
                 if (yOffset >= sceneInfo[0].paddingTop) {
                     sceneInfo[0].objs.scene.querySelector('.scroll-interaction-inner').classList.remove('sticky-elem');
                 } else {

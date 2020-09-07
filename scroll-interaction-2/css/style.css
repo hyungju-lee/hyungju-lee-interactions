@@ -4,22 +4,30 @@
     border: 0;
     box-sizing: border-box
 }
+.wrap {
+    overflow: hidden;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 #show-scene-0 #scroll-interaction-0 .sticky-elem,
 #show-scene-1 #scroll-interaction-1 .sticky-elem {
     display: block;
 }
 .scroll-interaction-inner {
-    overflow: hidden;
     position: relative;
 }
 .sticky-elem {
-    overflow: hidden;
     display: none;
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
+    max-width: 1200px;
     height: 100%;
+    margin: 0 auto;
 }
 .canvas {
     position: absolute;
@@ -28,3 +36,25 @@
     z-index: 10;
 }
 
+.sticky-text {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    z-index: 20;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+@media screen and (max-width:1200px) {
+    .sticky-text {
+        left: 14%;
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .sticky-text {
+        left: 10%;
+        font-size: 20px;
+    }
+}

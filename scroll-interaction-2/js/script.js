@@ -12,9 +12,7 @@
         rafState,
         canvasHeightRatio,
         canvasWidthRatio,
-        canvasScaleRatio,
-        totalImages = 632,
-        loadedImages = 0;
+        canvasScaleRatio;
 
     var sceneInfo = [
         {
@@ -91,9 +89,6 @@
         var imgElem;
         for (var i = 0; i < sceneInfo.length; i++) {
             for (var j = 0; j < sceneInfo[i].objs.imagesPath.length; j++) {
-                loadedImages += 1;
-                document.querySelector('.percent').innerText = Math.round(loadedImages / totalImages * 100);
-
                 imgElem = new Image();
                 imgElem.src = sceneInfo[i].objs.imagesPath[j];
                 sceneInfo[i].objs.images.push(imgElem);
@@ -105,9 +100,6 @@
         var videoElem;
         for (var i = 0; i < sceneInfo.length; i++) {
             for (var j = 1; j < sceneInfo[i].values.videoImageCount + 1; j++) {
-                loadedImages += 1;
-                document.querySelector('.percent').innerText = Math.round(loadedImages / totalImages * 100);
-
                 var videoElem = new Image();
                 var num = j < 10? '0000' + j : j < 100? '000' + j : j < 1000? '00' + j :'0' + j;
                 videoElem.src = sceneInfo[i].objs.videoPath + 'scene' + num +'.jpg';

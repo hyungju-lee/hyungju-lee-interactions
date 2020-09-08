@@ -56,5 +56,5 @@
   1. 스크롤 위치에 따른 현재 애니메이션 섹션 인식
   2. 현재 애니메이션 섹션의 canvas 태그 display: block 처리
   3. 아닌 canvas 태그는 display: none 처리
-  4. requestAnimationFrame 처리
+  4. requestAnimationFrame 처리 (Mac에서 윈도우 마우스 휠 / 키보드로도 부드러운 애니메이션 구현 가능)
   5. ...

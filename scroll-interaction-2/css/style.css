@@ -35,7 +35,11 @@ html {
     margin: 0 auto;
 }
 #show-scene-0 #scroll-interaction-0 .sticky-elem,
-#show-scene-1 #scroll-interaction-1 .sticky-elem {
+#show-scene-1 #scroll-interaction-1 .sticky-elem,
+#show-scene-2 #scroll-interaction-2 .sticky-elem,
+#show-scene-3 #scroll-interaction-3 .sticky-elem,
+#show-scene-4 #scroll-interaction-4 .sticky-elem,
+#show-scene-5 #scroll-interaction-5 .sticky-elem {
     display: block;
     will-change: transform, opacity;
 }

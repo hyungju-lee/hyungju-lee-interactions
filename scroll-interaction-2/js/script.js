@@ -16,6 +16,7 @@
 
     var sceneInfo = [
         {
+            // 0
             type: 'stickyToNormal',
             heightNum: 5,
             scrollHeight: 0,
@@ -64,13 +65,14 @@
             },
         },
         {
+            // 1
             type: 'sticky',
             heightNum: 4,
             scrollHeight: 0,
             objs: {
                 scene: document.querySelector('#scroll-interaction-1'),
-                canvas: document.querySelector('#second-canvas'),
-                context: document.querySelector('#second-canvas').getContext('2d'),
+                canvas: document.querySelector('#scroll-interaction-1 #second-canvas'),
+                context: document.querySelector('#scroll-interaction-1 #second-canvas').getContext('2d'),
                 imagesPath: [],
                 images: [],
                 videoPath: './image/video-1/',
@@ -79,8 +81,29 @@
             values: {
                 videoImageCount: 631,
                 videoSequence: [0, 630, { start: 0, end: 1 }],
-                canvasOpacityIn: [0, 1, { start: 0, end: 0.1 }],
-                canvasOpacityOut: [1, 0, { start: 0.9, end: 1 }],
+                canvasOpacityIn: [0, 1, { start: 0, end: 0.2 }],
+                canvasOpacityOut: [1, 0, { start: 0.8, end: 1 }],
+            }
+        },
+        {
+            // 2
+            type: 'sticky',
+            heightNum: 4,
+            scrollHeight: 0,
+            objs: {
+                scene: document.querySelector('#scroll-interaction-2'),
+                canvas: document.querySelector('#scroll-interaction-2 #third-canvas'),
+                context: document.querySelector('#scroll-interaction-2 #third-canvas').getContext('2d'),
+                imagesPath: [],
+                images: [],
+                videoPath: './image/video-2/',
+                videoImages: [],
+            },
+            values: {
+                videoImageCount: 148,
+                videoSequence: [0, 147, { start: 0, end: 1 }],
+                canvasOpacityIn: [0, 1, { start: 0, end: 0.2 }],
+                canvasOpacityOut: [1, 0, { start: 0.8, end: 1 }],
             }
         }
     ]
@@ -98,13 +121,19 @@
 
     var initVideo = function () {
         var videoElem;
-        for (var i = 0; i < sceneInfo.length; i++) {
-            for (var j = 1; j < sceneInfo[i].values.videoImageCount + 1; j++) {
-                var videoElem = new Image();
-                var num = j < 10? '0000' + j : j < 100? '000' + j : j < 1000? '00' + j :'0' + j;
-                videoElem.src = sceneInfo[i].objs.videoPath + 'scene' + num +'.jpg';
-                sceneInfo[i].objs.videoImages.push(videoElem);
-            }
+        for (var i = 1; i < sceneInfo[1].values.videoImageCount + 1; i++) {
+            var videoElem = new Image();
+            var num = i < 10? '0000' + i : i < 100? '000' + i : i < 1000? '00' + i :'0' + i;
+            videoElem.src = sceneInfo[1].objs.videoPath + 'scene' + num +'.jpg';
+            sceneInfo[1].objs.videoImages.push(videoElem);
+        }
+
+        var videoElem2;
+        for (var j = 0; j < sceneInfo[2].values.videoImageCount; j++) {
+            var videoElem2 = new Image();
+            var num2 = j < 10? '000' + j : j < 100? '00' + j : j < 1000? '0' + j : j;
+            videoElem2.src = sceneInfo[2].objs.videoPath + num2 +'.jpg';
+            sceneInfo[2].objs.videoImages.push(videoElem2);
         }
     }
 
@@ -242,8 +271,8 @@
     }
 
     var refreshDrawCanvas = function () {
-        switch (currentScene) {
-            case 1:
+        switch (true) {
+            case (currentScene === 1 || currentScene === 2):
                 sceneInfo[0].objs.context.drawImage(
                     sceneInfo[0].objs.images[0],
                     sceneInfo[0].values.imageSequence.first.SX[1],
@@ -309,7 +338,7 @@
                 break;
             case 1:
                 var vNum = Math.round(calcValues(sceneInfo[1].values.videoSequence)),
-                    opacityCenter = (sceneInfo[1].values.canvasOpacityIn[1] + sceneInfo[1].values.canvasOpacityOut[0]) / 2;
+                    opacityCenter = (sceneInfo[1].values.canvasOpacityIn[2].end + sceneInfo[1].values.canvasOpacityOut[2].start) / 2;
                 sceneInfo[1].objs.context.drawImage(sceneInfo[1].objs.videoImages[vNum], 0, 0, 1920, 1080);
                 sceneInfo[1].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ canvasScaleRatio +')';
                 if (scrollRatio <= opacityCenter) {
@@ -318,6 +347,37 @@
                 } else {
                     var opacityOut = calcValues(sceneInfo[1].values.canvasOpacityOut);
                     sceneInfo[1].objs.canvas.style.opacity = opacityOut;
+                }
+                break;
+            case 2:
+                sceneInfo[2].objs.context.clearRect(0, 0, 1920, 1080);
+                sceneInfo[2].objs.context.fillRect(0, 0,1920, 1080);
+                var vNum2 = Math.round(calcValues(sceneInfo[2].values.videoSequence)),
+                    opacityCenter2 = (sceneInfo[2].values.canvasOpacityIn[2].end + sceneInfo[2].values.canvasOpacityOut[2].start) / 2,
+                    nRatio = sceneInfo[2].objs.videoImages[vNum2].naturalHeight / sceneInfo[2].objs.videoImages[vNum2].naturalWidth;
+
+
+                var dx = innerWidth > 1200 ? (sceneInfo[2].objs.canvas.width * canvasScaleRatio / 2 - 400) / canvasScaleRatio : (sceneInfo[2].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio;
+                var dw = innerWidth > 1200? 800 : innerWidth / canvasScaleRatio;
+                var dh = dw * nRatio;
+                var dy = dh < innerHeight ?
+                    (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio + innerHeight * 0.2 :
+                    (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio - (innerWidth * nRatio - innerHeight) / canvasScaleRatio / 2;
+
+
+
+                sceneInfo[2].objs.context.drawImage(sceneInfo[2].objs.videoImages[vNum2],
+                    0, 0,
+                    sceneInfo[2].objs.videoImages[vNum2].naturalWidth,
+                    sceneInfo[2].objs.videoImages[vNum2].naturalHeight,
+                    dx, dy, dw, dh)
+                sceneInfo[2].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ canvasScaleRatio +')';
+                if (scrollRatio <= opacityCenter2) {
+                    var opacityIn2 = calcValues(sceneInfo[2].values.canvasOpacityIn);
+                    sceneInfo[2].objs.canvas.style.opacity = opacityIn2;
+                } else {
+                    var opacityOut2 = calcValues(sceneInfo[2].values.canvasOpacityOut);
+                    sceneInfo[2].objs.canvas.style.opacity = opacityOut2;
                 }
                 break;
             default :

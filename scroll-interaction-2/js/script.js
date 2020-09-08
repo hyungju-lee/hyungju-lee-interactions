@@ -383,6 +383,10 @@
     var initFunc = function () {
         initImage();
         initVideo();
+    }
+
+    // FF에서 로딩중일 때 브라우저 크기 변할때를 대비
+    var loadInitFunc = function () {
         initSectionHeight();
         currentSection();
         initCanvasValues();
@@ -398,6 +402,7 @@
     initFunc();
     window.addEventListener('load', function () {
         document.body.classList.remove('before-load');
+        loadInitFunc();
         drawCanvas();
         refreshDrawCanvas();
         window.addEventListener('resize', function () {

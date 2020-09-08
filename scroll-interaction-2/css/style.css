@@ -7,8 +7,14 @@
 html {
     font-family: sans-serif;
 }
+.before-load {
+    overflow: hidden;
+}
 .before-load .loading {
     opacity: 1;
+}
+.before-load .wrap {
+    display: none;
 }
 .loading {
     display: flex;

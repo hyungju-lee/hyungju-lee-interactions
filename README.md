@@ -52,9 +52,16 @@
     
 * [스크롤 canvas 인터렉션 (만드는 중)](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-2/index-javascript.html)
 
-  * **구현 예정**
-  1. 스크롤 위치에 따른 현재 애니메이션 섹션 인식
-  2. 현재 애니메이션 섹션의 canvas 태그 display: block 처리
-  3. 아닌 canvas 태그는 display: none 처리
-  4. requestAnimationFrame 처리 (Mac에서 윈도우 마우스 휠 / 키보드로도 부드러운 애니메이션 구현 가능)
-  5. ...
+  * **사용기법**
+  1. canvas 태그 활용 : 성능을 끌어올리기위함
+  2. requestAnimationFrame 메서드의 재귀적 활용 (가속도 스크롤) : 보다 부드러운 애니메이션 구현가능, 맥에서 윈도우마우스휠, 키보드로 스크롤을 움직여도 애니메이션이 부드러움
+  3. keyframe 개념활용 애니메이션 구현 : CSS Keyframe 개념과 같음
+  
+  * **지원범위**
+  1. 윈도우 : 크롬 / FF / IE11
+  2. 맥 사파리 : / 크롬
+  3. 윈도우 : 마우스휠 / 키보드 / 트랙패드
+  4. 맥 : 매직마우스 / 키보드 / 마우스휠
+  5. 모바일 및 테블릿 그리고 아이패드
+  
+  NC 때 해결하지 못했던 맥에서 윈도우 마우스휠, 키보드시 딱딱 끊어지면서 스크롤 인터렉션이 발생하던 이슈를 해결

@@ -354,18 +354,13 @@
                 sceneInfo[2].objs.context.fillRect(0, 0,1920, 1080);
                 var vNum2 = Math.round(calcValues(sceneInfo[2].values.videoSequence)),
                     opacityCenter2 = (sceneInfo[2].values.canvasOpacityIn[2].end + sceneInfo[2].values.canvasOpacityOut[2].start) / 2,
-                    nRatio = sceneInfo[2].objs.videoImages[vNum2].naturalHeight / sceneInfo[2].objs.videoImages[vNum2].naturalWidth;
-
-
-                var dx = innerWidth > 1200 ? (sceneInfo[2].objs.canvas.width * canvasScaleRatio / 2 - 400) / canvasScaleRatio : (sceneInfo[2].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio;
-                var dw = innerWidth > 1200? 800 : innerWidth / canvasScaleRatio;
-                var dh = dw * nRatio;
-                var dy = dh < innerHeight ?
-                    (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio + innerHeight * 0.2 :
-                    (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio - (innerWidth * nRatio - innerHeight) / canvasScaleRatio / 2;
-
-
-
+                    nRatio = sceneInfo[2].objs.videoImages[vNum2].naturalHeight / sceneInfo[2].objs.videoImages[vNum2].naturalWidth,
+                    dx = innerWidth > 1200 ? (sceneInfo[2].objs.canvas.width * canvasScaleRatio / 2) / canvasScaleRatio - 400 : (sceneInfo[2].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio,
+                    dw = innerWidth > 1200 ? 800 : innerWidth / canvasScaleRatio,
+                    dh = dw * nRatio,
+                    dy = dh < innerHeight ?
+                        (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio + innerHeight * 0.2 :
+                        (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio - (innerWidth * nRatio - innerHeight) / canvasScaleRatio / 2;
                 sceneInfo[2].objs.context.drawImage(sceneInfo[2].objs.videoImages[vNum2],
                     0, 0,
                     sceneInfo[2].objs.videoImages[vNum2].naturalWidth,

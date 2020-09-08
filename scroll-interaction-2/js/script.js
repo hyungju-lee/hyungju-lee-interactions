@@ -306,22 +306,22 @@
         switch (currentScene) {
             case 0:
                 sceneInfo[0].objs.context.clearRect(0, 0, 1920, 1080);
-                var sx = calcValues(sceneInfo[0].values.imageSequence.first.SX),
-                    sy = calcValues(sceneInfo[0].values.imageSequence.first.SY),
-                    sw = calcValues(sceneInfo[0].values.imageSequence.first.SW),
-                    sh = calcValues(sceneInfo[0].values.imageSequence.first.SH),
-                    dx = calcValues(sceneInfo[0].values.imageSequence.first.DX),
-                    dy = calcValues(sceneInfo[0].values.imageSequence.first.DY),
-                    dw = calcValues(sceneInfo[0].values.imageSequence.first.DW),
-                    dh = calcValues(sceneInfo[0].values.imageSequence.first.DH),
-                    sx2 = calcValues(sceneInfo[0].values.imageSequence.second.SX),
-                    sy2 = calcValues(sceneInfo[0].values.imageSequence.second.SY),
-                    sw2 = calcValues(sceneInfo[0].values.imageSequence.second.SW),
-                    sh2 = calcValues(sceneInfo[0].values.imageSequence.second.SH),
-                    dx2 = calcValues(sceneInfo[0].values.imageSequence.second.DX),
-                    dy2 = calcValues(sceneInfo[0].values.imageSequence.second.DY),
-                    dw2 = calcValues(sceneInfo[0].values.imageSequence.second.DW),
-                    dh2 = calcValues(sceneInfo[0].values.imageSequence.second.DH),
+                var sx = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.SX)),
+                    sy = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.SY)),
+                    sw = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.SW)),
+                    sh = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.SH)),
+                    dx = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.DX)),
+                    dy = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.DY)),
+                    dw = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.DW)),
+                    dh = Math.round(calcValues(sceneInfo[0].values.imageSequence.first.DH)),
+                    sx2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.SX)),
+                    sy2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.SY)),
+                    sw2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.SW)),
+                    sh2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.SH)),
+                    dx2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.DX)),
+                    dy2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.DY)),
+                    dw2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.DW)),
+                    dh2 = Math.round(calcValues(sceneInfo[0].values.imageSequence.second.DH)),
                     canvasScaleNum = calcValues(sceneInfo[0].values.canvasScale),
                     firstTextOpacity = calcValues(sceneInfo[0].values.firstTextOpacity),
                     firstTextTranslate = calcValues(sceneInfo[0].values.firstTextTranslate);
@@ -355,17 +355,17 @@
                 var vNum2 = Math.round(calcValues(sceneInfo[2].values.videoSequence)),
                     opacityCenter2 = (sceneInfo[2].values.canvasOpacityIn[2].end + sceneInfo[2].values.canvasOpacityOut[2].start) / 2,
                     nRatio = sceneInfo[2].objs.videoImages[vNum2].naturalHeight / sceneInfo[2].objs.videoImages[vNum2].naturalWidth,
-                    dx = innerWidth > 1200 ? (sceneInfo[2].objs.canvas.width * canvasScaleRatio / 2) / canvasScaleRatio - 400 : (sceneInfo[2].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio,
-                    dw = innerWidth > 1200 ? 800 : innerWidth / canvasScaleRatio,
-                    dh = dw * nRatio,
+                    sw = Math.round(sceneInfo[2].objs.videoImages[vNum2].naturalWidth),
+                    sy = Math.round(sceneInfo[2].objs.videoImages[vNum2].naturalHeight),
+                    dx = innerWidth > 1200 ?
+                        Math.round((sceneInfo[2].objs.canvas.width * canvasScaleRatio / 2) / canvasScaleRatio - 400) :
+                        Math.round((sceneInfo[2].objs.canvas.width * canvasScaleRatio - innerWidth) / 2 / canvasScaleRatio),
+                    dw = innerWidth > 1200 ? 800 : Math.round(innerWidth / canvasScaleRatio),
+                    dh = Math.round(dw * nRatio),
                     dy = dh < innerHeight ?
-                        (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio + innerHeight * 0.2 :
-                        (sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio - (innerWidth * nRatio - innerHeight) / canvasScaleRatio / 2;
-                sceneInfo[2].objs.context.drawImage(sceneInfo[2].objs.videoImages[vNum2],
-                    0, 0,
-                    sceneInfo[2].objs.videoImages[vNum2].naturalWidth,
-                    sceneInfo[2].objs.videoImages[vNum2].naturalHeight,
-                    dx, dy, dw, dh)
+                        Math.round((sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio + innerHeight * 0.2) :
+                        Math.round((sceneInfo[2].objs.canvas.height * canvasScaleRatio - innerHeight) / 2 / canvasScaleRatio - (innerWidth * nRatio - innerHeight) / canvasScaleRatio / 2);
+                sceneInfo[2].objs.context.drawImage(sceneInfo[2].objs.videoImages[vNum2], 0, 0, sw, sy, dx, dy, dw, dh)
                 sceneInfo[2].objs.canvas.style.transform = 'translate3d(-50%,-50%,0) scale('+ canvasScaleRatio +')';
                 if (scrollRatio <= opacityCenter2) {
                     var opacityIn2 = calcValues(sceneInfo[2].values.canvasOpacityIn);

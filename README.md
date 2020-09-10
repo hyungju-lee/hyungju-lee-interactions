@@ -26,7 +26,7 @@
 * [스크롤 인터렉션 첫번째 - jQuery](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-1/index-jquery.html)
   
   * 사용 기법 : 제이쿼리 animate 메서드 활용
-  * 테스트 브라우저 : Window Chrome, FF, IE 11 / Mac Chrome, Safari / 아이폰X Safari
+  * 테스트 브라우저 : Window Chrome, FF, IE 11, IE 10 / Mac Chrome, Safari / 아이폰X Safari
   * 테스트 기기 : 매직마우스, 트랙패드, 윈도마우스휠, 아이폰X
   * 결과
     - 트랙패드  

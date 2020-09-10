@@ -26,7 +26,7 @@
 * [스크롤 인터렉션 첫번째 - jQuery](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-1/index-jquery.html)
   
   * 사용 기법 : 제이쿼리 animate 메서드 활용
-  * 테스트 브라우저 : Window Chrome, FF, IE 11, IE 10 / Mac Chrome, Safari / 아이폰X Safari
+  * 테스트 브라우저 : Window Chrome, FF, IE 11 / Mac Chrome, Safari / 아이폰X Safari
   * 테스트 기기 : 매직마우스, 트랙패드, 윈도마우스휠, 아이폰X
   * 결과
     - 트랙패드  
@@ -58,7 +58,7 @@
   3. keyframe 개념활용 애니메이션 구현 : CSS Keyframe 개념과 같음
   
   * **지원범위**
-  1. 윈도우 : 크롬 / FF / IE11
+  1. 윈도우 : 크롬 / FF / IE11 / IE10
   2. 맥 사파리 : / 크롬
   3. 윈도우 : 마우스휠 / 키보드 / 트랙패드
   4. 맥 : 매직마우스 / 키보드 / 마우스휠

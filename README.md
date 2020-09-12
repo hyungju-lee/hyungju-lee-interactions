@@ -68,11 +68,14 @@
   
 ### canvas interaction
 
-* [canvas 기본형태](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex01/index-1.html)
-* [canvas 드로잉 표면에 대한 크기 / 요소 자체에 대한 크기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex02/index-2.html)
-* [canvas 아날로그 시계구현](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex03/index-3.html)
-* [canvas 좌표구하기 - mousemove 이벤트 활용](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex04/index-4.html)
-* [이론 : canvas 키보드이벤트 활용](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex05/index-5.html)
-* [이론 : canvas 드로잉 표면의 저장 및 복원](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex06/index-6.html)
-* [이론 : canvas에서 HTML 요소 사용하기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex07/index-7.html)
-* [보이지 않는 HTML 요소](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex08/index-8.html)
+* [1.1 canvas 기본형태](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex01/index-1.html)
+* [1.2 canvas 드로잉 표면에 대한 크기 / 요소 자체에 대한 크기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex02/index-2.html)
+* [1.3 canvas 아날로그 시계구현](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex03/index-3.html)
+* [1.4 canvas 좌표구하기 - mousemove 이벤트 활용](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex04/index-4.html)
+* [1.5 이론 : canvas 키보드이벤트 활용](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex05/index-5.html)
+* [1.6 이론 : canvas 드로잉 표면의 저장 및 복원](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex06/index-6.html)
+* [1.7 이론 : canvas에서 HTML 요소 사용하기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex07/index-7.html)
+* [1.8 보이지 않는 HTML 요소](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex08/index-8.html)
+* [1.9 캔버스 이미지로 출력하기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex09/index-9.html)
+* [1.10 오프스크린 캔버스](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex10/index-10.html)
+* [1.11 간단한 수학 입문 - 정리중](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex11/index-11.html)

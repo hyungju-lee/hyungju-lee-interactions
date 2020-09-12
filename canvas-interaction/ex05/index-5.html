@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
     <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
         body { background-color: #ddd }
         ol, ul, dl {padding-top: 10px; padding-bottom: 10px}
         #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
@@ -17,7 +19,7 @@
 </canvas>
 <div>
     <p>
-        canvas 요소는 포커스를 가질 수 있는 요소가 아니므로 키보드 이벤트리스터를 추가해도 소용이 없다. <br>
+        canvas 요소는 포커스를 가질 수 있는 요소가 아니므로 키보드 이벤트리스너를 추가해도 소용이 없다. <br>
         대신 키 이벤트를 감지할 수 있는 <strong>document</strong> 오브젝트나 <strong>window</strong> 오브젝트에 키 리스너를 추가할 수 있다.
     </p>
     <h2>키이벤트 종류</h2>

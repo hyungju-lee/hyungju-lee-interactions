@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bouncing Balls</title>
+    <style>
+        body {
+            background-color: #ddd;
+        }
+        #canvas {
+            margin-left: 10px;
+            margin-top: 10px;
+            background-color: #fff;
+            border: thin solid #aaa;
+        }
+        #glasspane {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            padding: 0 20px 10px 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: thin solid rgba(0, 0, 0, 0.6);
+            color: #eee;
+            font-family: "Droid Sans", Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+            -moz-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+            box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+        }
+        #glasspane h2 {
+            font-weight: normal;
+        }
+        #glasspane .title {
+            font-size: 2em;
+            color: rgba(255, 255, 0, 0.8);
+        }
+        #glasspane a:hover {
+            color: yellow;
+        }
+        #glasspane a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 3.5em;
+        }
+        #glasspane p {
+            margin: 10px;
+            color: rgba(65, 65, 220, 1.0);
+            font-size: 12pt;
+            font-family: "Palatino Linotype", Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="glasspane">
+    <h2 class="title">Bouncing Balls</h2>
+    <p>One hundred balls bouncing</p>
+    <a href="#" id="startButton">Start</a>
+</div>
+<canvas id="canvas" width="750" height="500">
+    Canvas not supported
+</canvas>
+<div>
+    <h1>캔버스에서 HTML 요소 사용하기</h1>
+    <p>
+        캔버스는 HTML5의 기능 가운데 가장 멋진 기능임이 틀리없다. <br>
+        그렇다고 캔버스를 이용해 웹 애플리케이션을 구현할 때, 캔버스만 단독으로 사용할 일은 거의 없을 것이다. <br>
+        사용자가 입력하거나 애플리케이션을 제어할 수 있게 다른 HTML 컨트롤에 한 개 이상의 캔버스를 결합해야 할 것이다.
+    </p>
+    <p>
+        다른 HTML 컨트롤에 캔버스를 결함하려면, 먼저 canvas 요소에 HTML 제어를 포함해야 한다. <br>
+        하지만 이 방법은 통하지 않을 것이다. <br>
+        브라우저에서 canvas 요소를 지원하지 않을 때만 canvas 요소의 body 태그에 넣은 내용이 브라우저에 표시되기 때문이다. <br>
+        브라우저에서는 요소에 있는 canvas 요소나 HTML 컨트롤 중 하나만 표시하므로 canvas 요소 밖에 컨트롤을 배치해야 한다. <br>
+        그리고 HTML 컨트롤이 캔버스 안에 있는 것처럼 보일 수 있게, CSS를 사용해 HTML 컨트롤을 캔버스 위에 배치해야 한다.
+    </p>
+    <h2>캔버스 기반 컨트롤을 구현할 수 있다</h2>
+    <p>
+        캔버스 명세서에서는 캔버스 API를 이용해 컨트롤을 처음부터 구현하기보다는 내장 HTML 컨트롤을 사용하는 방법이 좋다고 명시하고 있는데, 좋은 충고라고 생각된다. <br>
+        보통 캔버스 API를 이용해 컨트롤을 처음부터 구현하면, 작업이 많아질 수밖에 없다. <br>
+        따라서 쉬운 대안이 있을 때 작업이 많은 대안을 피하는 것이 현명하다. <br>
+        <br>
+        하지만 캔버스 기반 컨트롤을 구현해야만 하는 상황도 있을 수 있다. <br>
+        다음에 캔버스 기반 컨트롤을 구현해야 하는 이유와 방법을 알아볼 예정이다.
+    </p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

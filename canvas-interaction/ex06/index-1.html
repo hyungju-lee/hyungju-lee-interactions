@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <style>
+        body { background-color: #ddd }
+        #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300">
+    Canvas not supported
+</canvas>
+<div>
+    콘텍스트 상태를 저장(save()메서드)하고 복원(restore())하는 메서드를 이용하면 일시적으로 상태를 변화시킬 수 있으므로 앞으로 자주 사용하게 될 것이다. <br>
+    그리고 캔버스 콘텍스트는 드로잉 표면 자체를 저장하고 복원할 수 있는 중요한 기능이 있다. <br>
+    드로잉 표면 자체를 저장하고 복원하면, 일시적으로 드로잉 표면에 그릴 수 있어서 <strong>러버밴드(rubber band)</strong>나 <strong>가이드와이어(guidewire)</strong>
+    또는 <strong>주석</strong> 등과 같은 작업에 매우 유용하게 사용할 수 있다. <br>
+    <br>
+    해당 애플리케이션은 나중에 보여드리도록 하겠다.
+
+    <h2>getImageDate() / putImageData()를 이용한 이미지 조작</h2>
+    <p>
+        <strong>getImageData()</strong> 메서드와 <strong>putImageData()</strong> 메서드를 활용해 드로잉 표면을 저장하고 복원한다. <br>
+        <strong>drawImage()</strong> 메서드처럼 <strong>getImageData()</strong> 메서드와 <strong>putImageData()</strong> 메서드를 다양한 방법으로 사용할 수 있다.
+        <br>
+        그 중 가장 많이 사용하는 방법은 이미지의 데이터를 가져와 조작한 다음 캔버스에 다시 돌려주는 이미지 필터를 구현하는 것이다. <br>
+        이미지 필터링에서 이미지 필터를 구현하는 방법을 통해 <strong>getImageData()</strong> 메서드와 <strong>putImageData()</strong> 메서드의 다양한 사용법을 자세히 살펴볼 예정이다.
+    </p>
+
+    <h2>즉시모드(immediate-mode) 그래픽</h2>
+    <p>
+        캔버스에서는 사용자가 캔버스에 무엇을 명시하든 즉시 그리는 <strong>즉시 모드 그래픽</strong>으로 실행한다. <br>
+        그리고 즉시 모드로 실행한 다음에는 막 실행한 작업에 대해 곧바로 잊어버린다. <br>
+        이미 그린 오브젝트에 대한 목록을 캔버스에서 보유하지 않는다는 의미다. <br>
+        SVG와 같은 그래픽 시스템에서는 작업한 오브젝트의 목록을 가지고 있으며 이런 그래픽 시스템을 <strong>보유모드 그래픽</strong>이라고 부른다.
+    </p>
+    <p>
+        즉시 모드 그래픽에서는 작업한 오브젝트의 목록을 보유하지 않으므로 보유 모드 그래픽보다 낮은 레벨이다. <br>
+        하지만 즉시 모드 그래픽에서는 그래픽 시스템에서 그린 오브젝트를 조정하는 대신 화면에 직접 그리므로 더 많은 융통성을 제공한다.
+    </p>
+    <p>
+        즉시 모드 그래픽은 그림판과 같이 사용자가 그린 것을 기록하지 않는 애플리케이션에 적합하다. <br>
+        반대로 보유모드 그래픽은 드로잉 애플리케이션과 같이 사용자가 그래픽 오브젝트를 조작할 수 있는 애플리케이션에 적합하다. <br>
+        다각형 오브젝트 절에서는 사용자가 다각형을 드래그하여 위치를 변경할 수 있는 드로잉 애플리케이션에서 다각형 배열을 유지하는 간단한 보유 그래픽 시스템을 구현하는
+        방법을 살펴볼 예정이다.
+    </p>
+</div>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d');
+
+    context.font = '38pt Arial';
+    context.fillStyle = 'cornflowerblue';
+    context.strokeStyle = 'blue';
+
+    context.fillText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+    context.strokeText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+</script>
+</body>
+</html>

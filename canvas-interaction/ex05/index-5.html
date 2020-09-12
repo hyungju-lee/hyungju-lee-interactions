@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <style>
+        body { background-color: #ddd }
+        ol, ul, dl {padding-top: 10px; padding-bottom: 10px}
+        #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300">
+    Canvas not supported
+</canvas>
+<div>
+    <p>
+        canvas 요소는 포커스를 가질 수 있는 요소가 아니므로 키보드 이벤트리스터를 추가해도 소용이 없다. <br>
+        대신 키 이벤트를 감지할 수 있는 <strong>document</strong> 오브젝트나 <strong>window</strong> 오브젝트에 키 리스너를 추가할 수 있다.
+    </p>
+    <h2>키이벤트 종류</h2>
+    <ul>
+        <li>keydown</li>
+        <li>keypress</li>
+        <li>keyup</li>
+    </ul>
+    <p>
+        <strong>keydown</strong> 이벤트와 <strong>keyup</strong> 이벤트는 키 입력이 발생할 때마다 브라우저에서 발생하는 낮은 수준의 이벤트다. <br>
+        명령 시퀀스 등과 같은 몇몇 키 입력은 브라우저나 운영 시스템에서 처리하지만, <br>
+        Alt 키와 Esc 키 등을 포함한 대부분의 키 입력은 <strong>keydown</strong> 이벤트와 <strong>keyup</strong> 이벤트 헨들러에서 처리한다는 사실에 주목하자.
+    </p>
+    <p>
+        <strong>keydown</strong> 이벤트에서 출력할 수 있는 문자를 생성하면 브라우저에서는 <strong>keyup</strong> 이벤트 전에 <strong>keypress</strong> 이벤트를 발생시킨다.
+        <br> 만약 출력 가능한 문자를 생성할 수 있는 키를 일정 시간 동안 누르고 있다면, 브라우저에서는 <strong>keydown</strong> 이벤트와 <strong>keyup</strong> 이벤트 사이에
+        <strong>keypress</strong> 이벤트를 발생시킬 것이다.
+    </p>
+    <p>
+        키 리스너를 구현하는 작업은 마우스 리스너를 구현하는 작업과 비슷하다. <br>
+        <strong>addEventListener</strong>를 호출하면서 첫번째 인자에 <strong>keydown, keyup, keypress</strong>를 사용하고, 두번째 인자에 함수를 참조한다.
+    </p>
+    <div>
+        하지만 다음과 같이 두 가지 이유에서 키가 눌러졌는지 판단하기가 어렵다.
+        <ol>
+            <li>첫번째 이유는 전 세계에서 사용되는 언어는 매우 많으며 언어마다 사용하는 문자도 매우 다양하기 때문이다. <br>
+                라틴 알파벳, 아시아의 표의문자, 인도의 수많은 언어 등과 같이 몇몇 나라에서 사용하는 언어만 고려해도 지금 언급한 언어를 모두 지원하는 것은 대단히 놀라운 일이다.
+            </li>
+            <li>
+                두번째 이유는 오랫동안 브라우저와 키보드를 사용했지만, 현재 몇몇 브라우저에서만 지원하고 있는 DOM 레벨3이 출현하기 전까지 키 코드를 표준화하지 못했기 때문이다. <br>
+                한 마디로 어떤 키나 키 조합에 대한 입력 여부를 정확히 감지하기 어렵다.
+            </li>
+        </ol>
+        그러나 대부분 다음과 같이 두 가지 간단한 전략을 세워 키의 입력 여부를 판단할 수 있다.
+        <ol>
+            <li>
+                <strong>keydown</strong> 이벤트와 <strong>keyup</strong> 이벤트를 위해 브라우저에서 이벤트 리스너로 전달할 이벤트 오브젝트에 대한 <strong>keyCode</strong> 속성을 살펴본다.
+                <br>보통 출력할 수 있는 문자의 값은 ASCII 코드로 되어 있다. <br>
+                그러나 여기서는 다양한 브라우저에 따른 키 코드 해석에 주의한다. <br>
+                이 내용은 다양한 브라우저에 대한 키 코드를 해석해 놓은 웹 사이트 <a href="https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes" target="_blank">링크</a>를 참고하자.
+                <br>
+                키 이벤트를 위한 이벤트 오브젝트에는 다음 불린 형의 속성이 있다.
+                <ul>
+                    <li>altKey</li>
+                    <li>ctrlKey</li>
+                    <li>metaKey</li>
+                    <li>shiftKey</li>
+                </ul>
+            </li>
+            <li>
+                출력할 수 있는 문자는 브라우저에서 생성하는 <strong>keypress</strong> 이벤트에 대해, 다음 코드에서처럼 문자를 얻을 수 있다. <br>
+                <pre>
+                    <code>
+                var key = String.fromCharCode(event.which)
+                    </code>
+                </pre>
+            </li>
+        </ol>
+        일반적으로 캔버스에 대한 텍스트 컨트롤을 구현하지 않으면 키 이벤트 처리보다 마우스 이벤트를 훨씬 많이 처리하게 될 것이다. <br>
+        그러나 게임에서는 마우스 이벤트보다 키 입력을 많이 처리한다. <br>
+        이 주제는 9장에서 더 자세히 살펴볼 예정이다.
+    </div>
+</div>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d');
+
+    context.font = '38pt Arial';
+    context.fillStyle = 'cornflowerblue';
+    context.strokeStyle = 'blue';
+
+    context.fillText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+    context.strokeText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+</script>
+</body>
+</html>

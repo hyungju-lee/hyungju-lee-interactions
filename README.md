@@ -78,4 +78,11 @@
 * [1.8 보이지 않는 HTML 요소](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex08/index-8.html)
 * [1.9 캔버스 이미지로 출력하기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex09/index-9.html)
 * [1.10 오프스크린 캔버스](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex10/index-10.html)
-* [1.11 간단한 수학 입문 - 정리중](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex11/index-11.html)
+* [1.11 이론 : 간단한 수학 입문](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex11/index-11.html)
+* [1.12 이론 : 결론](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex12/index-12.html)
+
+* [2. 드로잉](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex13/index-13.html)
+* [2.1 좌표계](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex14/index-14.html)
+* [2.2 드로잉 모델](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex15/index-15.html)
+* [2.3 직사각형 그리기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex16/index-16.html)
+* [2.4 색상과 투명도 - 아직 정리중](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex17/index-17.html)

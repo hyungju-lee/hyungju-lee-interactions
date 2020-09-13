@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+        #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300">
+    Canvas not supported
+</canvas>
+<div>
+    <h1>드로잉 모델</h1>
+    <p>
+        캔버스를 사용하려면 기본적으로 캔버스에 도형, 이미지, 텍스트를 그리는 방법을 정확하게 이해해야 한다. <br>
+        그리고 이런 기능을 정확하게 이해하려면, 그림자, 알파 채널, 클리핑 영역, 합성에 대한 지식이 필요하다. <br>
+        물론, 이 책을 끝까지 읽는다면 이런 내용을 잘 이해하게 될 것이라고 믿는다. <br>
+        따라서 지금은 언급한 내용을 완벽하게 이해할 필요가 없다. <br>
+        이 절을 처음 접한다면 가볍게 살펴보고 다음에 참고 자료로 사용하자. <br>
+        <br>
+        도형이나 이미지를 캔버스에 그릴 때, 브라우저에서는 다음과 같은 작업을 한다.
+    </p>
+    <ol>
+        <li>현재 fillStyle, strokeStyle, lineStyle에 따라 투명하고 무한한 비트맵에 도형이나 이미지를 그린다.</li>
+        <li>현재 콘텍스트의 그림자 설정에 따라 도형이나 이미지의 그림자를 <strong>두번째 비트맵</strong>에 그린다.</li>
+        <li>콘텍스트의 globalAlpha 속성을 모든 그림자 픽셀에 해당하는 알파 구성 요소에 곱한다.</li>
+        <li>현재 합성(current composition)에 따라 그림자 비트맵을 클리핑 영역으로 설정한 캔버스와 합성한다.</li>
+        <li>콘텍스트의 globalAlpha 속성을 도형이나 이미지의 모든 픽셀에 곱한다.</li>
+        <li>현재 합성 연산자를 이용해 도형이나 이미지 비트맵을 현재 캔버스 비트맵 위에 형성된 클리핑 영역과 합성한다.</li>
+    </ol>
+    <p style="color: red">참고: 그림자 효과가 가능할 때만 2~4단계를 적용한다.</p>
+    <p>
+        먼저 브라우저에서는 도형을 그리고 내부를 칠하는 작업과 관련된 캔버스 컨텍스트의 속성을 사용해 도형이나 이미지를 투명하고 무한한 비트맵에 그린다. <br>
+        물론 무한한 비트맵은 없지만, 브라우저에서는 마치 무한한 비트맵이 존재하는 것처럼 처리한다.
+    </p>
+    <p>
+        그리고 2~4단계에서는 그림자를 처리한다. <br>
+        따라서 그림자 효과를 사용한다면, 2.6절(그림자효과)에서 언급했듯이 그림자를 다른 비트맵으로 전달하고 그림자에 있는 모든 픽셀에 globalAlpha 속성을 곱해 그림자의 투명도를 설정한다. <br>
+        그리고 현재 합성 설정을 이용해 그림자를 클리핑 영역으로 설정한 &lt;canvas&gt; 요소와 합성한다.
+    </p>
+    <p>
+        마지막으로, 브라우저에서는 현재 합성 설정과 클리핑 영역에 따라 도형이나 이미지를 &lt;canvas&gt; 요소와 합성한다.
+    </p>
+    <p>
+        여러분이 캔버스를 처음 사용한다면 위 내용을 이해하려다 절망에 빠지지 말고 그냥 읽으면서 지나가도록 하자. <br>
+        그림자, 알파채널, 클리핑 영역, 합성 등에 대해 이해할 수 있을 때 이 절을 다시 읽으면 모든 내용을 정확하게 이해할 수 있을 것이다.
+    </p>
+    <p>
+        이제 앞에서 배운 좌표계와 드로잉 모델에 관한 내용을 뒤로하고, 캔버스를 사용해 간단한 도형과 텍스트를 그려보자.
+    </p>
+</div>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d');
+
+    context.font = '38pt Arial';
+    context.fillStyle = 'cornflowerblue';
+    context.strokeStyle = 'blue';
+
+    context.fillText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+    context.strokeText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+        #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="500">
+    Canvas not supported
+</canvas>
+<div>
+    <h1>그라디언트 패턴</h1>
+    <p>
+        strokeStyle 속성과 fillStyle 속성에는 색상뿐만 아니라 그라디언트와 패턴도 명시할 수 있다. <br>
+        이 절에서는 그라디언트와 패턴을 설정하는 방법을 알아보자.
+    </p>
+    <h2>그라디언트</h2>
+    <p>
+        캔버스 요소에서는 선형 그라디언트와 방사형 그라디언트를 모두 지원한다. <br>
+        먼저 선형 그라디언트부터 살펴보자.
+    </p>
+    <dl>
+        <dt style="padding: 10px 0;font-weight: bold;font-size: 20px">선형 그라디언트</dt>
+        <dd>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createLinearGradient" target="_blank">createLinearGradient 설명</a>
+            <ul>
+                <li>createLinearGradient : 그라디언트 방향 (x, y, x2, y2) - x, y(시작좌표), x2, y2(끝좌표)</li>
+                <li>CanvasGradient : createLinearGradient 메서드에 의해 반환되는 객체</li>
+                <li>addColorStop : CanvasGradient의 유일한 메서드 (그라디언트 색추가 메서드)</li>
+            </ul>
+        </dd>
+    </dl>
+</div>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+
+    gradient.addColorStop(0, 'blue');
+    gradient.addColorStop(0.25, 'white');
+    gradient.addColorStop(0.5, 'purple');
+    gradient.addColorStop(0.75, 'red');
+    gradient.addColorStop(1, 'yellow');
+
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+</script>
+</body>
+</html>

@@ -86,3 +86,5 @@
 * [2.2 드로잉 모델](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex15/index-15.html)
 * [2.3 직사각형 그리기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex16/index-16.html)
 * [2.4 색상과 투명도](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex17/index-17.html)
+* [2.5 그라디언트와 패턴 - 선형 그라디언트](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex18/index-18.html)
+* [2.5.1.2 방사형 그라디언트](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex19/index-19.html)

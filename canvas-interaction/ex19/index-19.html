@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+        #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="500">
+    Canvas not supported
+</canvas>
+<div>
+    <h1>방사형 그라디언트</h1>
+    <p>
+        앞절에서 살펴봤듯이 그라디언트 라인을 명시하면 선형 그라디언트를 생성할 수 있다. <br>
+        그러나 방사형 그라디언트를 생성하려면 원뿔의 양 끝을 나타내는 두 원을 명시해야 한다. <br>
+        [그림 2.7]에서는 방사형 그라디언트를 보여주고 있다.
+    </p>
+    <div><img src="explain01.jpg" alt=""></div>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient" target="_blank">createRadialGradient 설명</a>
+    <p>
+        createRadialGradient(시작원x좌표, 시작원y좌표, 시작원반지름, 끝원x좌표, 끝원y좌표, 끝원반지름)
+    </p>
+</div>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        gradient = context.createRadialGradient(canvas.width/2, canvas.height, 10, canvas.width/2, 0, 100);
+
+    gradient.addColorStop(0, 'blue');
+    gradient.addColorStop(0.25, 'white');
+    gradient.addColorStop(0.5, 'purple');
+    gradient.addColorStop(0.75, 'red');
+    gradient.addColorStop(1, 'yellow');
+
+    context.fillStyle = gradient;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+</script>
+</body>
+</html>

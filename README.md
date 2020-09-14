@@ -85,4 +85,4 @@
 * [2.1 좌표계](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex14/index-14.html)
 * [2.2 드로잉 모델](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex15/index-15.html)
 * [2.3 직사각형 그리기](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex16/index-16.html)
-* [2.4 색상과 투명도 - 아직 정리중](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex17/index-17.html)
+* [2.4 색상과 투명도](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex17/index-17.html)

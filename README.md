@@ -88,3 +88,4 @@
 * [2.4 색상과 투명도](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex17/index-17.html)
 * [2.5 그라디언트와 패턴 - 선형 그라디언트](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex18/index-18.html)
 * [2.5.1.2 방사형 그라디언트](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex19/index-19.html)
+* [2.5.2 패턴](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex20/index-20.html)

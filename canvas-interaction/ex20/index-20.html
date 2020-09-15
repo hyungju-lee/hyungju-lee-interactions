@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+        #canvas { margin: 10px; padding: 10px; background-color: #fff; border: thin inset #aaa; }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="600" height="300">
+    Canvas not supported
+</canvas>
+<div>
+    <h1>패턴</h1>
+    <p>
+        색상과 그라디언트 외에, 캔버스에서 제공하는 요소를 사용하면 <strong>패턴으로 도형과 텍스트를 그리고 내부를 채울 수 있다.</strong> <br>
+        또한 &lt;image&gt; 요소, &lt;canvas&gt; 요소, 또는 &lt;video&gt; 요소 중 하나를 패턴으로 사용할 수도 있다.
+    </p>
+    <p>
+        브라우저에서 패턴을 반복하는 방법을 명시한 문자열과 패턴 등 두가지 인수를 가진 <strong>createPattern()</strong> 메서드로 패턴을 생성한다. <br>
+
+    </p>
+</div>
+<script>
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d');
+
+    context.font = '38pt Arial';
+    context.fillStyle = 'cornflowerblue';
+    context.strokeStyle = 'blue';
+
+    context.fillText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+    context.strokeText('Hello Canvas', canvas.width / 2 - 150, canvas.height / 2 + 15);
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+    </style>
+</head>
+<body>
+<div>
+    <a href="https://developer.mozilla.org/ko/docs/Web/API/HTMLElement/dataset" target="_blank">링크</a>
+    <h1>HTMLElement.dataset</h1>
+    <p>
+        <strong>HTMLElement.dataset</strong> 읽기 전용 속성은 요소의 <strong>사용자 지정 데이터 특성(data-*)</strong>에 대한 읽기와
+        쓰기 접근 방법을 HTML과 DOM 양측에 제공합니다. <br>
+        반환하는 값은 <strong>DOMStringMap</strong>으로, 각 데이터 특성마다 하나의 항목을 가집니다. <br>
+        <strong>dataset</strong> 속성 자체는 <span style="color: red">읽기 전용이라는 점에 주의</span>하세요. <br>
+        모든 쓰기 작업은 <strong>dataset</strong> 안의, 데이터 특성을 나타내는 각각의 속성에 수행해야 합니다. <br>
+        또한 HTML의 <strong>data-이름</strong>과 이에 대응하는 DOM <strong>dataset['이름']</strong>의 <strong>이름</strong>은 서로 일치하지 않으나,
+        다음 규칙에 따라 유사함을 기억하세요.
+    </p>
+    <ul>
+        <li>
+            HTML의 사용자 지정 특성 이름은 <strong>data-</strong>로 시작합니다. <br>
+            또한 문자, 숫자, 대시(-), 점(.), 콜론(:), 언더스코어(_)만 사용할 수 있고, ASCII 대문자(A-Z)는 사용할 수 없습니다.
+        </li>
+        <li>
+            JavaScript의 사용자 지정 특성 이름은 HTML 이름을 카멜 표기법으로 변환한 형태로, 대시, 점 등을 모두 제거합니다.
+        </li>
+    </ul>
+    <p>
+        아래의 내용으로 HTML 데이터 속성을 어떻게 쓰는지 한번 살펴봅시다.
+    </p>
+    <h2>Name conversion(이름 변환)</h2>
+    <p>
+        dash-style에서 camelCase로 변환 : 커스텀 데이터 속성의 이름은 아래의 규칙에 따라 <strong>DOMStringMap</strong>의 key로 변환됩니다.
+    </p>
+    <ul>
+        <li>
+            접두사 <strong>data-</strong>는 삭제됩니다. (대시포함)
+        </li>
+        <li>
+            a부터 z까지 ASCII 소문자 앞에 오는 모든 대시(U+002D)는 삭제되고 해당 소문자는 대문자로 변환됩니다.
+        </li>
+        <li>
+            다른 기호는(다른 대시들을 포함한) 바뀌지 않습니다.
+        </li>
+    </ul>
+    <p>
+        camelCase에서 dash-style로 변환: key를 속성 이름으로 매핑하는 반대의 변환은 아래의 규칙을 따릅니다.
+    </p>
+    <ul>
+        <li>제약 조건: 대시 바로 뒤에는 a에서 z까지 ASCII 소문자를 쓸 수 없습니다.(변환전)</li>
+        <li>접두사 <strong>data-</strong>가 추가됩니다.</li>
+        <li>A에서 Z까지 모든 ASCII 대문자는 대시와 해당 소문자로 변환됩니다.</li>
+        <li>다른 문자는 변하지 않습니다.</li>
+    </ul>
+    <p>
+        이러한 제약 조건은 반드시 두 변환이 서로의 역이 되도록 합니다. <br>
+        예를 들어 <strong>data-abc-def</strong>라는 이름의 속성은 <strong>abcDef</strong>라는 키에 대응합니다.
+    </p>
+    <h2>Accessing values</h2>
+    <ul>
+        <li>
+            속성들은 <strong>element.dataset.keyname</strong>과 같이 dataset의 객체 속성처럼 camelCase 이름(키)을 사용해서 설정하거나 읽을 수 있습니다.
+        </li>
+        <li>
+            속성들은 또한 <strong>element.dataset[keyname]</strong>과 같이 객체 속성의 괄호 신택스로 설정하거나 읽을 수 있습니다.
+        </li>
+    </ul>
+    <h2>Syntax</h2>
+    <ul>
+        <li>string = element.dataset.camelCasedName;</li>
+        <li>element.dataset.camelCasedName = string;</li>
+    </ul>
+    <ul>
+        <li>string = element.dataset[camelCasedName];</li>
+        <li>element.dataset[camelCasedName] = string;</li>
+        <li>
+            HTML elements에서 사용자가 지정한 data attribute에 직접 설정할 수 있으나 attribute names는 위의 데이터 문법을 반드시 사용해야 합니다.
+        </li>
+    </ul>
+    <div><img src="explain01.jpg" alt=""></div>
+</div>
+</body>
+</html>

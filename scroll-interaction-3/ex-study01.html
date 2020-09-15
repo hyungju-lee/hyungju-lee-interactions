@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Simple Canvas Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+    </style>
+</head>
+<body>
+<div>
+    <a href="https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes/data-*" target="_blank">링크</a>
+    <h1>data-*</h1>
+    <p>
+        <strong>data-*</strong> 전역특성은 <strong>사용자 지정 데이터 특성(custom data attributes)</strong>이라는 특성 클래스를 형성함으로써
+        임의의 데이터를 스크립트로 HTML과 DOM 사이에서 교환할 수 있는 방법입니다.
+    </p>
+    <p>
+        모든 사용자 지정 데이터는 해당 데이터를 지정한 요소의 <strong>HTMLElement</strong> 인터페이스, <strong>dataset</strong> 속성을 통해 사용할 수 있습니다.
+        <br>
+        <strong>data-*</strong>의 *은 XML 이름 생성 규칙을 따르는 모든 이름으로 대체할 수 있습니다.
+    </p>
+    <ul>
+        <li>대소문자 여부에 상관없이 xml로 시작하면 안됩니다.</li>
+        <li>세미콜론(U+003A)을 포함해서는 안됩니다.</li>
+        <li>대문자를 포함해서는 안됩니다.</li>
+    </ul>
+    <p>
+        <strong>HTMLElement.dataset</strong>은 <strong>DOMStringMap</strong>이라는 점을 참고하세요. <br>
+        사용할 땐, 예를 들어 <strong>data-test-value</strong>라는 이름의 특성을 지정했다면, 모든 대시(U+002D)는 다음 문자를 대문자로 만들고
+        자신은 사라지므로 <strong>HTMLElement.dataset.testValue</strong>로 접근할 수 있습니다.
+    </p>
+    <h2>용도</h2>
+    <p>
+        <strong>data-*</strong> 속성을 추가함으로써, 평범한 HTML 요소조차 복잡하고 강력한 프로그램 객체가 될 수 있습니다. <br>
+        예커대, 게임의 우주선 스프라이트는 단순한 <strong>&lt;img&gt;</strong> 태그와 <strong>class</strong> 특성, 그리고
+        여러 <strong>data-*</strong> 특성으로 나타낼 수 있습니다.
+    </p>
+    <pre>
+        <code>
+            &lt;img class="spaceship cruiserX3" src="shipX3.png"
+                 data-ship-id="324" data-weapons="laserI laserII" data-shields="72%"
+                 data-x="414354" data-y="85160" data-z="31940"
+                 onclick="spaceships[this.dataset.shipId].blasted()"&gt;
+        </code>
+    </pre>
+</div>
+</body>
+</html>

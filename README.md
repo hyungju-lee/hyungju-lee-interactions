@@ -66,6 +66,12 @@
   
   NC 때 해결하지 못했던 맥에서 윈도우 마우스휠, 키보드시 딱딱 끊어지면서 스크롤 인터렉션이 발생하던 이슈를 해결
   
+### Scroll interaction 3
+
+* [선행학습 data-*](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study01.html)
+* [선행학습 HTMLElement.dataset](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study02.html)
+* [선행학습 Using data attributes](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study03.html)
+  
 ### canvas interaction
 
 * [1.1 canvas 기본형태](https://hyungju-lee.github.io/hyungju-lee-interactions/canvas-interaction/ex01/index-1.html)

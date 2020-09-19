@@ -68,7 +68,7 @@
   
 ### Scroll interaction 3
 
-* [예시파일](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/bbc-covid19-interaction/index.html)
+* [예시파일](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/bbc-covid19-interaction/)
 * [선행학습 data-*](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study01.html)
 * [선행학습 HTMLElement.dataset](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study02.html)
 * [선행학습 Using data attributes](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study03.html)

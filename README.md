@@ -2,6 +2,7 @@
 
 ### Scroll interaction 1
 
+* [추가 인터렉션 참고 - 애플 사이트 스트로크 그리기 효과](https://hyungju-lee.github.io/hyungju-lee-interactions/apple-stroke/index.html)
 * [스크롤 인터렉션 첫번째 - Pure JavaScript](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-1/index-javascript.html)  
   
   * 사용 기법 : requestAnimationFrame API를 활용한 부드러운 감속 스크롤

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>requestAnimationFrame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../00_prism/prism.css">
+    <style>
+        html {font-family: 'Noto Sans KR', sans-serif;}
+        body { background-color: #ddd }
+    </style>
+</head>
+<body>
+<div>
+    <h1>requestAnimationFrame</h1>
+    <p>
+        '인터렉션 웹 사이트를 구현할 때 없어서는 안될 정말 중요한 개념이다.'<br>
+        '브라우저가 애니메이션을 구현하는데 최적의 상황을 제공해준다.'<br>
+        'setTimeout / setInterval 보다 훨씬 자연스럽고 보기좋은 애니메이션을 구현할 수 있다.'<br>
+        <br>
+        보통 requestAnimationFrame에 관해 찾아보면 위와 같은 글들은 많다. <br>
+        하지만 <strong>왜 좋은지 근본적인 이유를 말해주는 글은 거의 없다.</strong> <br>
+        <br>
+        왜 requeastAnimationFrame이 인터렉션 효과를 구현할 때 좋다고할까? <br>
+        도대체 왜?
+    </p>
+    <h2>Event Loop</h2>
+    <p>
+        이를 이해하기 위해선 먼저 이벤트 루프 개념을 이해해야된다. <br>
+        자바스크립트를 공부할 때 항상 제일 첫장에 나오는 내용이다. <br>
+        하지만 이 또한 내용을 너무 축약해 설명했기 때문에 마음에 확 다가오진 않을 것이다. <br>
+        나 또한 그랬다. <br>
+        하지만 이번글은 이벤트 루프에 대한 글이 아니기 때문에 첫장에 설명되어있는 것처럼 간단하게 짚고만 넘어가겠다. <br>
+        <br>
+        이벤트 루프는 콜스텍에 아무것도 없을 때 테스크큐에 쌓여있는 큐를 콜스텍(호출스텍)으로 옮기는 역할을 한다. <br>
+        이때 테스크큐에는 비동기함수가 쌓이게 되는데, 비동기함수란 대표적으로 setTimeout / setInterval 같은 걸 말한다. <br>
+        몇 초뒤에 다음 함수(콜백함수)를 실행해달라는 setTimeout 함수가 있다. <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        어쩌구 저쩌구.. 정리해야됨..
+    </p>
+
+<!--    <pre class="line-numbers">-->
+<!--        <code class="language-css">-->
+<!--article[data-columns='3'] {-->
+<!--  width: 400px;-->
+<!--}-->
+<!--article[data-columns='4'] {-->
+<!--  width: 600px;-->
+<!--}-->
+<!--        </code>-->
+<!--    </pre>-->
+</div>
+
+<script src="../00_prism/prism.js"></script>
+</body>
+</html>

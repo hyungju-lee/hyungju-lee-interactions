@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-compatible" content="chrome=1,IE=edge">
+<title>이동할 거리 백분율 구하는 방법</title>
+<link rel="stylesheet" type="text/css" href="">
+<link rel="stylesheet" type="text/css" href="../../library/css/common.css">
+<script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
+</head>
+<style type="text/css">
+.cont {font-size: 48px}
+.progress {position:fixed; left:50%; top:500px; width:70%; height:100px; margin-left:-35%; border:1px solid #222;; text-align: center;}
+.progress .bar {display: block; width:0%; height:100%;; background-color: #111;}
+.progress .txt {font-size:30px;}
+</style>
+<body>
+<div class="wrap">
+	<h1>스크롤 이동 거리 백분율 구하는 방법</h1>
+	<div class="progress">
+		<span class="bar"></span>
+		<div class="txt">
+
+		</div>
+	</div>
+	<div class="cont">
+		1 <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI <br>
+		HI
+	</div>
+</div>
+<script type="text/javascript">
+	(function (win, $) {
+		var text = $('.progress .txt');
+		var progressBar = $('.progress .bar');
+		var render = function (textPercent, scrollPercent) {
+			text.text(textPercent + '%');
+			progressBar.css({
+				width : scrollPercent + '%'
+			});
+		}
+		var getPercent = function () {
+			var scrollHeight = $('body').prop('scrollHeight');
+			var scrollRealHeight = (scrollHeight - $(win).height());
+			var winScrollTop = $(win).scrollTop();
+			var scrollPercent = (winScrollTop / scrollRealHeight) * 100;
+			var textPercent = Math.floor(scrollPercent);
+			render(textPercent, scrollPercent);
+		}
+		var init = function () {
+			getPercent();
+		}
+		$(win).on('scroll', function(){
+			getPercent();
+		});
+		init(); //초기화
+	})(window, window.jQuery)
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

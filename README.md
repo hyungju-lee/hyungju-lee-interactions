@@ -75,12 +75,21 @@
 * [선행학습 Using data attributes](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-3/ex-study03.html)
 * [상세 내용은 여길 참고](https://hyungju-lee.github.io/category/js_bbc_interaction)
   
-### Scroll interaction 4
+### interactive web study
 
 * [mousemove 값활용](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample.html)
 * [requistAnimationFrame (loop, 자연스러운 움직임)](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample2.html)
 * [transform, translate 값 변경](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample3.html)
 * [transition, easing (가속도)](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample4.html)
+* [예제 사이트 1 분석 - 픽스낫띵(FIX NOTHING) / 핵심기능 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_3_1.html)
+* [예제 사이트 2 분석 - 뉴욕타임스 allbirds / 핵심 기능 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample6.html)
+* [blend-mode, multiply, 스크립트 설명](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample7.html)
+* [스크롤 높이 값 구하기 (scrollTop)](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample8.html)
+* [가로진행바 제작 (스크롤 백분율 구하기)](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample9.html)
+* [세로진행바로 변경](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample10.html)
+* [html 페럴렉스 제작 준비 (더미 컨텐츠 채우기)](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample11.html)
+* [브런치 스타일. scale, opacity 페럴렉스 페이지 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample12.html)
+* [입체감이 느껴지는 페럴렉스 페이지 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/lastSample/)
   
 ### canvas interaction
 

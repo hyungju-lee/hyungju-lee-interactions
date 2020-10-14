@@ -94,6 +94,14 @@
 ### interaction web study 2
 
 * [이동할 거리 백분율 구하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step1/)
+
+### layer popup
+
+* [연속적으로 생기는 토스트팝업](https://hyungju-lee.github.io/hyungju-lee-interactions/layer-popup/toast-popup.html)
+
+### validator
+
+* [input 유효성검사](https://hyungju-lee.github.io/hyungju-lee-interactions/validator/validator.html)
   
 ### canvas interaction
 

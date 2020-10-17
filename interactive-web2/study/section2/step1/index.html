@@ -6,7 +6,7 @@
 <title>이동할 거리 백분율 구하는 방법</title>
 <link rel="stylesheet" type="text/css" href="">
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
-<script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
+<!--<script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>-->
 </head>
 <style type="text/css">
 .cont {font-size: 48px}
@@ -83,19 +83,20 @@
 	</div>
 </div>
 <script type="text/javascript">
-	(function (win, $) {
-		var text = $('.progress .txt');
-		var progressBar = $('.progress .bar');
+	(function () {
+		var text = document.querySelector(".progress .txt"); // var text = $('.progress .txt');
+		var progressBar = document.querySelector(".progress .bar"); // var progressBar = $('.progress .bar');
 		var render = function (textPercent, scrollPercent) {
-			text.text(textPercent + '%');
-			progressBar.css({
-				width : scrollPercent + '%'
-			});
+			text.innerText = textPercent + "%"; // text.text(textPercent + '%');
+			progressBar.style.width = scrollPercent + "%";
+			// progressBar.css({
+			// 	width : scrollPercent + '%'
+			// });
 		}
 		var getPercent = function () {
-			var scrollHeight = $('body').prop('scrollHeight');
-			var scrollRealHeight = (scrollHeight - $(win).height());
-			var winScrollTop = $(win).scrollTop();
+			var scrollHeight = document.body.scrollHeight; // var scrollHeight = $(document).height();
+			var scrollRealHeight = (scrollHeight - innerHeight); // var scrollRealHeight = (scrollHeight - $(win).height());
+			var winScrollTop = pageYOffset; // var winScrollTop = $(win).scrollTop();
 			var scrollPercent = (winScrollTop / scrollRealHeight) * 100;
 			var textPercent = Math.floor(scrollPercent);
 			render(textPercent, scrollPercent);
@@ -103,11 +104,40 @@
 		var init = function () {
 			getPercent();
 		}
-		$(win).on('scroll', function(){
+		init();
+		addEventListener("scroll", function () {
 			getPercent();
-		});
-		init(); //초기화
-	})(window, window.jQuery)
+		})
+		// 	$(win).on('scroll', function(){
+		// 		getPercent();
+		// 	});
+	})()
+
+	// (function (win, $) {
+	// 	var text = $('.progress .txt');
+	// 	var progressBar = $('.progress .bar');
+	// 	var render = function (textPercent, scrollPercent) {
+	// 		text.text(textPercent + '%');
+	// 		progressBar.css({
+	// 			width : scrollPercent + '%'
+	// 		});
+	// 	}
+	// 	var getPercent = function () {
+	// 		var scrollHeight = $('body').prop('scrollHeight');
+	// 		var scrollRealHeight = (scrollHeight - $(win).height());
+	// 		var winScrollTop = $(win).scrollTop();
+	// 		var scrollPercent = (winScrollTop / scrollRealHeight) * 100;
+	// 		var textPercent = Math.floor(scrollPercent);
+	// 		render(textPercent, scrollPercent);
+	// 	}
+	// 	var init = function () {
+	// 		getPercent();
+	// 	}
+	// 	$(win).on('scroll', function(){
+	// 		getPercent();
+	// 	});
+	// 	init(); //초기화
+	// })(window, window.jQuery)
 </script>
 </body>
 </html>

@@ -94,6 +94,7 @@
 ### interaction web study 2
 
 * [이동할 거리 백분율 구하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step1/)
+* [무한스크롤링](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step2/)
 
 ### layer popup
 

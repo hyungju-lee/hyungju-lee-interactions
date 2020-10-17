@@ -95,6 +95,7 @@
 
 * [이동할 거리 백분율 구하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step1/)
 * [무한스크롤링](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step2/)
+* [트랜지션과 트랜스포에 대한 이해 및 벤더프리픽스](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step1/)
 
 ### layer popup
 

@@ -96,6 +96,12 @@
 * [이동할 거리 백분율 구하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step1/)
 * [무한스크롤링](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step2/)
 * [트랜지션과 트랜스포에 대한 이해 및 벤더프리픽스](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step1/)
+* [CSS 애니메이션과 키프레임에 대한 이해](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step2/)
+* [애니메이션 가속도를 처리하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step3/)
+* [간단한 애니메이션 모션그래픽 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step1/)
+* [스크롤위치에 따라 아침, 오후, 저녁, 밤 그리고 달 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step2/)
+* [스크롤 인터렉션 스크립트 작성하기, 패럴렉스 + 배경전환](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step3/)
+* [모바일 처리 및 최종 결과물 확인하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step4/)
 
 ### layer popup
 

@@ -118,6 +118,7 @@
 ---
 
 * [텍스트 마스크 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step1/)
+* [오늘 날짜 카운트 스크립트 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step2/)
 
 ### layer popup
 

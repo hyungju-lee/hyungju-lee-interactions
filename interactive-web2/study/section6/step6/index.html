@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>스크롤이 요소의 위치에 도달했을 때 실행될 스크립트 만들기</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 </head>
@@ -173,7 +173,7 @@
 <body>
     <div class="wrap">
         <header class="header_wrap">
-            <div class="logo">GGANG CODING</div>
+            <div class="logo">INTERACTIVE CODING</div>
         </header>
         <section class="sec01">
             <article class="inner">
@@ -339,17 +339,8 @@
             </div>
         </footer>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 <script type="text/javascript">
-/* GGang SectionIn */
-$.fn.GgangSectionIn = function(fuc){
+$.fn.ScrollSectionIn = function(fuc){
 
     /* 변수 선언 */
     var el = $(this);
@@ -359,79 +350,61 @@ $.fn.GgangSectionIn = function(fuc){
     var sectionOffsetBottom; //섹션의 오프셋 바텀값을 저장할 변수
     var checkInSection = false; //섹션에 진입해 함수가 실행되었는지 체크하는 변수
     var fastIn; //섹션에 더 빠르게 진입하도록 값을 조절할 변수
-
     var startFunction = fuc; //깡 섹션인 함수에 전달된 함수
-    var isFunction = typeof(startFunction) === 'function' ? true : false; //전달된 값이 함수인지 체크
+    var isFunction = typeof startFunction === 'function' ? true : false; //전달된 값이 함수인지 체크
 
     function setProperty(){ // 스크롤할때 변할 값들을 셋팅해주는 함수
-
     	fastIn = $(window).height() / 2; // 섹션에 더 빨리 진입해 함수가 실행되록 값을 조절함
         winScrollTop = $(window).scrollTop(); //스크롤바의 현재 위치를 구합니다
         sectionOfffsetTop = el.offset().top - fastIn; //섹션의 오프셋 탑 값
         sectionHeight = el.height(); //섹션의 높이값
         sectionOffsetBottom = sectionOfffsetTop + sectionHeight + fastIn; //섹션의 오프셋 바텀값
-
-    };
-
+    }
 	function inSection(){ // 섹션에 진입했을때 액션을 처리해줄 함수입니다.
-
 		setProperty(); // 스크롤할때 변해야할 값들의 변수를 선언한 함수입니다
-
 		if(winScrollTop >= sectionOfffsetTop && winScrollTop <= sectionOffsetBottom){ //해당 섹션의 위치에 도달했는지 체크합니다.
-
 			if(isFunction && !checkInSection){ //실행될 함수가 있고 한번도 실행이 되지 않았다면 실행합니다
 				checkInSection = true;
 				startFunction(); //스타트 함수 실행
 			}
-
 		}
-
-	};
-
+	}
     function init(){ //최초 한번실행
-
         inSection(); // 섹션에 진입했을때 처리해줄 함수입니다.
-
-    };
-
-    $(window).scroll(function(e){ //스크롤 이벤트를 추가합니다.
-
+    }
+    $(window).on("scroll", function(e){ //스크롤 이벤트를 추가합니다.
         inSection(); // 섹션에 진입했을때 처리해줄 함수입니다.
-
     });
-
-    $(window).resize(function(){ //리사이즈 이벤트를 추가합니다.
+    $(window).on("resize", function(){ //리사이즈 이벤트를 추가합니다.
         inSection();
     });
-
     init(); //start
-
 };
 
 $(function(){
 
-	$('.sec01').GgangSectionIn(function(){
+	$('.sec01').ScrollSectionIn(function(){
 		$('.sec01').addClass('active');
 	});
 
-	$('.section_today').GgangSectionIn(function(){
+	$('.section_today').ScrollSectionIn(function(){
 		$('.section_today').addClass('active');
 		countDate();
 	});
 
-	$('.section_product .prd_mask').GgangSectionIn(function(){
+	$('.section_product .prd_mask').ScrollSectionIn(function(){
 		$('.section_product .prd_mask').addClass('active');
 	});
 
-	$('.section_product .text_img').GgangSectionIn(function(){
+	$('.section_product .text_img').ScrollSectionIn(function(){
 		$('.section_product .text_img').addClass('active');
 	});
 
-	$('.section_textmask').GgangSectionIn(function(){
+	$('.section_textmask').ScrollSectionIn(function(){
 		$('.section_textmask').addClass('active');
 	});
 
-	$('.section_overlap').GgangSectionIn(function(){
+	$('.section_overlap').ScrollSectionIn(function(){
 		$('.section_overlap').addClass('active');
 	});
 
@@ -454,7 +427,7 @@ $(function(){
                 var sum = number + i;
                 var num = sum >= 10 ? Number(String(sum).split('')[1]) : sum; //값이 10보다커질경우 첫번째 자릿수를 버리도록 함
                 numberArray[i] = num;
-            };
+            }
 
             numberArray.reverse(); //롤링방향 때문에 배열을 뒤집어줍니다.
 
@@ -476,7 +449,7 @@ $(function(){
 			});
         });
 
-    };
+    }
 
 });
 

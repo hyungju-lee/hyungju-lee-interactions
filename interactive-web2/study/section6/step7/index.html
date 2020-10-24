@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>URL HASH를 활용해 네비게시연 리모컨 만들기</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 </head>
@@ -173,7 +173,7 @@
 <body>
     <div class="wrap">
         <header class="header_wrap">
-            <div class="logo">GGANG CODING</div>
+            <div class="logo">INTERACTIVE CODING</div>
         </header>
         <section class="sec01">
             <article class="inner">
@@ -334,22 +334,13 @@
         <footer class="footer">
             <div class="text_area">
                 <p>
-                    2020 GGANG CODING. 당신의 열정을 응원합니다. :)
+                    2020 FIGHTING
                 </p>
             </div>
         </footer>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 <script type="text/javascript">
-/* GGang SectionIn */
-$.fn.GgangSectionIn = function(fuc){
+$.fn.ScrollSectionIn = function(fuc){
 
     /* 변수 선언 */
     var el = $(this);
@@ -371,7 +362,7 @@ $.fn.GgangSectionIn = function(fuc){
         sectionHeight = el.height(); //섹션의 높이값
         sectionOffsetBottom = sectionOfffsetTop + sectionHeight + fastIn; //섹션의 오프셋 바텀값
 
-    };
+    }
 
 	function inSection(){ // 섹션에 진입했을때 액션을 처리해줄 함수입니다.
 
@@ -386,21 +377,21 @@ $.fn.GgangSectionIn = function(fuc){
 
 		}
 
-	};
+	}
 
     function init(){ //최초 한번실행
 
         inSection(); // 섹션에 진입했을때 처리해줄 함수입니다.
 
-    };
+    }
 
-    $(window).scroll(function(e){ //스크롤 이벤트를 추가합니다.
+    $(window).on("scroll", function(e){ //스크롤 이벤트를 추가합니다.
 
         inSection(); // 섹션에 진입했을때 처리해줄 함수입니다.
 
     });
 
-    $(window).resize(function(){ //리사이즈 이벤트를 추가합니다.
+    $(window).on("resize", function(){ //리사이즈 이벤트를 추가합니다.
         inSection();
     });
 
@@ -410,28 +401,28 @@ $.fn.GgangSectionIn = function(fuc){
 
 $(function(){
 
-	$('.sec01').GgangSectionIn(function(){
+	$('.sec01').ScrollSectionIn(function(){
 		$('.sec01').addClass('active');
 	});
 
-	$('.section_today').GgangSectionIn(function(){
+	$('.section_today').ScrollSectionIn(function(){
 		$('.section_today').addClass('active');
 		countDate();
 	});
 
-	$('.section_product .prd_mask').GgangSectionIn(function(){
+	$('.section_product .prd_mask').ScrollSectionIn(function(){
 		$('.section_product .prd_mask').addClass('active');
 	});
 
-	$('.section_product .text_img').GgangSectionIn(function(){
+	$('.section_product .text_img').ScrollSectionIn(function(){
 		$('.section_product .text_img').addClass('active');
 	});
 
-	$('.section_textmask').GgangSectionIn(function(){
+	$('.section_textmask').ScrollSectionIn(function(){
 		$('.section_textmask').addClass('active');
 	});
 
-	$('.section_overlap').GgangSectionIn(function(){
+	$('.section_overlap').ScrollSectionIn(function(){
 		$('.section_overlap').addClass('active');
 	});
 
@@ -479,15 +470,14 @@ $(function(){
     };
 
 	/* 네비 리모컨*/
-	$('.nav_list .list li a').click(function(e){
+	$('.nav_list .list li a').on("click", function(e){
 		// console.log($(this.hash).offset());
-		if($(this.hash).offset()){
+		if($(this.hash).offset()){ // 이동할 요소가 있는지 없는지 구분, 없는데 아래처럼 해당 offset().top으로 가게끔하면 에러가 난다.
 			$('html')
 			.animate({
 				scrollTop:$(this.hash).offset().top
 			}, 500);
 		}
-
 	});
 
 });

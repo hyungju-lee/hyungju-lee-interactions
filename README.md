@@ -119,6 +119,12 @@
 
 * [텍스트 마스크 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step1/)
 * [오늘 날짜 카운트 스크립트 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step2/)
+* [이미지 마스크 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step3/)
+* [텍스트 오버랩 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step4/)
+* [배경 오버랩 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step5/)
+* [스크롤이 요소의 위치에 도달했을 때 실행될 스크립트 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step6/)
+* [URL HASH를 활용해 네비게시연 리모컨 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step7/)
+* [최종 브라우저 테스트 - 버그 수정](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step8/)
 
 ### layer popup
 

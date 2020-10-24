@@ -126,6 +126,10 @@
 * [URL HASH를 활용해 네비게시연 리모컨 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step7/)
 * [최종 브라우저 테스트 - 버그 수정](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step8/)
 
+---
+
+* [컨텐츠 고정하는 css와 html 작](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step1/)
+
 ### layer popup
 
 * [연속적으로 생기는 토스트팝업](https://hyungju-lee.github.io/hyungju-lee-interactions/layer-popup/toast-popup.html)

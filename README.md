@@ -93,30 +93,28 @@
 
 ### interaction web study 2
 
+#### 1
 * [이동할 거리 백분율 구하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step1/)
 * [무한스크롤링](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section2/step2/)
 
----
 
+#### 2
 * [트랜지션과 트랜스포에 대한 이해 및 벤더프리픽스](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step1/)
 * [CSS 애니메이션과 키프레임에 대한 이해](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step2/)
 * [애니메이션 가속도를 처리하는 방법](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section3/step3/)
 
----
-
+#### 3
 * [간단한 애니메이션 모션그래픽 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step1/)
 * [스크롤위치에 따라 아침, 오후, 저녁, 밤 그리고 달 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step2/)
 * [스크롤 인터렉션 스크립트 작성하기, 패럴렉스 + 배경전환](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step3/)
 * [모바일 처리 및 최종 결과물 확인하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section4/step4/)
 
----
-
+#### 4
 * [인터렉션에 적용할 마크업과 css 구현하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section5/step1/)
 * [섹션이동 스크롤 인터렉션 스크립트 작성](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section5/step2/)
 * [다중 페럴렉스 스크립트 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section5/step3/)
 
----
-
+#### 5
 * [텍스트 마스크 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step1/)
 * [오늘 날짜 카운트 스크립트 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step2/)
 * [이미지 마스크 효과 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step3/)
@@ -126,9 +124,11 @@
 * [URL HASH를 활용해 네비게시연 리모컨 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step7/)
 * [최종 브라우저 테스트 - 버그 수정](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section6/step8/)
 
----
-
-* [컨텐츠 고정하는 css와 html 작](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step1/)
+#### 6
+* [컨텐츠 고정하는 css와 html 작성](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step1/)
+* [고정한 컨텐츠에 적용될 스크립트 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step2/)
+* [반응형 모바일버전 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step3/)
+* [최종 브라우저 테스트, 그리고 모더나이저.js 사용법 학습 -인터넷 익스플로러 대응](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step4/)
 
 ### layer popup
 

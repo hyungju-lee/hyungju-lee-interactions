@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>반응형 모바일버전 작성하기</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 </head>
@@ -16,8 +16,8 @@
 .header_wrap .logo {margin-top:15px; padding-left:20px; font-size:24px; color:#fff;}
 
 /* main */
-.ggang_box {position:relative; height:500px; background-color:#111;}
-.ggang_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#fff; font-size:80px; line-height:1; text-align: center;}
+.interaction_box {position:relative; height:500px; background-color:#111;}
+.interaction_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#fff; font-size:80px; line-height:1; text-align: center;}
 
 .fix_motion {position: relative; height: 5000px;}
 .fix_motion .sticky_cont {overflow: hidden; position: sticky; position: -webkit-sticky; top:0; left: 0; width: 100%; height: 100vh;}
@@ -36,7 +36,7 @@
 .fix_motion .sticky_cont .cont_box .ending_txt .tb_row .tb_cell p {font-size: 80px; color:#000; line-height: 1;}
 
 @media only screen and (max-width: 1024px) {
-.ggang_box h2 {font-size:32px;}
+.interaction_box h2 {font-size:32px;}
 
 .fix_motion {height: 3000px;}
 .fix_motion .sticky_cont .cont_box .bg_img {background-image: url('../images/steve_jobs_m.jpg'); }
@@ -44,20 +44,12 @@
 .fix_motion .sticky_cont .cont_box .ending_txt .tb_row .tb_cell p {font-size:50px;}
 }
 </style>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 <body>
     <div class="wrap">
         <header class="header_wrap">
-            <div class="logo">GGANG CODING</div>
+            <div class="logo">INTERACTIVE CODING</div>
         </header>
-        <section class="ggang_box">
+        <section class="interaction_box">
         	<h2>FIXED CONTENT</h2>
         </section>
         <section class="fix_motion"> <!-- 스크롤할 거리를 설정하는 엘리먼트 -->
@@ -83,7 +75,7 @@
                 </div>
             </article>
         </section>
-        <section class="ggang_box">
+        <section class="interaction_box">
             <h2>END</h2>
         </section>
     </div>
@@ -114,7 +106,7 @@ $(function(){
         setProperty(); //스크롤할때 변해야할 값들의 변수를 선언
         motionRender(); //모션 실행 함수
 
-    };
+    }
 
     function setProperty(){ // 스크롤할때 변할 값들을 셋팅해주는 함수
 
@@ -128,7 +120,7 @@ $(function(){
         scrollPerecnt =  sectionScrolTop / scrollRealHeight; // 스크롤탑 / 스크롤 길이 로 비율을 구합니다
         percent = scrollPerecnt * 100 ; //백분율을 구합니다
 
-    };
+    }
 
     function motionRender(){ //모션 실행 함수
 
@@ -170,17 +162,17 @@ $(function(){
             endingContent.removeClass('active');
         }
 
-    };
+    }
 
     function init(){ //최초 한번실행
         changeOverlap();
-    };
+    }
 
-    $(window).scroll(function(e){ //스크롤 이벤트를 추가합니다.
+    $(window).on("scroll", function(e){ //스크롤 이벤트를 추가합니다.
         changeOverlap();
     });
 
-    $(window).resize(function(){
+    $(window).on("resize", function(){
         changeOverlap();
     });
 

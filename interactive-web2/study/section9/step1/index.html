@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>html, css 작성하기 - 모바일 포함</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 </head>
@@ -16,8 +16,8 @@
 .com_txt01 {max-width:70%; margin:0 auto; font-family: 'NotoR'; font-size:32px; color:#fff; text-align: center;;}
 
 /* main */
-.ggang_box {position:relative; height:500px; background-color:#fff;}
-.ggang_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#000; font-size:80px; line-height:1; text-align: center;}
+.interaction_box {position:relative; height:500px; background-color:#fff;}
+.interaction_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#000; font-size:80px; line-height:1; text-align: center;}
 
 .fix_motion {height: 7000px;}
 .fix_motion .fix_wrap {overflow: hidden; position: sticky; position: -webkit-sticky; top:0; left: 0; width: 100%; height: 100vh;}
@@ -37,8 +37,8 @@
 
 @media only screen and (max-width: 1024px) {
 
-.ggang_box {height: 200px}
-.ggang_box h2 {font-size:26px;}
+.interaction_box {height: 200px}
+.interaction_box h2 {font-size:26px;}
 
 .fix_motion {height: 5000px;}
 .fix_motion .fix_wrap .cont_box .txt { font-size:16px; }
@@ -54,7 +54,7 @@
 </style>
 <body>
     <div class="wrap">
-        <section class="ggang_box">
+        <section class="interaction_box">
             <h2>FIXED CONTENT</h2>
         </section>
         <section class="fix_motion">
@@ -77,15 +77,7 @@
                 </div>
             </article>
         </section>
-        <section class="ggang_box"></section>
+        <section class="interaction_box"></section>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>최종 브라우저 테스트 - 인터넷 익스플로러 대응</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 <script type="text/javascript">
@@ -21,8 +21,8 @@
 .com_txt01 {max-width:70%; margin:0 auto; font-family: 'NotoR'; font-size:32px; color:#fff; text-align: center;;}
 
 /* main */
-.ggang_box {position:relative; height:500px; background-color:#080808;}
-.ggang_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#333; font-size:80px; line-height:1; text-align: center;}
+.interaction_box {position:relative; height:500px; background-color:#080808;}
+.interaction_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#333; font-size:80px; line-height:1; text-align: center;}
 
 .fix_motion {background:#080808;}
 .fix_motion .fix_wrap {position:relative;}
@@ -44,7 +44,7 @@
 .fix_motion .fix_wrap .device_fix .watch_img .slide_wrap .sldie figure {float:left; width:195px;}
 
 @media only screen and (max-width: 1024px) {
-.ggang_box h2 {font-size:32px;}
+.interaction_box h2 {font-size:32px;}
 
 .fix_motion {height: 3000px;} /* 모바일 버전에서 스크롤 거리를 설정함 */
 
@@ -65,7 +65,7 @@
 </style>
 <body>
     <div class="wrap">
-        <section class="ggang_box">
+        <section class="interaction_box">
             <h2>FIXED CONTENT</h2>
         </section>
         <section class="fix_motion">
@@ -113,17 +113,9 @@
                 </div>
             </article>
         </section>
-        <section class="ggang_box"></section>
-        <section class="ggang_box"></section>
+        <section class="interaction_box"></section>
+        <section class="interaction_box"></section>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 <script type="text/javascript">
 $(function(){
 
@@ -148,7 +140,7 @@ $(function(){
             contentIn(); //pc 배경이미지와 텍스트를 처리하는 함수
         }
 
-    };
+    }
 
     function setProperty(){ //스크롤할때 변할 값들을 셋팅해주는 함수
 
@@ -163,7 +155,7 @@ $(function(){
         scrollPerecnt =  sectionScrolTop / scrollRealHeight; // 스크롤 / 스크롤 길이로 비율을 구합니다
         percent = scrollPerecnt * 100 ; //백분율을 구합니다
 
-    };
+    }
 
     function contentIn(){ //섹션 진입후 처리될 기능정의
 
@@ -205,7 +197,7 @@ $(function(){
             $('.fix_motion .text_box .txt04').removeClass('active');
         }
 
-    };
+    }
 
     function contentInMobile(){ //섹션 진입후 처리될 기능정의
 
@@ -254,7 +246,7 @@ $(function(){
 
         }
 
-    };
+    }
 
     function imageChange(moveX){ //시계안 이미지 변경을 처리하는 함수
 
@@ -265,21 +257,21 @@ $(function(){
             });
         }
 
-    };
+    }
 
     function init(){ // 초기화
 
         scrollFunc(); //스크롤할때 변할 값들을 셋팅해주는 함수
 
-    };
+    }
 
-    $(window).scroll(function(){
+    $(window).on("scroll", function(){
 
         scrollFunc(); //스크롤할때 실행될 함수
 
     });
 
-    $(window).resize(function(){
+    $(window).on("resize", function(){
 
         scrollFunc(); //스크롤할때 변할 값들을 셋팅해주는 함수
 

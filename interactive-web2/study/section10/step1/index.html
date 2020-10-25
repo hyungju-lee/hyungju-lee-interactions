@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>스크롤 UI 만들기</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 </head>
@@ -24,8 +24,8 @@
 .fix_tit.black span {border-color: rgba(000,000,000,.6);}
 
 /* 섹션, 네비게이션 */
-.ggang_section {overflow: hidden; height: 1440px; background-size:cover;}
-.ggang_section.fixed {background-attachment: fixed;}
+.interaction_section {overflow: hidden; height: 1440px; background-size:cover;}
+.interaction_section.fixed {background-attachment: fixed;}
 
 .nav_list {position:fixed; right:50px; top:50%; z-index:1000; transform:translateY(-50%); -webkit-transform:translateY(-50%); -moz-transform:translateY(-50%); -ms-transform:translateY(-50%);}
 .nav_list li {margin-bottom:15px;}
@@ -33,22 +33,22 @@
 .nav_list li a .fa {position:absolute; left:-20px; top:5px; width:16px; height:16px; background-image:url('../images/icon_p.png'); background-size:cover; background-position: 0px 0px; transition:transform .5s; -webkit-transition:transform .5s; -moz-transition:transform .5s; -o-transition:transform .5s; -ms-transition:transform .5s; }
 .nav_list li a.active {color:#f0582b;}
 .nav_list li a.active .fa {background-position: 0px 16px; transform:rotate(360deg);}
-.nav_list li a:hover, .nav_list li a:focus {color:#f0582b; text-decoration: none;}
+/*.nav_list li a:hover, .nav_list li a:focus {color:#f0582b; text-decoration: none;}*/
 </style>
 <body>
     <div class="wrap">
         <h2 class="fix_tit"> <!-- 타이틀 -->
             <span>HELLO :D</span>
-            <strong>GGANG CODING</strong>
+            <strong>INTERACTIVE CODING</strong>
         </h2>
-        <section id="a" class="ggang_section fixed" style="background-image: url('../images/1.jpg')"></section>
-        <section id="b" class="ggang_section" style="background-image: url('../images/2.jpg')"></section>
-        <section id="c" class="ggang_section" style="background-image: url('../images/3.jpg')"></section>
-        <section id="d" class="ggang_section fixed" style="background-image: url('../images/4.jpg')"></section>
-        <section id="e" class="ggang_section" style="background-image: url('../images/5.jpg')"></section>
-        <section id="f" class="ggang_section" style="background-image: url('../images/6.jpg')"></section>
-        <section id="g" class="ggang_section" style="background-image: url('../images/7.jpg')"></section>
-        <section id="h" class="ggang_section" style="background-image: url('../images/8.jpg')"></section>
+        <section id="a" class="interaction_section fixed" style="background-image: url('../images/1.jpg')"></section>
+        <section id="b" class="interaction_section" style="background-image: url('../images/2.jpg')"></section>
+        <section id="c" class="interaction_section" style="background-image: url('../images/3.jpg')"></section>
+        <section id="d" class="interaction_section fixed" style="background-image: url('../images/4.jpg')"></section>
+        <section id="e" class="interaction_section" style="background-image: url('../images/5.jpg')"></section>
+        <section id="f" class="interaction_section" style="background-image: url('../images/6.jpg')"></section>
+        <section id="g" class="interaction_section" style="background-image: url('../images/7.jpg')"></section>
+        <section id="h" class="interaction_section" style="background-image: url('../images/8.jpg')"></section>
         <ul class="nav_list"> <!-- 네비게이션 -->
             <li>
                 <a href="#a" class="active">
@@ -100,19 +100,164 @@
             </li>
         </ul>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 <script>
 /* 스크립트를 작성하세요 */
+(function () {
+    var winScrollTop;
+    var section = Array.prototype.slice.call(document.querySelectorAll(".interaction_section"));
+    var offsetTop = [];
+    var offsetBottom = [];
+    var naviListBun = Array.prototype.slice.call(document.querySelectorAll(".nav_list li a"));
 
+    var setValue = function () {
+        winScrollTop = pageYOffset;
+        section.forEach(function (value, index) {
+            offsetTop[index] = value.offsetTop;
+            offsetBottom[index] = value.offsetTop + value.getBoundingClientRect().height;
+        })
+    }
 
+    var sectionActive = function (index) {
+        listActive(index);
+        changeText(index);
+        changeColor(index);
+    }
 
+    var listActive = function (index) {
+        var list = Array.prototype.slice.call(document.querySelectorAll(".nav_list li a"));
+        list.forEach(function (val, index) {
+            val.classList.remove("active");
+        })
+        list[index].classList.add("active");
+    }
+
+    var changeText = function (index) {
+        var targetText = document.querySelector(".fix_tit strong");
+        var list = document.querySelectorAll(".nav_list li a span");
+        var getText = list[index].innerText;
+
+        targetText.innerText = getText;
+    }
+
+    var changeColor = function (index) {
+        var targetText = document.querySelector(".fix_tit");
+        if (index === 1 || index === 2) {
+            targetText.classList.add("black");
+        } else {
+            targetText.classList.remove("black");
+        }
+    }
+
+    var checkInSection = function () {
+        switch (true) {
+            case (winScrollTop >= offsetTop[0] && offsetBottom[0] > winScrollTop) :
+                sectionActive(0);
+                break
+            case (winScrollTop >= offsetTop[1] && offsetBottom[1] > winScrollTop) :
+                sectionActive(1);
+                break
+            case (winScrollTop >= offsetTop[2] && offsetBottom[2] > winScrollTop) :
+                sectionActive(2);
+                break
+            case (winScrollTop >= offsetTop[3] && offsetBottom[3] > winScrollTop) :
+                sectionActive(3);
+                break
+            case (winScrollTop >= offsetTop[4] && offsetBottom[4] > winScrollTop) :
+                sectionActive(4);
+                break
+            case (winScrollTop >= offsetTop[5] && offsetBottom[5] > winScrollTop) :
+                sectionActive(5);
+                break
+            case (winScrollTop >= offsetTop[6] && offsetBottom[6] > winScrollTop) :
+                sectionActive(6);
+                break
+            case (winScrollTop >= offsetTop[7] && offsetBottom[7] > winScrollTop) :
+                sectionActive(7);
+                break
+            default :
+                break
+        }
+    }
+
+    var currentYPosition = function () {
+        // Firefox, Chrome, Opera, Safari
+        if (self.pageYOffset) return self.pageYOffset;
+        // Internet Explorer 6 - standards mode
+        if (document.documentElement && document.documentElement.scrollTop)
+            return document.documentElement.scrollTop;
+        // Internet Explorer 6, 7 and 8
+        if (document.body.scrollTop) return document.body.scrollTop;
+        return 0;
+    }
+
+    var elmYPosition = function (eID) {
+        // querySelector 는 IE8까지 지원
+        // document.getElementById() 는 더 아래 버전까지 지원
+        var elm = document.querySelector(eID);
+        var y = elm.offsetTop;
+        var node = elm;
+        // position: relative 기준이 되는 부모요소로 부터의 상대적인 offsetTop값이기 때문에 아래와 같이해야된다.
+        // 아아 부모에 position: relative;가 있던 없던 있으면 있는대로 아래식으로, 없으면 없는대로 body를 기준으로 잡기에 아래식으로 원하는 값을 구할 수 있다.
+        // 좋은 코드네.
+        // 아니면 좀 더 편하게 코드를 작성하기 위해서 getBoundingClientRect 이 메서드를 고려해보는 것도 괜찮다.
+        while (node.offsetParent && node.offsetParent !== document.body) {
+            node = node.offsetParent;
+            y += node.offsetTop;
+        }
+        return y;
+    }
+
+    var smoothScroll = function (eID) {
+        var startY = currentYPosition();
+        var stopY = elmYPosition(eID);
+        var distance = stopY > startY ? stopY - startY : startY - stopY;
+        if (distance < 100) {
+            scrollTo(0, stopY); return;
+        }
+        var speed = Math.round(distance / 100);
+        if (speed >= 20) speed = 20;
+        var step = Math.round(distance / 25);
+        var leapY = stopY > startY ? startY + step : startY - step;
+        var timer = 0;
+        if (stopY > startY) {
+            for ( var i=startY; i<stopY; i+=step ) {
+                setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+                leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+            } return;
+        }
+        for ( var i=startY; i>stopY; i-=step ) {
+            setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+            leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+        }
+        return false;
+    }
+
+    var init = function () {
+        setValue();
+        checkInSection();
+    }
+
+    addEventListener("scroll", function () {
+        winScrollTop = pageYOffset;
+        checkInSection();
+    })
+
+    addEventListener("resize", function () {
+        setValue();
+        checkInSection();
+    })
+
+    naviListBun.forEach(function (val, i) {
+        val.addEventListener("click", function (e) {
+            e.preventDefault();
+            smoothScroll(this.hash);
+        })
+    })
+
+    addEventListener("load", function () {
+        init();
+    })
+})()
 </script>
 </body>
 </html>

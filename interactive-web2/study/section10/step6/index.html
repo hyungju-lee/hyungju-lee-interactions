@@ -25,7 +25,7 @@
 
     /* 섹션, 네비게이션 */
     .interaction_section {overflow: hidden; position: relative; height: 1440px; background-size:cover;}
-    .interaction_section:after {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); content: ""}
+    .interaction_section .dim {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-color: #050505; opacity: 0}
     .interaction_section.fixed {background-attachment: fixed;}
 
     .nav_list {position:fixed; right:50px; top:50%; z-index:1000; transform:translateY(-50%); -webkit-transform:translateY(-50%); -moz-transform:translateY(-50%); -ms-transform:translateY(-50%);}
@@ -37,15 +37,21 @@
     .nav_list li a:hover, .nav_list li a:focus {color:#f0582b; text-decoration: none;}
 
     /* 큐브 css (section10-2 추가) */
-    .cube_wrap {position: fixed; top:50%; left:50%; width: 400px; height: 400px; perspective: 150px; transform: translate(-50%, -50%)}
-    .cube_wrap .cube_box {position: relative; height: 100%; transform-style: preserve-3d}
-    .cube_wrap .cube_box .cube_face {position: absolute; left: 0; top: 0; width: 100%; height: 100%; background-size: cover;background-repeat: no-repeat;background-position: 50% 50%}
-    .cube_wrap .cube_box .cube_face.front {background-image:url(../images/1.jpg);transform: rotateY(0deg) translateZ(200px)} /* left, right에 위치하는 요소의 너비 400px, 그거의 반값인 200px만큼 translateZ값으로 준다. */
-    .cube_wrap .cube_box .cube_face.back {background-image:url(../images/1.jpg);transform: rotateY(180deg) translateZ(200px)}
-    .cube_wrap .cube_box .cube_face.left {background-image:url(../images/1.jpg);transform: rotateY(-90deg) translateZ(200px)}
-    .cube_wrap .cube_box .cube_face.right {background-image:url(../images/1.jpg);transform: rotateY(90deg) translateZ(200px)}
-    .cube_wrap .cube_box .cube_face.top {background-image:url(../images/1.jpg);transform: rotateX(90deg) translateZ(200px)}
-    .cube_wrap .cube_box .cube_face.bottom {background-image:url(../images/1.jpg);transform: rotateX(-90deg) translateZ(200px)}
+    .cube_wrap {position: fixed; top:50%; left:50%; width: 294px; height: 582px; perspective: 600px; transform: translate(-50%, -50%)}
+    .cube_wrap .cube_box {position: relative; height: 100%; transform-style: preserve-3d; transition: transform .5s;}
+    .cube_wrap .cube_box .cube_face {position: absolute; left: 0; top: 0; width: 100%; height: 100%;}
+    .cube_wrap .cube_box .cube_face.front {background:url("../images/iphone_front.png") no-repeat; transform: rotateY(0deg) translateZ(12px)} /* left, right에 위치하는 요소의 너비 400px, 그거의 반값인 200px만큼 translateZ값으로 준다. */
+    .cube_wrap .cube_box .cube_face.back {background:url("../images/iphone_back.png") no-repeat; transform: rotateY(180deg) translateZ(12px)}
+    .cube_wrap .cube_box .cube_face.left {left:50%;width:38px;height:582px;margin-left:-19px;background:url("../images/iphone_left.png") no-repeat; transform: rotateY(-90deg) translateZ(147px)}
+    .cube_wrap .cube_box .cube_face.right {left:50%;width:38px;height:582px;margin-left:-19px;background:url("../images/iphone_right.png") no-repeat; transform: rotateY(90deg) translateZ(147px)}
+    .cube_wrap .cube_box .cube_face.top {top:50%;width:294px;height:38px;margin-top:-19px;background:url("../images/iphone_top.png") no-repeat; transform: rotateX(90deg) translateZ(291px)}
+    .cube_wrap .cube_box .cube_face.bottom {top:50%;width:294px;height:38px;margin-top:-19px;background:url("../images/iphone_bottom.png") no-repeat; transform: rotateX(-90deg) translateZ(291px)}
+
+    #a {height: 3000px}
+
+    .cube_wrap .cube_box.side {transform: rotateY(90deg) scale(1.5);}
+    .cube_wrap .cube_box.upper_side {transform: rotateX(90deg) scale(1.1);}
+    .cube_wrap .cube_box.back {transform: rotateY(-180deg) scale(1.5);}
 </style>
 <body>
 <div class="wrap">
@@ -53,61 +59,35 @@
         <span>HELLO :D</span>
         <strong>INTERACTIVE CODING</strong>
     </h2>
-    <section id="a" class="interaction_section fixed" style="background-image: url('../images/1.jpg')"></section>
+    <section id="a" class="interaction_section fixed" style="background-image: url('../images/1.jpg')">
+        <div class="dim"></div>
+    </section>
     <section id="b" class="interaction_section" style="background-image: url('../images/2.jpg')"></section>
     <section id="c" class="interaction_section" style="background-image: url('../images/3.jpg')"></section>
     <section id="d" class="interaction_section fixed" style="background-image: url('../images/4.jpg')"></section>
-    <section id="e" class="interaction_section" style="background-image: url('../images/5.jpg')"></section>
-    <section id="f" class="interaction_section" style="background-image: url('../images/6.jpg')"></section>
-    <section id="g" class="interaction_section" style="background-image: url('../images/7.jpg')"></section>
-    <section id="h" class="interaction_section" style="background-image: url('../images/8.jpg')"></section>
     <ul class="nav_list"> <!-- 네비게이션 -->
         <li>
             <a href="#a" class="active">
                 <i class="fa"></i>
-                <span>MUSIC</span>
+                <span>PARALLAX</span>
             </a>
         </li>
         <li>
             <a href="#b">
                 <i class="fa"></i>
-                <span>LADY</span>
+                <span>SIDE</span>
             </a>
         </li>
         <li>
             <a href="#c">
                 <i class="fa"></i>
-                <span>CITY</span>
+                <span>UPPER SIDE</span>
             </a>
         </li>
         <li>
             <a href="#d">
                 <i class="fa"></i>
-                <span>BUILDING</span>
-            </a>
-        </li>
-        <li>
-            <a href="#e">
-                <i class="fa"></i>
-                <span>BLUE SKY</span>
-            </a>
-        </li>
-        <li>
-            <a href="#f">
-                <i class="fa"></i>
-                <span>LONELY</span>
-            </a>
-        </li>
-        <li>
-            <a href="#g">
-                <i class="fa"></i>
-                <span>ELEGANCE</span>
-            </a>
-        </li>
-        <li>
-            <a href="#h">
-                <i class="fa"></i>
-                <span>SPACE</span>
+                <span>BACK</span>
             </a>
         </li>
     </ul>
@@ -130,6 +110,7 @@
         var offsetTop = [];
         var offsetBottom = [];
         var naviListBun = Array.prototype.slice.call(document.querySelectorAll(".nav_list li a"));
+        var currentIndex = -1;
 
         var setValue = function () {
             winScrollTop = pageYOffset;
@@ -140,27 +121,48 @@
         }
 
         var sectionActive = function (index) {
-            listActive(index);
-            changeText(index);
-            changeColor(index);
+            if (index !== currentIndex) {
+                listActive(index);
+                changeText(index);
+                changeColor(index);
+                rotateDevice(index);
+            }
             parallax();
-            changeImage(index);
+            currentIndex = index;
         }
 
-        var changeImage = function (index) {
-            document.querySelectorAll(".cube_box .cube_face").forEach(function (val, i) {
-                val.style.backgroundImage = "url(../images/"+(index+1)+".jpg)";
-            })
+        var rotateDevice = function (index) {
+            switch (true) {
+                case (index === 1) :
+                    document.querySelector(".cube_box").classList.remove("upper_side");
+                    document.querySelector(".cube_box").classList.remove("back");
+                    document.querySelector(".cube_box").classList.add("side");
+                    break
+                case (index === 2) :
+                    document.querySelector(".cube_box").classList.remove("side");
+                    document.querySelector(".cube_box").classList.remove("back");
+                    document.querySelector(".cube_box").classList.add("upper_side");
+                    break
+                case (index === 3) :
+                    document.querySelector(".cube_box").classList.remove("upper_side");
+                    document.querySelector(".cube_box").classList.remove("side");
+                    document.querySelector(".cube_box").classList.add("back");
+                    break
+                default :
+                    document.querySelector(".cube_box").classList.remove("side");
+                    document.querySelector(".cube_box").classList.remove("upper_side");
+                    document.querySelector(".cube_box").classList.remove("back");
+                    break
+            }
         }
 
         var parallax = function () {
-            var scrollHeight = document.body.scrollHeight;
+            var scrollHeight = document.querySelector("#a").offsetHeight;
             var scrollRealHeight = scrollHeight - innerHeight;
             var scrollPercent = winScrollTop / scrollRealHeight;
-            var parallaxDistance = 1100;
-            var moveDistance = parallaxDistance * scrollPercent;
+            var opacityValue = Math.min(1, scrollPercent);
 
-            document.querySelector(".cube_box").style.transform = "rotateX("+ moveDistance +"deg) rotateY("+ moveDistance +"deg)"
+            document.querySelector(".dim").style.opacity = opacityValue;
         }
 
         var listActive = function (index) {
@@ -201,18 +203,6 @@
                     break
                 case (winScrollTop >= offsetTop[3] && offsetBottom[3] > winScrollTop) :
                     sectionActive(3);
-                    break
-                case (winScrollTop >= offsetTop[4] && offsetBottom[4] > winScrollTop) :
-                    sectionActive(4);
-                    break
-                case (winScrollTop >= offsetTop[5] && offsetBottom[5] > winScrollTop) :
-                    sectionActive(5);
-                    break
-                case (winScrollTop >= offsetTop[6] && offsetBottom[6] > winScrollTop) :
-                    sectionActive(6);
-                    break
-                case (winScrollTop >= offsetTop[7] && offsetBottom[7] > winScrollTop) :
-                    sectionActive(7);
                     break
                 default :
                     break

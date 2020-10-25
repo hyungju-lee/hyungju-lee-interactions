@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>컨텐츠 고정하는 css와 html 작성</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 </head>
@@ -34,8 +34,8 @@
 .fix_motion .fix_wrap .device_fix .watch_img {position:relative; width: 240px; height:409px; margin:0 auto; }
 .fix_motion .fix_wrap .device_fix .watch_img .img_device {position:absolute; left:0; top:0; right:0; bottom:0; z-index:20;}
 .fix_motion .fix_wrap .device_fix .watch_img .slide_wrap {overflow:hidden; position: absolute; left:15px; top:89px; z-index:10; width:195px; height:237px;}
-.fix_motion .fix_wrap .device_fix .watch_img .slide_wrap .sldie {width: 780px; height: 100%; transition:transform .5s;}
-.fix_motion .fix_wrap .device_fix .watch_img .slide_wrap .sldie figure {float:left; width:195px;}
+.fix_motion .fix_wrap .device_fix .watch_img .slide_wrap .slide {width: 780px; height: 100%; transition:transform .5s;}
+.fix_motion .fix_wrap .device_fix .watch_img .slide_wrap .slide figure {float:left; width:195px;}
 </style>
 <body>
     <div class="wrap">
@@ -68,7 +68,7 @@
                             <img src="../images/bg_device.png" alt="">
                         </figure>
                         <div class="slide_wrap"> <!-- 이미지 슬라이더 -->
-                            <div class="sldie">
+                            <div class="slide">
                                 <figure>
                                     <img src="../images/1.jpg">
                                 </figure>
@@ -89,13 +89,5 @@
         </section>
         <section class="ggang_box"></section>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 </body>
 </html>

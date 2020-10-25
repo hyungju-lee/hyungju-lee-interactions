@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-<title>깡코딩 - 초보자도 만들 수 있는 스크를인터렉션1편</title>
+<title>최종 브라우저 테스트 - 인터넷 익스플로러 대응</title>
 <link rel="stylesheet" type="text/css" href="../../library/css/common.css">
 <script type="text/javascript" src="../../library/js/jquery.1.12.4.js"></script>
 <script type="text/javascript">
@@ -21,8 +21,8 @@
 .com_txt01 {max-width:70%; margin:0 auto; font-family: 'NotoR'; font-size:32px; color:#fff; text-align: center;;}
 
 /* main */
-.ggang_box {position:relative; height:500px; background-color:#fff;}
-.ggang_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#000; font-size:80px; line-height:1; text-align: center;}
+.interaction_box {position:relative; height:500px; background-color:#fff;}
+.interaction_box h2 {position: absolute; left:0; top:50%; width: 100%; color:#000; font-size:80px; line-height:1; text-align: center;}
 
 .fix_motion {height: 7000px;}
 .no-csspositionsticky .fix_motion {height: auto;}
@@ -48,8 +48,8 @@
 
 @media only screen and (max-width: 1024px) {
 
-.ggang_box {height: 200px}
-.ggang_box h2 {font-size:26px;}
+.interaction_box {height: 200px}
+.interaction_box h2 {font-size:26px;}
 
 .fix_motion {height: 5000px;}
 .fix_motion .fix_wrap .cont_box .txt { font-size:16px; }
@@ -65,7 +65,7 @@
 </style>
 <body>
     <div class="wrap">
-        <section class="ggang_box">
+        <section class="interaction_box">
             <h2>FIXED CONTENT</h2>
         </section>
         <section class="fix_motion">
@@ -88,16 +88,8 @@
                 </div>
             </article>
         </section>
-        <section class="ggang_box"></section>
+        <section class="interaction_box"></section>
     </div>
-<!--
-****** 2020 깡코딩 LICENSE 안내 ******
-이 프로그램은 저작권법의 보호를 받습니다.
-이 프로그램은 깡코딩 강의를 수강한 수강생들에게 무료로 제공됩니다.
-이 프로그램은 웹,앱 프로젝트에 자유롭게 사용할 수 있지만
-웹사이트, 커뮤니티, 블로그에 배포하거나 인터넷 강의, 유튜브등 유료 무료 강좌에 배포, 사용하는
-행위는 민사 및 형사법에 의해 엄격히 규제되어 있으며, 기소 사유가 됩니다.
--->
 <script type="text/javascript">
 $(function(){
 
@@ -146,14 +138,14 @@ $(function(){
         imgWidth = !isMobile ? pcImgSize[0] : mobileImgSize[0]; // 이미지 넓이
         imgHeight = !isMobile ? pcImgSize[1] : mobileImgSize[1];; // 이미지 높이
 
-    };
+    }
 
     function setCanvas(){ //캔버스 기본값 셋팅
 
         canvas.width = imgWidth; //캔버스 넓이 세팅
         canvas.height = imgHeight; //캔버스 높이 세팅를
 
-    };
+    }
 
     function scrollFunc(){ //스크롤할때 실행될 함수
 
@@ -162,14 +154,14 @@ $(function(){
         renderCanvas(sequence); //캔버스를 그리는 함수
         contentIn(); //중간중간 나타나는 컨텐츠를 처리하는 함수
 
-    };
+    }
 
     function renderCanvas(sequence){ //캔버스에 이미지를 그리는 함수
 
         ctx.clearRect(0, 0, imgWidth, imgHeight); //지정한 x,y위치값과 넓이 높이 값을 넣어 캔버스를 클리어해줌
         ctx.drawImage(imgArray[sequence], 0, 0, imgWidth, imgHeight); //이미지 배열에 담아둔 이미지를 캔버스에 그림
 
-    };
+    }
 
     function contentIn(){ //텍스트 등장을 처리하는 함수
 
@@ -191,18 +183,18 @@ $(function(){
             $('.fix_motion .txt.pos3').removeClass('active');
         }
 
-    };
+    }
 
     function bindEvent(){ //스크롤 이벤트 바인드
 
-        $(window).scroll(function(){
+        $(window).on("scroll", function(){
 
             setProperty(); //스크롤할때 변할 값들을 셋팅해주는 함수
             scrollFunc(); //스크롤할때 실행될 함수
 
         });
 
-        $(window).resize(function(){
+        $(window).on("resize", function(){
 
             setProperty(); //스크롤할때 변할 값들을 셋팅해주는 함수
             setCanvas(); //캔버스 기본값 셋팅
@@ -210,7 +202,7 @@ $(function(){
             scrollFunc(); //스크롤할때 실행될 함수
 
         });
-    };
+    }
 
     function init(){ // 초기화
 
@@ -232,13 +224,13 @@ $(function(){
                         bindEvent(); //스크롤 이벤트 바인드
                         scrollFunc(); //스크롤할때 실행될 함수
 
-                    };
+                    }
                 };
 
                 imgArray.push(img); //이미지 배열에 이미지를 담음
 
-        };
-    };
+        }
+    }
 
     if(Modernizr.csspositionsticky){ //브라우저가 sticky를 지원할 경우 실행
         init(); //start

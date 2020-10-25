@@ -130,6 +130,27 @@
 * [반응형 모바일버전 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step3/)
 * [최종 브라우저 테스트, 그리고 모더나이저.js 사용법 학습 -인터넷 익스플로러 대응](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section7/step4/)
 
+#### 7
+* [컨텐츠 고정하는 css와 html 작성](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section8/step1/)
+* [스크롤에 반응하는 이미지 슬라이드와 텍스트 처리 스크립트 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section8/step2/)
+* [반응형 모바일버전 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section8/step3/)
+* [최종 브라우저 테스트 - 인터넷 익스플로러 대응](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section8/step4/)
+
+#### 8 
+* [html, css 작성하기 - 모바일 포함](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section9/step1/)
+* [이미지 시퀀스를 활용한 캔버스 스크립트 작성하기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section9/step2/)
+* [최종 브라우저 테스트 - 인터넷 익스플로러 대응](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section9/step3/)
+
+#### 9
+* [스크롤 UI 만들기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step1/)
+* [CSS 3D 모델 만들기1](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step2/cube.html)
+* [CSS 3D 모델 만들기2](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step2/)
+* [3D 모델에 사물입히기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step3/)
+* [UI섹션과 3D 모델 이미지 매치 시키기](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step4/)
+* [원근감 조절](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step2/index2.html)
+* [도전과제 - 단 한번 실행되어야할 함수와 계속 실행되어야할 함수 분리](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step5/)
+* [도전과제 - 천천히 등장하는 배경색 구현, 섹션에 도착시 3D 모델이 회전하도록 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step6/)
+
 ### layer popup
 
 * [연속적으로 생기는 토스트팝업](https://hyungju-lee.github.io/hyungju-lee-interactions/layer-popup/toast-popup.html)

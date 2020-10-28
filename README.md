@@ -151,6 +151,13 @@
 * [도전과제 - 단 한번 실행되어야할 함수와 계속 실행되어야할 함수 분리](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step5/)
 * [도전과제 - 천천히 등장하는 배경색 구현, 섹션에 도착시 3D 모델이 회전하도록 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section10/step6/)
 
+#### Bonus
+* [canvas circle draw](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_canvas_circle_draw/)
+* [image tab](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_imgtab/)
+* [modal](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_modal/)
+* [modal2 - only javascript](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_modal/index2.html)
+* [panorama](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_panorama/)
+
 ### layer popup
 
 * [연속적으로 생기는 토스트팝업](https://hyungju-lee.github.io/hyungju-lee-interactions/layer-popup/toast-popup.html)

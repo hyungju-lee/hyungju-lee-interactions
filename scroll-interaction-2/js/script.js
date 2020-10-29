@@ -120,7 +120,6 @@
     }
 
     var initVideo = function () {
-        var videoElem;
         for (var i = 1; i < sceneInfo[1].values.videoImageCount + 1; i++) {
             var videoElem = new Image();
             var num = i < 10? '0000' + i : i < 100? '000' + i : i < 1000? '00' + i :'0' + i;
@@ -128,7 +127,6 @@
             sceneInfo[1].objs.videoImages.push(videoElem);
         }
 
-        var videoElem2;
         for (var j = 0; j < sceneInfo[2].values.videoImageCount; j++) {
             var videoElem2 = new Image();
             var num2 = j < 10? '000' + j : j < 100? '00' + j : j < 1000? '0' + j : j;
@@ -232,39 +230,20 @@
 
     var calcValues = function (values) {
         var rv;
-        if (values[2].start === 0 && values[2].end === 1) {
-            var scrollStart = sceneInfo[currentScene].scrollHeight * values[2].start;
-            var scrollEnd = sceneInfo[currentScene].scrollHeight * values[2].end;
-            if (relativeYOffset >= scrollStart && relativeYOffset <= scrollEnd) {
-                rv = scrollRatio * (values[1] - values[0]) + values[0];
-            } else {
-                switch (true) {
-                    case (relativeYOffset < scrollStart) :
-                        rv = values[0];
-                        break;
-                    case (scrollEnd < relativeYOffset) :
-                        rv = values[1];
-                        break;
-                    default :
-                        break;
-                }
-            }
+        var scrollStart = sceneInfo[currentScene].scrollHeight * values[2].start;
+        var scrollEnd = sceneInfo[currentScene].scrollHeight * values[2].end;
+        if (relativeYOffset >= scrollStart && relativeYOffset <= scrollEnd) {
+            rv = (relativeYOffset - scrollStart) / (scrollEnd - scrollStart)  * (values[1] - values[0]) + values[0];
         } else {
-            var scrollStart = sceneInfo[currentScene].scrollHeight * values[2].start;
-            var scrollEnd = sceneInfo[currentScene].scrollHeight * values[2].end;
-            if (relativeYOffset >= scrollStart && relativeYOffset <= scrollEnd) {
-                rv = (relativeYOffset - scrollStart) / (scrollEnd - scrollStart)  * (values[1] - values[0]) + values[0];
-            } else {
-                switch (true) {
-                    case (relativeYOffset < scrollStart) :
-                        rv = values[0];
-                        break;
-                    case (scrollEnd < relativeYOffset) :
-                        rv = values[1];
-                        break;
-                    default :
-                        break;
-                }
+            switch (true) {
+                case (relativeYOffset < scrollStart) :
+                    rv = values[0];
+                    break;
+                case (scrollEnd < relativeYOffset) :
+                    rv = values[1];
+                    break;
+                default :
+                    break;
             }
         }
         return rv;

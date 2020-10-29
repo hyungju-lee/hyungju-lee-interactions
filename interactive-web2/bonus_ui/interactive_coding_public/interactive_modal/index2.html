@@ -10,7 +10,6 @@
 	.sec01 {height: 3000px;}
 	.open_modal {display: inline-block; padding:0 20px; height:45px; font-size:16px; color:#fff; line-height: 45px; background-color:#222;;}
 </style>
-<script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -50,52 +49,60 @@ body.modal_in {overflow: hidden;}
 .modal_wrap .modal_cnt .close_btn {position: absolute; top:0; right:0; z-index:50; display: inline-block; width:50px; height:50px; background: url('./images/btn_colse.png') no-repeat 0 0; background-size: 100% 100%; text-indent:-99999px;}
 .modal_wrap .modal_cnt .modal_header {padding-bottom:5px; border-bottom:1px solid #ddd; }
 .modal_wrap .modal_cnt .modal_body {padding-top:20px;}
-.fake_sjwidth {overflow: scroll; position: absolute; top: -99999px; width: 60px; height: 60px;}
 </style>
 <script type="text/javascript">
 	(function () {
 		var modalWrap = document.querySelector(".modal_wrap");
 		var modalOpenBtn = document.querySelector(".open_modal");
+		var modalCloseBtn = document.querySelector(".close_btn");
+		var dimmed = document.querySelector(".modal_dim");
+		var closeModal = [modalCloseBtn, dimmed];
+
+		var getScrollWidth = function () {
+			var body = document.querySelector('body');
+			var scrollDiv = document.createElement('div');
+			scrollDiv.style.position = "absolute";
+			scrollDiv.style.top = "-9999px";
+			scrollDiv.style.overflow = "scroll";
+			scrollDiv.style.width = "60px";
+			scrollDiv.style.height = "60px";
+			body.appendChild(scrollDiv);
+			var scrollbarWidth = document.body.scrollHeight > innerHeight ? (scrollDiv.offsetWidth - scrollDiv.clientWidth) + "px" : 0 + "px";
+			body.removeChild(scrollDiv);
+			return scrollbarWidth;
+		}
+
+		var transitionEndFunc = function () {
+			modalWrap.style.display = "";
+			document.body.classList.remove("modal_in");
+			document.body.style.paddingRight = "";
+			modalWrap.style.opacity = "";
+			modalWrap.style.transition = "";
+			modalWrap.removeEventListener("transitionend", transitionEndFunc)
+		}
 
 		modalOpenBtn.addEventListener("click", function () {
 			document.body.classList.add("modal_in");
+			modalWrap.style.display = "block";
+			modalWrap.style.opacity = 0;
+			document.body.style.paddingRight = getScrollWidth();
+			requestAnimationFrame(function () {
+				requestAnimationFrame(function () {
+					modalWrap.style.opacity = 1;
+					modalWrap.style.transition = "all 0.3s";
+				})
+			})
+		})
+
+		closeModal.forEach(function (val, i) {
+			val.addEventListener("click", function () {
+				requestAnimationFrame(function () {
+					modalWrap.style.opacity = 0;
+				})
+				modalWrap.addEventListener("transitionend", transitionEndFunc)
+			})
 		})
 	})()
-
-$(function(){
-	var sjModal = function(){
-		$body = $('body');
-		$modalWrap = $('.modal_wrap');
-
-		$('.open_modal').on('click',function(){
-			$body.addClass('modal_in');
-			$modalWrap.fadeIn(300);
-			$body.css('padding-right',getScrollWidth());
-		});
-
-		$('.close_btn, .modal_dim').on('click',function(){
-			var speed = 300;
-			$modalWrap.fadeOut(speed);
-			setTimeout(function(){
-				$body.removeClass('modal_in');
-				$body.css('padding-right',0)
-			},speed)
-		});
-
-		function getScrollWidth(){
-			var body = document.querySelector('body');
-		    var scrollDiv = document.createElement('div');
-		    	scrollDiv.className = 'fake_sjwidth';
-		    	body.appendChild(scrollDiv);
-		    var scrollbarWidth = $(document).height() > $(window).height() ? scrollDiv.offsetWidth - scrollDiv.clientWidth : 0;
-
-		    	body.removeChild(scrollDiv);
-		    	return scrollbarWidth;
-		}
-	}();
-
-
-});
 </script>
 </body>
 </html>

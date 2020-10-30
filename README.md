@@ -161,7 +161,7 @@
 #### 10
 * [svg와 영상을 활용한 인터렉션](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section11/step1/)
 * [svg와 영상을 활용한 인터렉션2](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/study/section11/step2/)
-* [svg와 영상을 활용한 인터렉션3](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-4/)
+* [svg 활용 인터렉션](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-4/)
 
 ### layer popup
 

@@ -73,7 +73,9 @@
 
 		var transitionEndFunc = function () {
 			modalWrap.style.display = "";
-			document.body.classList.remove("no_scroll");
+			document.body.style.overflow = "";
+			document.querySelector("html").style.height = "";
+			document.body.style.height = "";
 			document.body.style.paddingRight = "";
 			modalWrap.style.opacity = "";
 			modalWrap.style.transition = "";
@@ -82,7 +84,9 @@
 
 		modalOpenBtn.addEventListener("click", function (e) {
 			e.preventDefault();
-			document.body.classList.add("no_scroll");
+			document.body.style.overflow = "hidden";
+			document.querySelector("html").style.height = "100%";
+			document.body.style.height = "100%";
 			modalWrap.style.display = "block";
 			modalWrap.style.opacity = 0;
 			document.body.style.paddingRight = getScrollWidth();

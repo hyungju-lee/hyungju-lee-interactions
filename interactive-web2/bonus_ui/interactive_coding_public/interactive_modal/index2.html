@@ -55,6 +55,7 @@
 		var layerCloseBtn = document.querySelector(".close_btn");
 		var dimmed = document.querySelector(".dimmed");
 		var closeModal = [layerCloseBtn, dimmed];
+		var preventEvent = ["scroll", "touchmove"];
 		var isShow = false;
 
 		var getScrollWidth = function () {
@@ -91,7 +92,6 @@
 		}
 
 		var preventFunc = function () {
-			var preventEvent = ["scroll", "touchmove"];
 			if (layerPopupInner.offsetHeight > layerPopupCont.offsetHeight) {
 				preventEvent.forEach(function (val, i) {
 					layerPopupInner.addEventListener(val, preventScrollFunc, false)
@@ -120,6 +120,7 @@
 			document.body.style.touchAction = "none";
 
 			layerPopup.style.display = "block";
+			preventFunc();
 			layerPopup.style.opacity = 0;
 			requestAnimationFrame(function () {
 				requestAnimationFrame(function () {
@@ -127,7 +128,6 @@
 					layerPopup.style.transition = "all 0.3s";
 				})
 			})
-			layerPopup.addEventListener("transitionend", preventFunc)
 		})
 
 		closeModal.forEach(function (val, i) {
@@ -138,7 +138,9 @@
 					layerPopup.style.opacity = 0;
 				})
 				layerPopup.addEventListener("transitionend", transitionEndFunc);
-				layerPopup.removeEventListener("transitionend", preventFunc)
+				preventEvent.forEach(function (val, i) {
+					layerPopupInner.removeEventListener(val, preventScrollFunc, false)
+				})
 			})
 		})
 	})()

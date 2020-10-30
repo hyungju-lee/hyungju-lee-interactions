@@ -25,7 +25,7 @@
 	<div class="sec01">
 		<div class="btn_wrap">
 			<a herf="#" class="open_modal">
-				팝업 오픈 클릭5
+				팝업 오픈 클릭6
 			</a>
 		</div>
 	</div>
@@ -50,11 +50,12 @@
 </div>
 <script type="text/javascript">
 	(function () {
-		var modalWrap = document.querySelector(".layer_popup");
-		var modalOpenBtn = document.querySelector(".open_modal");
-		var modalCloseBtn = document.querySelector(".close_btn");
+		var layerPopup = document.querySelector(".layer_popup");
+		var layerPopupInner = document.querySelector(".layer_popup_inner");
+		var layerOpenBtn = document.querySelector(".open_modal");
+		var layerCloseBtn = document.querySelector(".close_btn");
 		var dimmed = document.querySelector(".dimmed");
-		var closeModal = [modalCloseBtn, dimmed];
+		var closeModal = [layerCloseBtn, dimmed];
 
 		var getScrollWidth = function () {
 			var body = document.querySelector('body');
@@ -78,18 +79,18 @@
 			document.body.style.paddingRight = "";
 			document.body.style.touchAction = "";
 
-			modalWrap.style.display = "";
-			modalWrap.style.opacity = "";
-			modalWrap.style.transition = "";
-			modalWrap.removeEventListener("transitionend", transitionEndFunc)
+			layerPopup.style.display = "";
+			layerPopup.style.opacity = "";
+			layerPopup.style.transition = "";
+			layerPopup.removeEventListener("transitionend", transitionEndFunc)
 		}
 
 		var preventTouchStart = function (e) {
-			e.preventDefault();
+			// e.preventDefault();
 			e.stopPropagation();
 		}
 
-		modalOpenBtn.addEventListener("click", function (e) {
+		layerOpenBtn.addEventListener("click", function (e) {
 			e.preventDefault();
 			document.documentElement.style.height = "100%";
 			document.documentElement.style.touchAction = "none";
@@ -98,15 +99,16 @@
 			document.body.style.paddingRight = getScrollWidth();
 			document.body.style.touchAction = "none";
 
-			modalWrap.addEventListener("scroll", preventTouchStart);
-			modalWrap.addEventListener("touchmove", preventTouchStart);
-			modalWrap.addEventListener("mousewheel", preventTouchStart);
-			modalWrap.style.display = "block";
-			modalWrap.style.opacity = 0;
+			layerPopupInner.addEventListener("scroll", preventTouchStart);
+			layerPopupInner.addEventListener("touchmove", preventTouchStart);
+			layerPopupInner.addEventListener("mousewheel", preventTouchStart);
+
+			layerPopup.style.display = "block";
+			layerPopup.style.opacity = 0;
 			requestAnimationFrame(function () {
 				requestAnimationFrame(function () {
-					modalWrap.style.opacity = 1;
-					modalWrap.style.transition = "all 0.3s";
+					layerPopup.style.opacity = 1;
+					layerPopup.style.transition = "all 0.3s";
 				})
 			})
 		})
@@ -115,12 +117,12 @@
 			val.addEventListener("click", function (e) {
 				e.preventDefault();
 				requestAnimationFrame(function () {
-					modalWrap.style.opacity = 0;
+					layerPopup.style.opacity = 0;
 				})
-				modalWrap.addEventListener("transitionend", transitionEndFunc);
-				modalWrap.removeEventListener("scroll", preventTouchStart);
-				modalWrap.removeEventListener("touchmove", preventTouchStart);
-				modalWrap.removeEventListener("mousewheel", preventTouchStart);
+				layerPopup.addEventListener("transitionend", transitionEndFunc);
+				layerPopupInner.removeEventListener("scroll", preventTouchStart);
+				layerPopupInner.removeEventListener("touchmove", preventTouchStart);
+				layerPopupInner.removeEventListener("mousewheel", preventTouchStart);
 			})
 		})
 	})()

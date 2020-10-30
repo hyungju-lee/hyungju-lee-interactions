@@ -11,9 +11,8 @@
 	.btn_wrap {padding-top:1000px;}
 	.sec01 {height: 3000px;}
 	.open_modal {display: inline-block; padding:0 20px; height:45px; font-size:16px; color:#fff; line-height: 45px; background-color:#222;}
-	body.no_scroll {overflow: hidden;}
 	.layer_popup {display:none;position: fixed; left:0; top:0; z-index:100; width:100%; height:100%; padding: 0 20px}
-	.layer_popup .layer_popup_inner{overflow: auto;display: flex;height: 100%;padding:30px 0;flex-direction: column}
+	.layer_popup .layer_popup_inner{overflow: auto;display: flex;align-items:center;height: 100%;padding:30px 0;flex-direction: column}
 	.layer_popup .dimmed {position: absolute; left: 0; top: 0; z-index: 10; display: block; width:100%; height:100%; content:''; background:rgba(0,0,0,.5);}
 	.layer_popup .layer_popup_cont {position:relative; z-index:20; max-width: 650px; min-height:500px; padding:20px  20px 0 20px; margin:auto 0; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.5); -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5); border-radius: 4px;}
 	.layer_popup .layer_popup_cont .close_btn {position: absolute; top:0; right:0; z-index:50; display: inline-block; width:50px; height:50px; background: url('./images/btn_colse.png') no-repeat 0 0; background-size: 100% 100%; text-indent:-99999px;}
@@ -74,7 +73,7 @@
 		var transitionEndFunc = function () {
 			modalWrap.style.display = "";
 			document.body.style.overflow = "";
-			document.querySelector("html").style.height = "";
+			document.documentElement.style.height = "";
 			document.body.style.height = "";
 			document.body.style.paddingRight = "";
 			modalWrap.style.opacity = "";
@@ -82,14 +81,19 @@
 			modalWrap.removeEventListener("transitionend", transitionEndFunc)
 		}
 
+		var preventTouchStart = function (e) {
+			e.preventDefault();
+		}
+
 		modalOpenBtn.addEventListener("click", function (e) {
 			e.preventDefault();
 			document.body.style.overflow = "hidden";
-			document.querySelector("html").style.height = "100%";
+			document.documentElement.style.height = "100%";
 			document.body.style.height = "100%";
 			modalWrap.style.display = "block";
 			modalWrap.style.opacity = 0;
 			document.body.style.paddingRight = getScrollWidth();
+			document.body.addEventListener("touchstart", preventTouchStart);
 			requestAnimationFrame(function () {
 				requestAnimationFrame(function () {
 					modalWrap.style.opacity = 1;
@@ -104,7 +108,8 @@
 				requestAnimationFrame(function () {
 					modalWrap.style.opacity = 0;
 				})
-				modalWrap.addEventListener("transitionend", transitionEndFunc)
+				modalWrap.addEventListener("transitionend", transitionEndFunc);
+				document.body.removeEventListener("touchstart", preventTouchStart);
 			})
 		})
 	})()

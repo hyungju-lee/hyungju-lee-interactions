@@ -1,31 +1,31 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-compatible" content="chrome=1,IE=edge">
-<title></title>
-<link rel="stylesheet" type="text/css" href="./css/commom.css">
-<style type="text/css">
-	.wrap {max-width: 900px; margin:0 auto; background:#f1f1f1;}
-	.btn_wrap {padding-top:1000px;}
-	.sec01 {height: 3000px;}
-	.open_modal {display: inline-block; height:45px; font-size:16px; color:#fff; line-height: 45px; background-color:#222;}
-	.layer_popup {display:none;position: fixed; left:0; top:0; z-index:100; width:100%; height:100%;}
-	.layer_popup .layer_popup_inner{overflow: auto;display: flex;align-items:center;height: 100%;padding:30px 20px;flex-direction: column}
-	.layer_popup .dimmed {position: absolute; left: 0; top: 0; z-index: 10; display: block; width:100%; height:100%; content:''; background:rgba(0,0,0,.5);}
-	.layer_popup .layer_popup_cont {position:relative; z-index:20; max-width: 650px; min-height:500px; padding:20px  20px 0 20px; margin:auto 0; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.5); -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5); border-radius: 4px;}
-	.layer_popup .layer_popup_cont .close_btn {position: absolute; top:0; right:0; z-index:50; display: inline-block; width:50px; height:50px; background: url('./images/btn_colse.png') no-repeat 0 0; background-size: 100% 100%; text-indent:-99999px;}
-	.layer_popup .layer_popup_cont .layer_header {padding-bottom:5px; border-bottom:1px solid #ddd; }
-	.layer_popup .layer_popup_cont .layer_body {padding-top:20px;}
-</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-compatible" content="chrome=1,IE=edge">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="./css/commom.css">
+	<style type="text/css">
+		.wrap {max-width: 900px; margin:0 auto; background:#f1f1f1;}
+		.btn_wrap {padding-top:1000px;}
+		.sec01 {height: 3000px;}
+		.open_modal {display: inline-block; height:45px; font-size:16px; color:#fff; line-height: 45px; background-color:#222;}
+		.layer_popup {display:none;position: fixed; left:0; top:0; z-index:100; width:100%; height:100%;}
+		.layer_popup .layer_popup_inner{overflow: auto;display: flex;align-items:center;height: 100%;padding:30px 20px;flex-direction: column}
+		.layer_popup .dimmed {position: absolute; left: 0; top: 0; z-index: 10; display: block; width:100%; height:100%; content:''; background:rgba(0,0,0,.5);}
+		.layer_popup .layer_popup_cont {position:relative; z-index:20; max-width: 650px; width: 100%; min-height:500px; padding:20px  20px 0 20px; margin:auto 0; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.5); -webkit-box-shadow: 0 4px 10px rgba(0,0,0,.5); border-radius: 4px;}
+		.layer_popup .layer_popup_cont .close_btn {position: absolute; top:0; right:0; z-index:50; display: inline-block; width:50px; height:50px; background: url('./images/btn_colse.png') no-repeat 0 0; background-size: 100% 100%; text-indent:-99999px;}
+		.layer_popup .layer_popup_cont .layer_header {padding-bottom:5px; border-bottom:1px solid #ddd; }
+		.layer_popup .layer_popup_cont .layer_body {padding-top:20px;}
+	</style>
 </head>
 <body>
 <div class="wrap">
 	<div class="sec01">
 		<div class="btn_wrap">
 			<a herf="#" class="open_modal">
-				팝업 오픈 클릭6
+				팝업 오픈 클릭
 			</a>
 		</div>
 	</div>
@@ -34,13 +34,11 @@
 		<div class="layer_popup_inner">
 			<div class="layer_popup_cont">
 				<div class="layer_header">
-					<h3>SJ MODAL</h3>
+					<h3>POPUP</h3>
 				</div>
 				<div class="layer_body">
-					<strong>안녕하세요 모달입니다</strong>
-					<p>
-						브라우저별로 스크롤바 크기를 계산합니다. 일반팝업, 애니메이션이 걸린 팝업을 열고 닫을때 덜컹 거리지 않습니다.
-					</p>
+					<strong>팝업</strong>
+					<p class="cons"></p>
 				</div>
 				<a href="#" class="close_btn">닫기</a>
 			</div>
@@ -52,10 +50,12 @@
 	(function () {
 		var layerPopup = document.querySelector(".layer_popup");
 		var layerPopupInner = document.querySelector(".layer_popup_inner");
+		var layerPopupCont = document.querySelector(".layer_popup_cont");
 		var layerOpenBtn = document.querySelector(".open_modal");
 		var layerCloseBtn = document.querySelector(".close_btn");
 		var dimmed = document.querySelector(".dimmed");
 		var closeModal = [layerCloseBtn, dimmed];
+		var isShow = false;
 
 		var getScrollWidth = function () {
 			var body = document.querySelector('body');
@@ -85,23 +85,39 @@
 			layerPopup.removeEventListener("transitionend", transitionEndFunc)
 		}
 
-		var preventTouchStart = function (e) {
-			// e.preventDefault();
+		var preventScrollFunc = function (e) {
+			e.preventDefault();
 			e.stopPropagation();
 		}
 
+		var preventFunc = function () {
+			var preventEvent = ["scroll", "touchmove"];
+			if (layerPopupInner.offsetHeight > layerPopupCont.offsetHeight) {
+				preventEvent.forEach(function (val, i) {
+					layerPopupInner.addEventListener(val, preventScrollFunc, false)
+				})
+			} else {
+				preventEvent.forEach(function (val, i) {
+					layerPopupInner.removeEventListener(val, preventScrollFunc, false)
+				})
+			}
+		}
+
+		addEventListener("resize", function () {
+			if (isShow) {
+				preventFunc();
+			}
+		})
+
 		layerOpenBtn.addEventListener("click", function (e) {
 			e.preventDefault();
+			isShow = true;
 			document.documentElement.style.height = "100%";
 			document.documentElement.style.touchAction = "none";
 			document.body.style.overflow = "hidden";
 			document.body.style.height = "100%";
 			document.body.style.paddingRight = getScrollWidth();
 			document.body.style.touchAction = "none";
-
-			layerPopupInner.addEventListener("scroll", preventTouchStart);
-			layerPopupInner.addEventListener("touchmove", preventTouchStart);
-			layerPopupInner.addEventListener("mousewheel", preventTouchStart);
 
 			layerPopup.style.display = "block";
 			layerPopup.style.opacity = 0;
@@ -111,18 +127,18 @@
 					layerPopup.style.transition = "all 0.3s";
 				})
 			})
+			layerPopup.addEventListener("transitionend", preventFunc)
 		})
 
 		closeModal.forEach(function (val, i) {
 			val.addEventListener("click", function (e) {
 				e.preventDefault();
+				isShow = false;
 				requestAnimationFrame(function () {
 					layerPopup.style.opacity = 0;
 				})
 				layerPopup.addEventListener("transitionend", transitionEndFunc);
-				layerPopupInner.removeEventListener("scroll", preventTouchStart);
-				layerPopupInner.removeEventListener("touchmove", preventTouchStart);
-				layerPopupInner.removeEventListener("mousewheel", preventTouchStart);
+				layerPopup.removeEventListener("transitionend", preventFunc)
 			})
 		})
 	})()

@@ -176,10 +176,14 @@
 * [버튼 눌렀을 때 스크롤 휭휭 가속도(증가 감속)](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event.html)
     
     * 코드정리 아직 안함
+    * 스크롤 이동
+    * 증가 가속도 및 감소 가속도 처리
     
 * [버튼 눌렀을 때 캔버스 무한 스크롤링 휭휭 가속도(증가 감속)](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event2.html)
 
     * 코드정리 아직 안함
+    * 이미지 불러오고 가상 canvas에 그리고 이미지 데이터 추출해 html상 canvas에 그리기 getImageData / putImageData
+    * 증가 가속도 및 감소 가속도 처리
   
 ### canvas interaction
 

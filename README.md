@@ -174,6 +174,12 @@
 ### button 눌렀을 때 스크롤 휭휭 움직이기 (가속도 - 증가 감속)
 
 * [버튼 눌렀을 때 스크롤 휭휭 가속도(증가 감속)](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event.html)
+    
+    * 코드정리 아직 안함
+    
+* [버튼 눌렀을 때 캔버스 무한 스크롤링 휭휭 가속도(증가 감속)](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event2.html)
+
+    * 코드정리 아직 안함
   
 ### canvas interaction
 

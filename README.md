@@ -184,6 +184,7 @@
     * 코드정리 아직 안함
     * 이미지 불러오고 가상 canvas에 그리고 이미지 데이터 추출해 html상 canvas에 그리기 getImageData / putImageData
     * 증가 가속도 및 감소 가속도 처리
+    * 반올림 처리도 해야됨
   
 ### canvas interaction
 

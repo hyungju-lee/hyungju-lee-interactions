@@ -61,14 +61,15 @@
                 imageElem.src = imageList[i];
                 imageObjs.push(imageElem);
             }
+            console.log(1);
         };
 
         var createCanvasWidth = function createCanvasWidth() {
             var width = 0;
-            imageObjs.forEach(function (value) {
-                console.log(value.naturalWidth, (canvas.height / value.naturalHeight));
-                width += value.naturalWidth * (canvas.height / value.naturalHeight);
-            });
+            for (var i = 0; i < imageObjs.length; i++) {
+                width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
+            }
+            console.log(width)
             return width;
         };
 

@@ -70,7 +70,11 @@
                 for (var i = 0; i < imageObjs.length; i++) {
                     width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
                 }
-            } while (!imageObjs[0].naturalWidth);
+            } while (!imageObjs[0].naturalWidth) {
+                for (var i = 0; i < imageObjs.length; i++) {
+                    width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
+                }
+            }
             return Math.floor(width);
         };
 

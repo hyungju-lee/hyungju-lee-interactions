@@ -65,6 +65,7 @@
     var createCanvasWidth = function createCanvasWidth() {
         var width = 0;
         imageObjs.forEach(function (value) {
+            console.log(value.naturalWidth, (canvas.height / value.naturalHeight));
             width += value.naturalWidth * (canvas.height / value.naturalHeight);
         });
         return width;

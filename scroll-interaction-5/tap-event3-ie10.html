@@ -61,7 +61,6 @@
                 imageElem.src = imageList[i];
                 imageObjs.push(imageElem);
             }
-            console.log(1);
         };
 
         var createCanvasWidth = function createCanvasWidth() {
@@ -69,7 +68,6 @@
             for (var i = 0; i < imageObjs.length; i++) {
                 width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
             }
-            console.log(width)
             return width;
         };
 
@@ -121,8 +119,13 @@
         };
 
         init();
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                afterLoadInit();
+            })
+        })
+
         addEventListener("load", function () {
-            afterLoadInit();
             ["mousedown", "touchstart"].forEach(function (value) {
                 move.addEventListener(value, function (e) {
                     var clientX = e.clientX || e.touches[0].clientX;

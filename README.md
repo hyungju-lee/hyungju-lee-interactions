@@ -197,6 +197,10 @@ getImageData() 메소드는 로컬 서버에서만 제대로 작동하는 메소
 대체품..있으려나?  
 그런데 서버에서 되면 괜찮긴하지 뭐 음..
 
+* [CORS 제한 이슈 - 로컬서버에서 실행하는 수밖엔 없음](https://stackoverflow.com/questions/45444097/the-canvas-has-been-tainted-by-cross-origin-data-local-image)
+* [CORS 제한 이슈 - 로컬서버에서 실행하는 수밖엔 없음 - 번역](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event4.html)
+* [CORS 제한 이슈 - MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image)
+
 ---
   
 ### canvas interaction

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tap-event</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+
+        .move {
+            overflow: hidden;
+            position: relative;
+            height: 500px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .move_canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+        }
+    </style>
+</head>
+<body>
+<div class="move">
+    <canvas class="move_canvas" width="1920" height="500"></canvas>
+</div>
+
+// 가속도 : 증가
+
+<script>
+    const canvas = document.querySelector(".move_canvas");
+    const canvasContext = canvas.getContext("2d");
+    const imageList = ["./img/image00.jpg", "./img/image01.jpg", "./img/image02.jpg", "./img/image03.jpg"];
+    const createCanvas = document.createElement("CANVAS");
+    const createCanvasContext = createCanvas.getContext("2d");
+    const move = document.querySelector(".move");
+    let imageObjs = [];
+    let imageElem;
+    let nowXScroll = 0;
+    let onOff = false;
+    let acc = 1;
+    let rafId1;
+    let rafId2;
+
+    const imageInit = () => {
+        for (let i = 0; i < imageList.length; i++) {
+            imageElem = new Image();
+            imageElem.src = imageList[i];
+            imageObjs.push(imageElem);
+        }
+    }
+
+    const createCanvasWidth = () => {
+        let width = 0;
+        imageObjs.forEach((value) => {
+            width += value.naturalWidth * (canvas.height / value.naturalHeight);
+        })
+        return width;
+    }
+
+    const init = () => {
+        imageInit();
+    }
+
+    const afterLoadInit = () => {
+        createCanvas.width = createCanvasWidth();
+        createCanvas.height = canvas.height;
+        let xPosition = 0;
+        for (let i = 0; i < imageObjs.length; i++) {
+            createCanvasContext.drawImage(imageObjs[i],
+                0, 0, imageObjs[i].naturalWidth, imageObjs[i].naturalHeight,
+                xPosition, 0, imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight), canvas.height)
+            xPosition += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
+        }
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), 0, 0);
+    }
+
+    const moveLeftScroll = () => {
+        nowXScroll = nowXScroll + 10 * acc;
+        onOff ? acc += 0.2 : acc === 1 ? 1 : acc -= 0.1;
+        nowXScroll = Math.abs(nowXScroll) >= createCanvas.width ? 0 : nowXScroll;
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), nowXScroll, 0);
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), nowXScroll + createCanvas.width, 0);
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), nowXScroll - createCanvas.width, 0);
+        rafId1 = requestAnimationFrame(moveLeftScroll);
+        if (acc <= 1) {
+            cancelAnimationFrame(rafId1);
+            acc = 1;
+        }
+    }
+    const moveRightScroll = () => {
+        nowXScroll = nowXScroll - 10 * acc;
+        onOff ? acc += 0.2 : acc === 1 ? 1 : acc -= 0.1;
+        nowXScroll = Math.abs(nowXScroll) >= createCanvas.width ? 0 : nowXScroll;
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), nowXScroll, 0);
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), nowXScroll + createCanvas.width, 0);
+        canvasContext.putImageData(createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height), nowXScroll - createCanvas.width, 0);
+        rafId2 = requestAnimationFrame(moveRightScroll);
+        if (acc <= 1) {
+            cancelAnimationFrame(rafId2);
+            acc = 1;
+        }
+    }
+
+    init();
+
+    addEventListener("load", () => {
+        afterLoadInit();
+        ["mousedown", "touchstart"].forEach((value) => {
+            move.addEventListener(value, (e) => {
+                let clientX = e.clientX || e.touches[0].clientX;
+                onOff = true;
+                if (rafId1) {
+                    cancelAnimationFrame(rafId1);
+                }
+                if (rafId2) {
+                    cancelAnimationFrame(rafId2);
+                }
+                if (clientX <= (move.getBoundingClientRect().width / 2)) {
+                    moveLeftScroll();
+                } else {
+                    moveRightScroll();
+                }
+            })
+        });
+
+        ["mouseup", "touchend"].forEach((value) => {
+            move.addEventListener(value, () => {
+                onOff = false;
+            })
+        });
+    })
+</script>
+</body>
+</html>

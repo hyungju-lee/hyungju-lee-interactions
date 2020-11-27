@@ -37,121 +37,118 @@
 // 가속도 : 증가
 
 <script>
-    "use strict";
+    (function () {
+        "use strict";
 
-    var canvas = document.querySelector(".move_canvas");
-    var canvasContext = canvas.getContext("2d");
-    var imageList = ["./img/image00.jpg", "./img/image01.jpg", "./img/image02.jpg", "./img/image03.jpg"];
-    var createCanvas = document.createElement("CANVAS");
-    var createCanvasContext = createCanvas.getContext("2d");
-    var move = document.querySelector(".move");
-    var imageObjs = [];
-    var imageElem;
-    var nowXScroll = 0;
-    var onOff = false;
-    var acc = 1;
-    var rafId1;
-    var rafId2;
-    var getImage;
+        var canvas = document.querySelector(".move_canvas");
+        var canvasContext = canvas.getContext("2d");
+        var imageList = ["./img/image00.jpg", "./img/image01.jpg", "./img/image02.jpg", "./img/image03.jpg"];
+        var createCanvas = document.createElement("CANVAS");
+        var createCanvasContext = createCanvas.getContext("2d");
+        var move = document.querySelector(".move");
+        var imageObjs = [];
+        var imageElem;
+        var nowXScroll = 0;
+        var onOff = false;
+        var acc = 1;
+        var rafId1;
+        var rafId2;
+        var getImage;
 
-    var imageInit = function imageInit() {
-        for (var i = 0; i < imageList.length; i++) {
-            imageElem = new Image();
-            imageElem.src = imageList[i];
-            imageObjs.push(imageElem);
-        }
-    };
+        var imageInit = function imageInit() {
+            for (var i = 0; i < imageList.length; i++) {
+                imageElem = new Image();
+                imageElem.src = imageList[i];
+                imageObjs.push(imageElem);
+            }
+        };
 
-    var createCanvasWidth = function createCanvasWidth() {
-        var width = 0;
-        imageObjs.forEach(function (value) {
-            console.log(value.naturalWidth, (canvas.height / value.naturalHeight));
-            width += value.naturalWidth * (canvas.height / value.naturalHeight);
+        var createCanvasWidth = function createCanvasWidth() {
+            var width = 0;
+            imageObjs.forEach(function (value) {
+                console.log(value.naturalWidth, (canvas.height / value.naturalHeight));
+                width += value.naturalWidth * (canvas.height / value.naturalHeight);
+            });
+            return width;
+        };
+
+        var init = function init() {
+            imageInit();
+        };
+
+        var afterLoadInit = function afterLoadInit() {
+            createCanvas.width = createCanvasWidth();
+            createCanvas.height = canvas.height;
+            var xPosition = 0;
+            for (var i = 0; i < imageObjs.length; i++) {
+                createCanvasContext.drawImage(imageObjs[i], 0, 0, imageObjs[i].naturalWidth, imageObjs[i].naturalHeight, xPosition, 0, imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight), canvas.height);
+                xPosition += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
+            }
+            // IE 대비 - 1
+            getImage = createCanvasContext.getImageData(0, 0, Math.floor(createCanvas.width) - 1, createCanvas.height);
+            canvasContext.putImageData(getImage, 0, 0);
+        };
+
+        var moveLeftScroll = function moveLeftScroll() {
+            nowXScroll = nowXScroll + 10 * acc;
+            onOff ? acc += 0.2 : acc === 1 ? 1 : acc -= 0.1;
+            nowXScroll = Math.abs(nowXScroll) >= createCanvas.width ? 0 : nowXScroll;
+            canvasContext.putImageData(getImage, nowXScroll, 0);
+            canvasContext.putImageData(getImage, nowXScroll + createCanvas.width, 0);
+            canvasContext.putImageData(getImage, nowXScroll - createCanvas.width, 0);
+            rafId1 = requestAnimationFrame(moveLeftScroll);
+
+            if (acc <= 1) {
+                cancelAnimationFrame(rafId1);
+                acc = 1;
+            }
+        };
+
+        var moveRightScroll = function moveRightScroll() {
+            nowXScroll = nowXScroll - 10 * acc;
+            onOff ? acc += 0.2 : acc === 1 ? 1 : acc -= 0.1;
+            nowXScroll = Math.abs(nowXScroll) >= createCanvas.width ? 0 : nowXScroll;
+            canvasContext.putImageData(getImage, nowXScroll, 0);
+            canvasContext.putImageData(getImage, nowXScroll + createCanvas.width, 0);
+            canvasContext.putImageData(getImage, nowXScroll - createCanvas.width, 0);
+            rafId2 = requestAnimationFrame(moveRightScroll);
+
+            if (acc <= 1) {
+                cancelAnimationFrame(rafId2);
+                acc = 1;
+            }
+        };
+
+        init();
+        addEventListener("load", function () {
+            afterLoadInit();
+            ["mousedown", "touchstart"].forEach(function (value) {
+                move.addEventListener(value, function (e) {
+                    var clientX = e.clientX || e.touches[0].clientX;
+                    onOff = true;
+
+                    if (rafId1) {
+                        cancelAnimationFrame(rafId1);
+                    }
+
+                    if (rafId2) {
+                        cancelAnimationFrame(rafId2);
+                    }
+
+                    if (clientX <= move.getBoundingClientRect().width / 2) {
+                        moveLeftScroll();
+                    } else {
+                        moveRightScroll();
+                    }
+                });
+            });
+            ["mouseup", "touchend"].forEach(function (value) {
+                move.addEventListener(value, function () {
+                    onOff = false;
+                });
+            });
         });
-        return width;
-    };
-
-    var init = function init() {
-        imageInit();
-    };
-
-    var afterLoadInit = function afterLoadInit() {
-        createCanvas.width = createCanvasWidth();
-        createCanvas.height = canvas.height;
-        var xPosition = 0;
-        for (var i = 0; i < imageObjs.length; i++) {
-            createCanvasContext.drawImage(imageObjs[i], 0, 0, imageObjs[i].naturalWidth, imageObjs[i].naturalHeight, xPosition, 0, imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight), canvas.height);
-            xPosition += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
-        }
-        // IE 대비 -1
-        getImage = createCanvasContext.getImageData(0, 0, Math.floor(createCanvas.width) - 1, createCanvas.height);
-        canvasContext.putImageData(getImage, 0, 0);
-    };
-
-    var moveLeftScroll = function moveLeftScroll() {
-        nowXScroll = nowXScroll + 10 * acc;
-        onOff ? acc += 0.2 : acc === 1 ? 1 : acc -= 0.1;
-        nowXScroll = Math.abs(nowXScroll) >= createCanvas.width ? 0 : nowXScroll;
-        canvasContext.putImageData(getImage, nowXScroll, 0);
-        canvasContext.putImageData(getImage, nowXScroll + createCanvas.width, 0);
-        canvasContext.putImageData(getImage, nowXScroll - createCanvas.width, 0);
-        rafId1 = requestAnimationFrame(moveLeftScroll);
-
-        if (acc <= 1) {
-            cancelAnimationFrame(rafId1);
-            acc = 1;
-        }
-    };
-
-    var moveRightScroll = function moveRightScroll() {
-        nowXScroll = nowXScroll - 10 * acc;
-        onOff ? acc += 0.2 : acc === 1 ? 1 : acc -= 0.1;
-        nowXScroll = Math.abs(nowXScroll) >= createCanvas.width ? 0 : nowXScroll;
-        canvasContext.putImageData(getImage, nowXScroll, 0);
-        canvasContext.putImageData(getImage, nowXScroll + createCanvas.width, 0);
-        canvasContext.putImageData(getImage, nowXScroll - createCanvas.width, 0);
-        rafId2 = requestAnimationFrame(moveRightScroll);
-
-        if (acc <= 1) {
-            cancelAnimationFrame(rafId2);
-            acc = 1;
-        }
-    };
-
-    init();
-    addEventListener("load", function () {
-        // IE 대비 requestAnimationFrame
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                afterLoadInit();
-                ["mousedown", "touchstart"].forEach(function (value) {
-                    move.addEventListener(value, function (e) {
-                        var clientX = e.clientX || e.touches[0].clientX;
-                        onOff = true;
-
-                        if (rafId1) {
-                            cancelAnimationFrame(rafId1);
-                        }
-
-                        if (rafId2) {
-                            cancelAnimationFrame(rafId2);
-                        }
-
-                        if (clientX <= move.getBoundingClientRect().width / 2) {
-                            moveLeftScroll();
-                        } else {
-                            moveRightScroll();
-                        }
-                    });
-                });
-                ["mouseup", "touchend"].forEach(function (value) {
-                    move.addEventListener(value, function () {
-                        onOff = false;
-                    });
-                });
-            })
-        })
-    });
+    })()
 </script>
 </body>
 </html>

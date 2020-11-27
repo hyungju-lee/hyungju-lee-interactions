@@ -116,35 +116,30 @@
     init();
 
     addEventListener("load", () => {
-        // IE 대비 requestAnimationFrame
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                afterLoadInit();
-                ["mousedown", "touchstart"].forEach((value) => {
-                    move.addEventListener(value, (e) => {
-                        let clientX = e.clientX || e.touches[0].clientX;
-                        onOff = true;
-                        if (rafId1) {
-                            cancelAnimationFrame(rafId1);
-                        }
-                        if (rafId2) {
-                            cancelAnimationFrame(rafId2);
-                        }
-                        if (clientX <= (move.getBoundingClientRect().width / 2)) {
-                            moveLeftScroll();
-                        } else {
-                            moveRightScroll();
-                        }
-                    })
-                });
-
-                ["mouseup", "touchend"].forEach((value) => {
-                    move.addEventListener(value, () => {
-                        onOff = false;
-                    })
-                });
+        afterLoadInit();
+        ["mousedown", "touchstart"].forEach((value) => {
+            move.addEventListener(value, (e) => {
+                let clientX = e.clientX || e.touches[0].clientX;
+                onOff = true;
+                if (rafId1) {
+                    cancelAnimationFrame(rafId1);
+                }
+                if (rafId2) {
+                    cancelAnimationFrame(rafId2);
+                }
+                if (clientX <= (move.getBoundingClientRect().width / 2)) {
+                    moveLeftScroll();
+                } else {
+                    moveRightScroll();
+                }
             })
-        })
+        });
+
+        ["mouseup", "touchend"].forEach((value) => {
+            move.addEventListener(value, () => {
+                onOff = false;
+            })
+        });
     })
 </script>
 </body>

@@ -187,6 +187,7 @@
     * 반올림 처리도 해야됨
     
 * [위에꺼 약간 코드정리?](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event3.html)
+* [위에꺼 약간 코드정리? - IE10 까지 되도록 바벨돌린 버전](https://hyungju-lee.github.io/hyungju-lee-interactions/scroll-interaction-5/tap-event3-ie10.html)
 
     * 세미콜론(;) 주의하자!! 항상 세미콜론 찍는 습관들여!!!!!!!!!!!!!!!!!!!!!
     * 아 그리고 파랑 반투명막 이건 탭하이라이트 칼라였음 - 이거 투명색으로 지정!! 모바일에서 안보이게~!

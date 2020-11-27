@@ -122,32 +122,34 @@
     addEventListener("load", function () {
         // IE 대비 requestAnimationFrame
         requestAnimationFrame(function () {
-            afterLoadInit();
-            ["mousedown", "touchstart"].forEach(function (value) {
-                move.addEventListener(value, function (e) {
-                    var clientX = e.clientX || e.touches[0].clientX;
-                    onOff = true;
+            requestAnimationFrame(function () {
+                afterLoadInit();
+                ["mousedown", "touchstart"].forEach(function (value) {
+                    move.addEventListener(value, function (e) {
+                        var clientX = e.clientX || e.touches[0].clientX;
+                        onOff = true;
 
-                    if (rafId1) {
-                        cancelAnimationFrame(rafId1);
-                    }
+                        if (rafId1) {
+                            cancelAnimationFrame(rafId1);
+                        }
 
-                    if (rafId2) {
-                        cancelAnimationFrame(rafId2);
-                    }
+                        if (rafId2) {
+                            cancelAnimationFrame(rafId2);
+                        }
 
-                    if (clientX <= move.getBoundingClientRect().width / 2) {
-                        moveLeftScroll();
-                    } else {
-                        moveRightScroll();
-                    }
+                        if (clientX <= move.getBoundingClientRect().width / 2) {
+                            moveLeftScroll();
+                        } else {
+                            moveRightScroll();
+                        }
+                    });
                 });
-            });
-            ["mouseup", "touchend"].forEach(function (value) {
-                move.addEventListener(value, function () {
-                    onOff = false;
+                ["mouseup", "touchend"].forEach(function (value) {
+                    move.addEventListener(value, function () {
+                        onOff = false;
+                    });
                 });
-            });
+            })
         })
     });
 </script>

@@ -66,10 +66,11 @@
         var width = 0;
         imageObjs.forEach(function (value) {
             console.log(value)
-            console.log(value.naturalWidth, canvas.height / value.naturalHeight)
+            setTimeout(function () {
+                console.log(value.naturalWidth, canvas.height / value.naturalHeight)
+            }, 200)
             width += value.naturalWidth * (canvas.height / value.naturalHeight);
         });
-
         return width;
     };
 

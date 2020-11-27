@@ -65,9 +65,12 @@
 
         var createCanvasWidth = function createCanvasWidth() {
             var width = 0;
-            for (var i = 0; i < imageObjs.length; i++) {
-                width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
-            }
+            // IE 새로고침시 문제를 해결하기 위해 do while 문 사용
+            do {
+                for (var i = 0; i < imageObjs.length; i++) {
+                    width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
+                }
+            } while (!imageObjs[0].naturalWidth);
             return Math.floor(width);
         };
 

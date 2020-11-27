@@ -71,8 +71,8 @@
                     width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
                 }
             } while (!imageObjs[0].naturalWidth) {
-                for (var i = 0; i < imageObjs.length; i++) {
-                    width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
+                for (var j = 0; j < imageObjs.length; j++) {
+                    width += imageObjs[j].naturalWidth * (canvas.height / imageObjs[j].naturalHeight);
                 }
             }
             return Math.floor(width);

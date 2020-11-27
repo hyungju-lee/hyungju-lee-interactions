@@ -68,11 +68,7 @@
             for (var i = 0; i < imageObjs.length; i++) {
                 width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
             }
-            return width;
-        };
-
-        var init = function init() {
-            imageInit();
+            return Math.floor(width);
         };
 
         var afterLoadInit = function afterLoadInit() {
@@ -96,7 +92,6 @@
             canvasContext.putImageData(getImage, nowXScroll + createCanvas.width, 0);
             canvasContext.putImageData(getImage, nowXScroll - createCanvas.width, 0);
             rafId1 = requestAnimationFrame(moveLeftScroll);
-
             if (acc <= 1) {
                 cancelAnimationFrame(rafId1);
                 acc = 1;
@@ -111,34 +106,30 @@
             canvasContext.putImageData(getImage, nowXScroll + createCanvas.width, 0);
             canvasContext.putImageData(getImage, nowXScroll - createCanvas.width, 0);
             rafId2 = requestAnimationFrame(moveRightScroll);
-
             if (acc <= 1) {
                 cancelAnimationFrame(rafId2);
                 acc = 1;
             }
         };
 
+        var init = function init() {
+            imageInit();
+        };
+
         init();
-        requestAnimationFrame(function () {
-            requestAnimationFrame(function () {
-                afterLoadInit();
-            })
-        })
 
         addEventListener("load", function () {
+            afterLoadInit();
             ["mousedown", "touchstart"].forEach(function (value) {
                 move.addEventListener(value, function (e) {
                     var clientX = e.clientX || e.touches[0].clientX;
                     onOff = true;
-
                     if (rafId1) {
                         cancelAnimationFrame(rafId1);
                     }
-
                     if (rafId2) {
                         cancelAnimationFrame(rafId2);
                     }
-
                     if (clientX <= move.getBoundingClientRect().width / 2) {
                         moveLeftScroll();
                     } else {

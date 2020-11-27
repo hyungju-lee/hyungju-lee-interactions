@@ -65,15 +65,8 @@
 
         var createCanvasWidth = function createCanvasWidth() {
             var width = 0;
-            // IE 새로고침시 문제를 해결하기 위해 do while 문 사용
-            do {
-                for (var i = 0; i < imageObjs.length; i++) {
-                    width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
-                }
-            } while (!imageObjs[0].naturalWidth) {
-                for (var j = 0; j < imageObjs.length; j++) {
-                    width += imageObjs[j].naturalWidth * (canvas.height / imageObjs[j].naturalHeight);
-                }
+            for (var i = 0; i < imageObjs.length; i++) {
+                width += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
             }
             return Math.floor(width);
         };
@@ -126,7 +119,12 @@
         init();
 
         addEventListener("load", function () {
-            afterLoadInit();
+            // 로컬서버에선 괜찮은데 git 같은 서버에 올리면 IE에서 새로고침시 image의 naturalWidth 값을 못불러온다.
+            // 왜그러지?
+            // 여튼 일단은 아래처럼... IE10까지는 지원.. 찝찝한 해결방법이긴한데, 방법을 모르겠다.
+            setTimeout(function () {
+                afterLoadInit();
+            }, 100);
             ["mousedown", "touchstart"].forEach(function (value) {
                 move.addEventListener(value, function (e) {
                     var clientX = e.clientX || e.touches[0].clientX;

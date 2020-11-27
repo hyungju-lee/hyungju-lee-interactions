@@ -82,7 +82,8 @@
             createCanvasContext.drawImage(imageObjs[i], 0, 0, imageObjs[i].naturalWidth, imageObjs[i].naturalHeight, xPosition, 0, imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight), canvas.height);
             xPosition += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
         }
-        getImage = createCanvasContext.getImageData(0, 0, Math.floor(createCanvas.width), createCanvas.height);
+        // IE 대비 -1
+        getImage = createCanvasContext.getImageData(0, 0, Math.floor(createCanvas.width) - 1, createCanvas.height);
         canvasContext.putImageData(getImage, 0, 0);
     };
 
@@ -118,6 +119,7 @@
 
     init();
     addEventListener("load", function () {
+        // IE 대비 requestAnimationFrame
         requestAnimationFrame(function () {
             afterLoadInit();
             ["mousedown", "touchstart"].forEach(function (value) {

@@ -116,6 +116,7 @@
     init();
 
     addEventListener("load", () => {
+        // IE 대비 requestAnimationFrame
         requestAnimationFrame(function () {
             afterLoadInit();
             ["mousedown", "touchstart"].forEach((value) => {

@@ -84,7 +84,7 @@
             xPosition += imageObjs[i].naturalWidth * (canvas.height / imageObjs[i].naturalHeight);
         }
 
-        getImage = createCanvasContext.getImageData(0, 0, createCanvas.width, createCanvas.height);
+        getImage = createCanvasContext.getImageData(0, 0, createCanvas.width - 2, createCanvas.height);
 
         canvasContext.putImageData(getImage, 0, 0);
     };

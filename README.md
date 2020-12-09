@@ -156,6 +156,9 @@
 * [image tab](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_imgtab/)
 * [modal](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_modal/)
 * [modal2 - only javascript](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_modal/index2.html)
+  
+    * 상하단 인디케이터바 없는 상태에서 safe-area-inset-bottom 영역에 터치무브하면 body가 스크롤되긴한다.. 이 부분은 해결 못햇으나 그래도 많이 해결했다.
+
 * [panorama](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web2/bonus_ui/interactive_coding_public/interactive_panorama/)
 
 #### 10

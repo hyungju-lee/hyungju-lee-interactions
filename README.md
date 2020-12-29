@@ -90,6 +90,7 @@
 * [html 페럴렉스 제작 준비 (더미 컨텐츠 채우기)](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample11.html)
 * [브런치 스타일. scale, opacity 페럴렉스 페이지 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/index_sample12.html)
 * [입체감이 느껴지는 페럴렉스 페이지 구현](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/lastSample/)
+* [인터랙티브 교차 페이징](https://hyungju-lee.github.io/hyungju-lee-interactions/interactive-web/paging/)
 
 ### interaction web study 2
 
